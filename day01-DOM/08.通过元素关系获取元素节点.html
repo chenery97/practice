@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="box">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <!-- <li>4</li> -->
+    </ul>
+
+    <script>
+      /* 
+        获取html节点
+          - document.documentElement
+          - document.getElementsByTagName('html')[0]
+        获取body节点
+          - document.body
+          - document.getElementsByTagName('body')[0]
+        获取head节点
+          - document.head
+          - document.getElementsByTagName('head')[0]
+
+        获取某个元素的父节点
+          - 子节点.parentNode
+          - 兼容性：完美兼容
+
+        获取某个元素的所有子节点
+          - 父节点.children
+          - 兼容性：IE8及以下会把注释的节点也获取到(解决方案：不要写注释)
+
+        获取某个元素的第一个子节点
+          - 父节点.firstChild (IE8及以下浏览器使用这个) / 父节点.firstElementChild (主流浏览器使用这个)
+          - 兼容性：
+            - 主流浏览器中会获取到父元素的第一个子节点(无论是什么类型的节点)
+            - IE8及以下浏览器会获取到父元素的第一个元素子节点
+      */
+      // 获取html、head、body的元素节点
+      var oHtml = document.documentElement;
+      // var oHtml = document.getElementsByTagName('html')[0];
+      var oBody = document.body;
+      // var oBody = document.getElementsByTagName('body')[0];
+      var oHead = document.head;
+      // var oHead = document.getElementsByTagName('head')[0];
+      console.log(oHtml);
+      console.log(oBody);
+      console.log(oHead);
+
+      // var oLis = document.querySelectorAll('#box li');
+      var oLis = document.getElementsByTagName('li');
+      // 获取li的父节点
+      var oUl = oLis[0].parentNode;
+      console.log(oUl);
+
+      // 获取ul的子节点
+      var oLis = oUl.children;
+      console.log(oLis);
+
+      // 获取第一个子节点
+      // var oLi = oUl.firstChild;
+      // console.log(oLi);
+      function getFirstChildNode(obj) {
+        return obj.firstElementChild ? obj.firstElementChild : obj.firstChild;
+      }
+      var result = getFirstChildNode(oUl);
+      console.log(result);
+
+      // 获取最后一个子节点
+      function getLastChildNode(obj) {
+        return obj.lastElementChild ? obj.lastElementChild : obj.lastChild;
+      }
+      var result = getLastChildNode(oUl);
+      console.log(result);
+
+      // 获取上一个兄弟节点
+      function getPreviousBilding(obj) {
+        return obj.previousElementSibling ? obj.previousElementSibling : obj.previousSibling;
+      }
+      var result = getPreviousBilding(oLis[2]);
+      console.log(result);
+
+      // 获取下一个兄弟节点
+      function getNextBilding(obj) {
+        return obj.nextElementSibling ? obj.nextElementSibling : obj.nextSibling;
+      }
+      var result = getNextBilding(oLis[2]);
+      console.log(result);
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div{
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+
+    <script>
+      /* 
+        鼠标左键单击
+          - 元素节点.onclick = function(){}
+        鼠标左键双击(两次鼠标左键单击间隔在300ms内，一般会触发两次单击事件)
+          - 元素节点.ondblclick = function(){}
+        鼠标右键单击(浏览器中右键单击默认会弹出菜单，可在回调函数的最后添加return false取消浏览器默认行为)
+          - 元素节点.oncontextmenu = function(){}
+      */
+      var oBox = document.getElementById('box');
+      // 绑定左键单击事件
+      oBox.onclick = function() {
+        console.log('左键单击了~~~');
+      }
+      // 绑定左键双击事件
+      oBox.ondblclick = function() {
+        console.log('左键双击了~~~');
+      }
+
+      // 绑定右键单击事件
+      oBox.oncontextmenu = function() {
+        console.log('右键单击了~~~');
+
+        // 取消浏览器默认行为(暴力方法)
+        return false
+      }
+    </script>
+  </body>
+</html>

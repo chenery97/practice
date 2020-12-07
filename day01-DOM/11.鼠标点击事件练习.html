@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1{
+        width: 200px;
+        height: 200px;
+        margin-bottom: 100px;
+        background-color: skyblue;
+      }
+      #box2{
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+    <script>
+      // 开关方式控制元素的背景颜色(特点：适用于两种状态的来回切换)
+      var oBox1 = document.getElementById('box1');
+      var flag = true;
+      oBox1.onclick = function() {
+        flag = !flag;
+        if (flag) {
+          oBox1.style.backgroundColor = 'skyblue';
+        } else {
+          oBox1.style.backgroundColor = 'blue';
+        }
+      }
+
+      // 求模的方式控制元素的背景颜色(特点：适用于多种状态的来回切换)
+      var oBox2 = document.getElementById('box2');
+      var count = 0;
+      oBox2.onclick = function() {
+        count++;
+        if (count % 2 === 0) {
+          oBox2.style.backgroundColor = 'yellow';
+        } else {
+          oBox2.style.backgroundColor = 'yellowgreen';
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="ipt" value="请输入账号">
+
+    <script>
+      /* 
+        获取焦点
+          - 元素节点.onfocus = function(){}
+        失去焦点
+          - 元素节点.onblur = function(){}
+      */
+      var oIpt = document.getElementById('ipt');
+      oIpt.onfocus = function() {
+        if (oIpt.value === '请输入账号') {
+          oIpt.value = '';
+        }
+      }
+      oIpt.onblur = function() {
+        if (oIpt.value === '') {
+          oIpt.value = '请输入账号';
+        }
+      }
+    </script>
+  </body>
+</html>

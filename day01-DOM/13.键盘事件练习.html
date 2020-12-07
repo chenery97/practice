@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #ta{
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="ta" rows="10" cols="100"></textarea>
+    <span>可输入字数：<span id="sn">100</span>字</span>
+
+    <script>
+      // 1、获取元素节点
+      var oTa = document.getElementById('ta');
+      var oSn = document.getElementById('sn');
+      var oSnCount = oSn.innerText;
+      // 2、绑定输入框按键抬起事件
+      oTa.onkeyup = function() {
+        // 3、获取输入框中的字符长度
+        var count = oTa.value.length;
+        // 4、计算剩余字数
+        oSn.innerText = oSnCount - count;
+        // 5、判断剩余字数是否小于0，小于改变输入框边框和剩余字数的颜色
+        if (oSn.innerText < 0) {
+          oTa.style.borderColor = 'red';
+          oSn.style.color = 'red';
+        } else { // 6、当用户减少输入框数字至剩余字数大于等于0时，样式恢复默认
+          oTa.style.borderColor = 'black';
+          oSn.style.color = 'black';
+        }
+      }
+    </script>
+  </body>
+</html>

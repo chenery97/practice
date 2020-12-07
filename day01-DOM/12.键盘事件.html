@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="ipt">
+
+    <script>
+      /* 
+        键盘按键按下事件
+          - 元素节点.onkeydown = function(){}
+        键盘按键抬起事件
+          - 元素节点.onkeyup = function(){}
+      */
+      var oIpt = document.getElementById('ipt');
+      oIpt.onkeydown = function() {
+        console.log('按键按下了~~~');
+      }
+      oIpt.onkeyup = function() {
+        console.log('按键抬起了~~~');
+      }
+    </script>
+  </body>
+</html>

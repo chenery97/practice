@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="box">
+      <li class="red">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li class="red">4</li>
+    </ul>
+    <script>
+      /* 
+        getElementsByClassName
+          - 通过类名获取元素
+          - 获取到的是节点集合(HTMLCollection类型)，类数组，本身没有forEach方法
+          - 兼容性：不兼容IE8及以下(报错：对象不支持“getElementsByClassName”属性或方法)
+      */
+      var oLis = document.getElementsByClassName('red');
+      console.log(oLis);
+
+      Array.prototype.forEach.call(oLis, function(item) {
+        item.style.backgroundColor = 'red';
+      });
+    </script>
+  </body>
+</html>

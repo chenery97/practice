@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">传统方法 添加元素</button>
+    <ul id="geb">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+    <button id="btn2">querySelectorAll 添加元素</button>
+    <ul id="qsa">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+    <script>
+      // 传统方式
+      var oGeb = document.getElementById('geb');
+      var oLis1 = oGeb.getElementsByTagName('li'); // 这种方式是动态获取的，会随着文档的改变而改变
+      var oBtn1 = document.getElementById('btn1');
+      // 给按钮添加单击事件
+      oBtn1.onclick = function() {
+        // 每次添加新的li元素到ul中，下次遍历就会获取新的oLis1.length的值，所以i的值永远都小于oLis1.length的值
+        /* for (var i = 0; i < oLis1.length; i++) {
+          // 创建li元素
+          var oLi1 = document.createElement('li');
+          oLi1.innerText = 'new li';
+          // 把新的li元素添加到ul中
+          oBox.appendChild(oLi1);
+        } */
+        // 解决死循环问题
+        var oLisLength = oLis1.length;
+        for (var i = 0; i < oLisLength; i++) {
+          // 创建li元素
+          var oLi1 = document.createElement('li');
+          oLi1.innerText = 'new li';
+          // 把新的li元素添加到ul中
+          oGeb.appendChild(oLi1);
+        }
+      }
+
+      // querySelectorAll
+      var oQsa = document.getElementById('qsa');
+      var oLis2 = document.querySelectorAll('#qsa li');
+      var oBtn2 = document.getElementById('btn2');
+      // 给按钮添加单击事件
+      oBtn2.onclick = function() {
+        for (var i = 0; i < oLis2.length; i++) {
+          var oLi2 = document.createElement('li');
+          oLi2.innerText = 'querySelectorAll new li';
+          oQsa.appendChild(oLi2);
+        }
+      }
+    </script>
+  </body>
+</html>

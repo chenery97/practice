@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="gender-man">男</label>
+    <input type="radio" name="gender" id="gender-man" />
+    <label for="gender-woman">女</label>
+    <input type="radio" name="gender" id="gender-woman" />
+    <label for="hobby">爱好</label>
+    <input type="radio" name="hobby[]" id="hobby" />
+    <a name="gender">hello</a>
+    <script>
+      /* 
+        getElementsByName(几乎不使用)
+          - 通过name属性获取元素
+          - 获取到的是节点集合(NodeList)，类数组，本身有forEach方法
+      */
+      var oIpt = document.getElementsByName('gender');
+      console.log(oIpt);
+    </script>
+  </body>
+</html>

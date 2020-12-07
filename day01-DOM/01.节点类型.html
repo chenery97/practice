@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="box">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <!-- <li>4</li> -->
+    </ul>
+
+    <script>
+      /* 
+        节点类型：
+          - 文档节点
+            - nodeType: 9
+            - nodeName: #document
+            - nodeValue: null
+          - 元素节点
+            - nodeType: 1
+            - nodeName: 大写的标签名
+            - nodeValue: null
+          - 属性节点
+            - nodeType: 2
+            - nodeName: 属性的key
+            - nodeValue: 属性的value
+          - 文本节点
+            - nodeType: 3
+            - nodeName: #text
+            - nodeValue: 文本内容
+          - 注释节点
+            - nodeType: 8
+            - nodeName: #comment
+            - nodeValue: 注释的内容
+
+        childNodes
+          - 获取某个元素的所有子节点(包括文本节点、元素节点、注释节点)
+          - 获取到的是节点集合(NodeList类型)，类数组，本身有forEach方法
+      
+       */
+      var oBox = document.getElementById('box');
+      var oChildNodes = oBox.childNodes;
+      console.log(oChildNodes);
+
+      // 文档节点
+      console.log(document.nodeType); // 9
+      console.log(document.nodeName); // #document
+      console.log(document.nodeValue); // null
+
+      // 元素节点
+      console.log(oBox.nodeType); // 1
+      console.log(oBox.nodeName); // UL
+      console.log(oBox.nodeValue); // null
+
+      // 属性节点
+      var attr = document.createAttribute('name');
+      attr.value = 'hello';
+      console.log(attr.nodeType); // 2
+      console.log(attr.nodeName); // 属性的key
+      console.log(attr.nodeValue); // 属性的value
+
+      // 文本节点
+      console.log(oChildNodes[0].nodeType); // 3
+      console.log(oChildNodes[0].nodeName); // #text
+      console.log(oChildNodes[0].nodeValue); // 文本内容
+
+      // 注释节点
+      var oLi = oChildNodes[oChildNodes.length - 2] ;
+      console.log(oLi.nodeType); // 8
+      console.log(oLi.nodeName); // #comment
+      console.log(oLi.nodeValue); // 注释的内容
+
+    </script>
+  </body>
+</html>

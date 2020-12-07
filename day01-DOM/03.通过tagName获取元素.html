@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="box">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+    <script>
+      /* 
+        getElementsByTagName
+          - 通过标签名获取元素
+          - 获取到的是节点集合(HTMLCollection类型)，类数组，本身没有forEach方法
+          - 兼容性：完美兼容
+      */
+      var oLis = document.getElementsByTagName('li');
+      console.log(oLis);
+
+      // 类数组使用遍历，方法一：for循环
+      for (var i = 0; i < oLis.length; i++) {
+        oLis[i].style.backgroundColor = 'yellow';
+      }
+
+      // 类数组使用遍历，方法二：通过Array的原型对象中的forEach和call改变this指向的方法直接进行遍历
+      Array.prototype.forEach.call(oLis, function(item) {
+        item.style.backgroundColor = 'blue';
+      });
+
+      // 类数组使用遍历，方法三：通过Array的原型对象中的slice和call改变this指向的方法把类数组转换成一个新的数组返回，然后再对新数组进行遍历
+      var oNewLis = Array.prototype.slice.call(oLis);
+      oNewLis.forEach(function(item) {
+        item.style.backgroundColor = 'pink';
+      });
+    </script>
+  </body>
+</html>

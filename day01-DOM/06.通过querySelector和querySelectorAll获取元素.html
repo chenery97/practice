@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="box">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+    <script>
+      /* 
+        querySelector
+          - 通过css选择器获取元素节点
+          - 兼容性：IE7及以下不支持(报错：对象不支持“querySelector”属性或方法)
+          
+          querySelectorAll
+          - 通过css选择器获取元素节点
+          - 获取到的是节点集合(NodeList类型)，类数组，本身有forEach方法
+          - 兼容性：IE7及以下不支持(报错：对象不支持“querySelectorAll”属性或方法)
+      */
+      var oFirstLi = document.querySelector('#box li:first-child');
+      oFirstLi.style.backgroundColor = 'purple';
+
+      var oLis = document.querySelectorAll('#box li');
+      console.log(oLis);
+    </script>
+  </body>
+</html>
