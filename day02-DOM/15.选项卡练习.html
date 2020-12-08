@@ -22,7 +22,6 @@
         display: flex;
       }
       #outer .menu .menu-title {
-        margin: 0;
         padding: 0;
         width: 200px;
         height: 970px;
@@ -30,7 +29,6 @@
         background-color: rgb(135, 206, 235);
       }
       .menu-title li dl {
-        margin: 0;
         height: 30px;
         line-height: 30px;
         overflow: hidden;
@@ -67,6 +65,9 @@
       }
       #outer .menu .menu-title .checked {
         height: 100%;
+      }
+      #outer .menu .menu-title .closed{
+        height: 30px;
       }
     </style>
   </head>
@@ -118,27 +119,41 @@
       var oSections = document.querySelectorAll("#outer .con section");
       // 给每个一级菜单元素绑定单击事件
       for (var i = 0; i < oMenuTitles.length; i++) {
-        oMenuTitles[i].onclick = function () {
+        // 给每个一级菜单元素添加flag属性，用于控制一级菜单展示、关闭二级菜单
+        oMenuTitles[i].flag = false;
+        oMenuTitles[i].onclick = function (event) {
+          this.flag = !this.flag;
           // 遍历去除一级菜单元素中的checked类名
-          for (var i = 0; i < oMenuTitles.length; i++) {
-            oMenuTitles[i].classList.remove("checked");
-          }
-          // 去除后重新给当前选中的一级菜单元素添加checked类名
-          this.classList.add("checked");
-          // 获取每个一级菜单元素中的二级菜单元素
-          var oSecondMenus = document.querySelectorAll(".menu-title .checked dd");
-          // 给每个二级菜单元素绑定单击事件
-          for (var i = 0; i < oSecondMenus.length; i++) {
-            oSecondMenus[i].onclick = function () {
-              // 遍历二级菜单元素中的内容是否与右侧内容区元素中的内容相同
-              for (var i = 0; i < oSections.length; i++) {
-                if (this.textContent === oSections[i].textContent) {
-                  oSections[i].classList.add("show"); // 相同就给右侧内容区元素添加show类名
-                } else {
-                  oSections[i].classList.remove("show"); // 不相同则移除show类名
+          if (this.flag) {
+            for (var i = 0; i < oMenuTitles.length; i++) {
+              oMenuTitles[i].classList.remove("checked");
+              oMenuTitles[i].classList.remove('closed');
+              oMenuTitles[i].flag = false;
+            }
+            // 去除后重新给当前选中的一级菜单元素添加checked类名
+            this.classList.add("checked");
+            // 当该一级菜单元素为展开状态时，设置为true下次再点击该一级菜单元素则转换为关闭状态
+            this.flag = true;
+            // 获取每个一级菜单元素中的二级菜单元素
+            var oSecondMenus = document.querySelectorAll(".menu-title .checked dd");
+            // 给每个二级菜单元素绑定单击事件
+            for (var i = 0; i < oSecondMenus.length; i++) {
+              oSecondMenus[i].onclick = function (event) {
+                event = event || window.event;
+                event.stopPropagation();
+                // 遍历二级菜单元素中的内容是否与右侧内容区元素中的内容相同
+                for (var i = 0; i < oSections.length; i++) {
+                  if (this.textContent === oSections[i].textContent) {
+                    oSections[i].classList.add("show"); // 相同就给右侧内容区元素添加show类名
+                  } else {
+                    oSections[i].classList.remove("show"); // 不相同则移除show类名
+                  }
                 }
-              }
-            };
+              };
+            }
+          } else {
+            this.classList.add('closed');
+            this.classList.remove('checked');
           }
         };
       }
