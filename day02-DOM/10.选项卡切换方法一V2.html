@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer{
+        width: 600px;
+        margin: 100px auto 0;
+      }
+      #outer .title{
+        width: 100%;
+        border: 1px solid #000;
+        box-sizing: border-box;
+
+        display: flex;
+      }
+      .title h2{
+        margin: 0;
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 24px;
+        border: 1px solid #000;
+        box-sizing: border-box;
+      }
+      .title h2.active{
+        color: #fff;
+        background-color: skyblue;
+      }
+      #outer .con{
+        width: 100%;
+        height: 300px;
+        line-height: 300px;
+        text-align: center;
+        font-size: 50px;
+        border: 1px solid #000;
+      }
+      .con section{
+        display: none;
+      }
+      .con section.show{
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <header class="title">
+        <h2 class="active">标题一</h2>
+        <h2>标题二</h2>
+        <h2>标题三</h2>
+      </header>
+      <div class="con">
+        <section class="show">内容一</section>
+        <section>内容二</section>
+        <section>内容三</section>
+      </div>
+    </div>
+
+    <script>
+      // 获取元素
+      var oH2s = document.querySelectorAll('.title h2');
+      var oSections = document.querySelectorAll('.con section');
+
+      // 给h2元素绑定单击事件
+      oH2s[1].onclick = function () {
+        for (var i = 0; i < oH2s.length; i++) {
+          // 遍历判断当前触发单击事件的元素是哪个
+          if (oH2s[i] === this) {
+            this.classList.add('active');
+            oSections[i].classList.add('show');
+          } else {
+            oH2s[i].classList.remove('active');
+            oSections[i].classList.remove('show');
+          }
+        }
+      }
+      oH2s[0].onclick = function () {
+        for (var i = 0; i < oH2s.length; i++) {
+          // 遍历判断当前触发单击事件的元素是哪个
+          if (oH2s[i] === this) {
+            this.classList.add('active');
+            oSections[i].classList.add('show');
+          } else {
+            oH2s[i].classList.remove('active');
+            oSections[i].classList.remove('show');
+          }
+        }
+      }
+      oH2s[2].onclick = function () {
+        for (var i = 0; i < oH2s.length; i++) {
+          // 遍历判断当前触发单击事件的元素是哪个
+          if (oH2s[i] === this) {
+            this.classList.add('active');
+            oSections[i].classList.add('show');
+          } else {
+            oH2s[i].classList.remove('active');
+            oSections[i].classList.remove('show');
+          }
+        }
+      }
+
+    </script>
+  </body>
+</html>

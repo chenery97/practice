@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img id="img" src="./images/35a86f09e3fae5bad07dcd18a6e66f13.jpeg" alt="" />
+    <script>
+      /* 
+        图片onload事件
+          - 图片加载完之后执行回调函数
+       */
+      var oImg = document.getElementById("img");
+      console.log(oImg.offsetWidth); //0 图片可能还没有加载完就进行获取
+      oImg.onload = function () {
+        console.log(this.offsetWidth); //658
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+      #box2 {
+        width: 300px;
+        height: 300px;
+        background-color: plum;
+        overflow: hidden;
+      }
+      #box2 #con {
+        margin: 100px 0;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <br />
+    <div id="box2">
+      <p id="con"></p>
+    </div>
+
+    <script>
+      /* 
+        鼠标事件
+          - onmousedown:鼠标按键按下时触发
+          - onmouseup:鼠标按键抬起时触发
+          - onmousemove:鼠标移动时触发
+       */
+      var oBox1 = document.getElementById("box1");
+
+      // onmousedown 和 onmouseup
+      oBox1.onmousedown = function () {
+        // 鼠标按下变色
+        this.style.backgroundColor = "yellow";
+      };
+      oBox1.onmouseup = function () {
+        // 鼠标抬起还原颜色
+        this.style.backgroundColor = "skyblue";
+      };
+
+      // 检测鼠标移动的频率
+      var lastTime = 0;
+      oBox1.onmousemove = function () {
+        var nowTime = Date.now();
+        var reduceTime = nowTime - lastTime;
+        lastTime = nowTime;
+        console.log(reduceTime);
+
+        // console.log('鼠标移动了~~~');
+      };
+
+      /* 
+        鼠标事件
+          - onmouseover(会触发事件的冒泡)
+          - onmouseout(会触发事件的冒泡)
+
+          - onmouseenter
+          - onmouseleave
+       */
+      var oBox2 = document.getElementById("box2");
+      var oCon = document.getElementById("con");
+      /* oBox2.onmouseover = function () {
+        console.log('移入了~~~');
+      };
+      oBox2.onmouseout = function () {
+        console.log('移出了~~~');
+      } */
+
+      oBox2.onmouseenter = function () {
+        console.log('移入了···');
+      }
+      oBox2.onmouseleave = function () {
+        console.log('移出了···');
+      }
+    </script>
+  </body>
+</html>

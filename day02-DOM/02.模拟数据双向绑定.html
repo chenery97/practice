@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="ipt">
+    <h1 id="h1"></h1>
+
+    <script>
+      // 获取元素
+      var oIpt = document.getElementById('ipt');
+      var oH1 = document.getElementById('h1');
+
+      // 绑定表单input事件
+      oIpt.oninput = function () {
+        // 当输入框发生变化时把输入框的内容赋值给h1标签的内容
+        oH1.textContent = this.value;
+      }
+    </script>
+  </body>
+</html>

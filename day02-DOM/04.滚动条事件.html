@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body{
+        height: 2000px;
+      }
+      #box{
+        width: 200px;
+        height: 300px;
+        border: 1px solid #000;
+        overflow: auto;
+      }
+      #box p{
+        margin: 0;
+        width: 100px;
+        height: 600px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <p></p>
+    </div>
+
+    <script>
+      /* 
+        滚动条事件
+          - onscroll:滚动条发生滚动时触发
+       */
+       var oBox = document.getElementById('box');
+
+       oBox.onscroll = function () {
+         console.log('OBox滚动了~~~');
+       }
+
+       window.onscroll = function () {
+         console.log('window滚动了~~~');
+       }
+    </script>
+  </body>
+</html>

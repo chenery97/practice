@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /* 
+        window.onload事件
+          - 等待页面中的所有资源(图片、音频、视频等)加载完再执行回调函数中的代码
+          - DOM0级中元素对一个事件多次绑定时，后面的会覆盖前面的
+      */
+      var oImg = document.getElementById('img');
+      console.log(oImg); // null 元素还没加载进来就进行获取
+
+      window.onload = function () {
+        var oImg = document.getElementById('img');
+        console.log('-----',oImg); // 最后打印
+      }
+
+      /* window.onload = function () {
+        var oImg = document.getElementById('img');
+        console.log('~~~~~',oImg); // 最后打印
+      } */
+
+    </script>
+  </head>
+  <body>
+    <script>
+      var oImg = document.getElementById('img');
+      console.log(oImg); // null 元素还没加载进来就进行获取
+    </script>
+
+    <img id="img" src="./images/35a86f09e3fae5bad07dcd18a6e66f13.jpeg" alt="">
+
+    <script>
+      var oImg = document.getElementById('img');
+      console.log(oImg);
+    </script>
+  </body>
+</html>
