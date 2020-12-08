@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      ul,
+      li,
+      dl,
+      dt,
+      dd {
+        margin: 0;
+      }
+      #outer {
+        display: flex;
+      }
+      #outer .menu .menu-title {
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        height: 970px;
+        list-style-type: none;
+        background-color: rgb(135, 206, 235);
+      }
+      .menu-title li dl {
+        margin: 0;
+        height: 30px;
+        line-height: 30px;
+        overflow: hidden;
+        text-indent: 2em;
+        /* background-color: skyblue; */
+        color: #fff;
+        font-size: 14px;
+        border: 1px solid #eee;
+        cursor: pointer;
+      }
+      .menu-title li dl dt:hover {
+        background-color: rgb(113, 201, 236);
+      }
+      .menu-title li dl dd {
+        padding-left: 28px;
+        box-sizing: border-box;
+      }
+      .menu-title li dl dd:hover {
+        background-color: rgb(113, 201, 236);
+      }
+      #outer .con {
+        width: 100%;
+      }
+      #outer .con section {
+        height: 970px;
+        line-height: 970px;
+        text-align: center;
+        font-size: 100px;
+
+        display: none;
+      }
+      #outer .con section.show {
+        display: block;
+      }
+      #outer .menu .menu-title .checked {
+        height: 100%;
+        transition-property: height;
+        transition-duration: 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <aside class="menu">
+        <ul class="menu-title">
+          <li>
+            <dl class="checked">
+              <dt>车场管理</dt>
+              <dd>出入口管理</dd>
+              <dd>设备管理</dd>
+              <dd>高级功能管理</dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>收费规则管理</dt>
+              <dd>临时车收费规则管理</dd>
+              <dd>月租车收费规则管理</dd>
+            </dl>
+          </li>
+          <li>
+            <dl>
+              <dt>车辆管理</dt>
+              <dd>临时车管理</dd>
+              <dd>月租车管理</dd>
+              <dd>黑名单车管理</dd>
+            </dl>
+          </li>
+        </ul>
+      </aside>
+      <div class="con">
+        <section class="show">出入口管理</section>
+        <section>设备管理</section>
+        <section>高级功能管理</section>
+        <section>临时车收费规则管理</section>
+        <section>月租车收费规则管理</section>
+        <section>临时车管理</section>
+        <section>月租车管理</section>
+        <section>黑名单车管理</section>
+      </div>
+    </div>
+
+    <script>
+      // 获取一级菜单元素
+      var oMenuTitles = document.querySelectorAll(".menu-title li dl");
+      // 获取右侧内容区元素
+      var oSections = document.querySelectorAll("#outer .con section");
+      // 给每个一级菜单元素绑定单击事件
+      for (var i = 0; i < oMenuTitles.length; i++) {
+        oMenuTitles[i].onclick = function () {
+          // 遍历去除一级菜单元素中的checked类名
+          for (var i = 0; i < oMenuTitles.length; i++) {
+            oMenuTitles[i].classList.remove("checked");
+          }
+          // 去除后重新给当前选中的一级菜单元素添加checked类名
+          this.classList.add("checked");
+          // 获取每个一级菜单元素中的二级菜单元素
+          var oSecondMenus = document.querySelectorAll(".menu-title .checked dd");
+          // 给每个二级菜单元素绑定单击事件
+          for (var i = 0; i < oSecondMenus.length; i++) {
+            oSecondMenus[i].onclick = function () {
+              // 遍历二级菜单元素中的内容是否与右侧内容区元素中的内容相同
+              for (var i = 0; i < oSections.length; i++) {
+                if (this.textContent === oSections[i].textContent) {
+                  oSections[i].classList.add("show"); // 相同就给右侧内容区元素添加show类名
+                } else {
+                  oSections[i].classList.remove("show"); // 不相同则移除show类名
+                }
+              }
+            };
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
