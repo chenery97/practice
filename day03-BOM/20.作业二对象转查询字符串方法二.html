@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        已知一个查询字符串的对象{user:"laoli",pass:"123456}
+        已知一个地址http://www.baidu.com:80
+        得到一个url字符串"http://www.baidu.com:80?user=laoli&pass=123456"
+       */
+      // 已知一个对象
+      var obj = {
+        user: "laoli",
+        pass: "123456",
+      };
+      // 已知一个地址
+      var url = "http://www.baidu.com:80";
+
+      // 先把对象转成字符串
+      var jsonStr = JSON.stringify(obj);
+      // 去除{""}
+      var str = jsonStr.slice(2, jsonStr.length - 2);
+      // 定义一个计数器，用于遍历替换字符串时遍历的次数
+      var count = 0;
+      // 遍历对象字符串，每匹配到":"都加1
+      for (var i = 1; i < str.length; i++) {
+        if (str.slice(i, i + 3) === '":"') {
+          count++;
+        }
+      }
+      // 用遍历替换字符串(以后用正则)
+      for (var i = 0; i <= count; i++) {
+        str = str.replace('":"', "=");
+        str = str.replace('","', "&");
+      }
+      // 最后拼接url地址
+      url += "?" + str;
+      console.log(url);
+    </script>
+  </body>
+</html>
