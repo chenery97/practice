@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <span id="span">hello</span>
+    <img id="img" src="./images/56af0da3ae601.jpg" alt="">
+
+    <script>
+      /* 
+        clientWidth
+          - 获取元素宽度，包含内容区宽度+padding
+          - 行内元素获取结果为0
+          - 元素为display:none时，获取结果为0
+          - 图片或其他元素没有加载时，获取结果为0
+       */
+      var oBox = document.getElementById('box');
+      var oSpan = document.getElementById('span');
+      var oImg = document.getElementById('img');
+      console.log(oBox.clientWidth);
+      console.log(oSpan.clientWidth); // 行内元素为0
+      console.log(oImg.clientWidth); // 图片没有加载 0
+
+      console.log(oBox.clientHeight);
+      console.log(oSpan.clientHeight); // 行内元素为0
+      console.log(oImg.clientHeight); // 图片没有加载 0
+    </script>
+  </body>
+</html>

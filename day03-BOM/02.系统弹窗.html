@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        alert():只有一个确定按钮的弹窗，返回值undefined
+        confirm():包含确定和取消按钮的弹窗，返回值boolean true/false
+        prompt():包含输入框、确定和取消按钮的弹窗，取消返回null，否则返回输入框的内容
+       */
+
+      /* console.log(alert('hello world'));
+       console.log(confirm('woohoo'));
+       console.log(prompt('what\'s your name?')); */
+
+      function fn() {
+        var username = prompt("你的名字？");
+        if (username) {
+          function foo() {
+            var like = prompt("你最喜欢的球队？");
+            if (like) {
+              function func() {
+                var dream = prompt("你的梦想是？");
+                if (dream) {
+                  var re = confirm("are you sure?");
+                  if (re) {
+                    fn();
+                  } else {
+                    alert('good luck for you!');
+                  }
+                } else {
+                  func();
+                }
+              }
+              func();
+            } else {
+              foo();
+            }
+          }
+          foo();
+        } else {
+          fn();
+        }
+      }
+      fn();
+    </script>
+  </body>
+</html>

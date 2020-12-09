@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid red;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <span id="span">hello</span>
+    <img id="img" src="./images/56af0da3ae601.jpg" alt="">
+
+    <script>
+      /* 
+        offsetWidth
+          - 获取元素的宽度，内容区的宽度+padding+border
+          - 当元素display:none时，结果为0
+          - 如果是图片或其他资源没有加载的时候，并且没有设置宽度的时候，结果为0
+          注意：box-sizing设置后的计算方式
+       */
+      var oBox = document.getElementById('box');
+      var oSpan = document.getElementById('span');
+      var oImg = document.getElementById('img');
+      console.log(oBox.offsetWidth);
+      console.log(oSpan.offsetWidth); // 内联元素也能获取到
+      console.log(oImg.offsetWidth); // 图片还没加载 0
+
+      console.log(oBox.offsetHeight);
+      console.log(oSpan.offsetHeight); // 内联元素也能获取到
+      console.log(oImg.offsetHeight); // 图片还没加载 0
+    </script>
+  </body>
+</html>

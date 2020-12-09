@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        margin-top: 100px;
+        width: 100px;
+        height: 100px;
+        background-color: wheat;
+
+        position: absolute;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn">点击移动box元素</button>
+    <div id="box"></div>
+
+    <script>
+      var oBtn = document.getElementById('btn');
+      var oBox = document.getElementById('box');
+      var num = 0;
+      var timer = null;
+      oBtn.onclick = function () {
+        // 每次点击都会生成一个新的定时器，需要清除上一个定时器，不然可能会出现多个定时器叠加的效果
+        clearInterval(timer);
+        timer = setInterval(function(){
+          num += 3;
+          if (num >= 1000) {
+            // 达到临界值时清除定时器，停止移动
+            clearInterval(timer);
+            num = 1000;  // 当元素移动要超出需求范围时，强制重置元素移动的最大值为临界值
+          }
+          // 给元素的left属性赋值，达到移动的效果
+          oBox.style.left = num + 'px';
+        }, 1000 / 60) // 1000 / 60 正常人肉眼能接受的帧数
+      }
+    </script>
+  </body>
+</html>

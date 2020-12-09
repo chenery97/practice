@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      for (var i = 0; i < 3; i++) {
+        setTimeout(function() {
+          console.log(i); // 因为for是同步代码，定时器是异步代码，所以for循环后i=3，三个定时器打印的结果也就都是3
+        }, 2000)
+      }
+
+      // 修复以上代码(不使用let)
+      for (var i = 0; i < 3; i++) {
+        (function(i){  // 形参i在自执行函数表达式中，每次循环执行时都会有一个自己的作用域，i相互之间不影响
+          setTimeout(function(){
+            console.log(i); // i找到是自执行函数表达式的形参
+          }, 2000)
+        })(i) // 每次循环把i传递进去 0 1 2
+      }
+    </script>
+  </body>
+</html>

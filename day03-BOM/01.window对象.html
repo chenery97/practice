@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">点击去百度</button>
+    <button id="btn2">点击关闭打开的窗口</button>
+
+    <script>
+      /* 
+        window对象：
+          - 代表窗口，作为BOM对象的核心
+          - 替代ECMAScript规定的顶层对象global的功能，作为全局对象，包含所有的全局对象和属性
+          - 在全局作用域中声明的变量和函数都是window对象的属性和方法
+
+        window对象包含：
+          - document：代表整个文档
+          - screen：代表屏幕信息
+          - history：代表历史记录
+          - navigator：代表浏览器信息
+          - location：代表浏览器的url地址
+
+        window.open()
+          - 参数
+            - 1.要跳转的url地址
+            - 2.[可选]默认在新窗口打开
+              - _self：在当前窗口打开
+              - _blank：在新窗口打开
+            - 3.[可选]可以设置新窗口打开的宽度和高度(第二个参数为_blank才有效)
+          - 返回一个新窗口的名称
+
+        窗口名.close()
+
+       */
+      // console.log(window);
+      var oBtn1 = document.getElementById('btn1');
+      var oBtn2 = document.getElementById('btn2');
+      var newWin = null;
+      oBtn1.onclick = function () {
+        // window.open('https://www.baidu.com');
+        // window.open('https://www.baidu.com', '_self');
+        newWin = window.open('http://www.baidu.com', '_blank');
+        // newWin = window.open('https://www.baidu.com', '_blank', 'width=500,height=500');
+        console.log(newWin);
+      }
+
+      oBtn2.onclick = function () {
+        newWin.close(); // 跨域了
+      }
+    </script>
+  </body>
+</html>

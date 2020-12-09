@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        navigator对象
+          - onLine:检测浏览器是否联网 返回boolean 联网true 没网false
+          - flatform:返回用户的操作系统
+          - userAgent:返回浏览器信息(用户代理信息)
+              Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36
+
+        特征检测法：判断浏览器是否支持某个属性或方法，不支持就使用另一个属性或方法
+        例如：firstElementChild 和 firstChild
+       */
+      console.log(navigator);
+      console.log(navigator.onLine);
+      console.log(navigator.platform);
+      console.log(navigator.userAgent);
+
+    </script>
+  </body>
+</html>

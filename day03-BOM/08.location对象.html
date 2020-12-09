@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">assign方法</button>
+    <button id="btn2">replace方法</button>
+    <button id="btn3">reload方法</button>
+    <script>
+      /* 
+        location对象
+          - href:完整的url地址
+          - protocol:协议包括后面的:号
+          - host:主机名:端口
+          - hostname:主机名称
+          - port:端口号
+          - pathname:路径
+          - search:url查询部分包括前面的?号
+          - hash:锚部分包括前面的#号
+       */
+      console.log(location.href);
+      console.log(location.protocol);
+      console.log(location.host);
+      console.log(location.hostname);
+      console.log(location.port);
+      console.log(location.pathname);
+      console.log(location.search);
+      console.log(location.hash);
+
+      var oBtn1 = document.getElementById("btn1");
+      var oBtn2 = document.getElementById("btn2");
+      var oBtn3 = document.getElementById("btn3");
+
+      oBtn1.onclick = function () {
+        location.assign("https://www.baidu.com"); // 跳转到该网站，当前窗口有保存记录，可以后退回到原网站
+      };
+      oBtn2.onclick = function () {
+        location.replace("https://www.sina.com.cn"); // 跳转到该网站，直接把跳转前的页面替换为跳转后的页面，没有保存被替换页面的历史记录
+      };
+      oBtn3.onclick = function () {
+        location.reload(); // 重新加载文档
+      };
+    </script>
+  </body>
+</html>

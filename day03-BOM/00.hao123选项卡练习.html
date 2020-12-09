@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #layout {
+        width: 278px;
+        margin: 100px auto 0;
+
+        border: 1px solid #eee;
+      }
+      #layout .nav-title {
+        padding-left: 14px;
+        padding-right: 14px;
+        width: 100%;
+        height: 41px;
+        line-height: 40px;
+        box-sizing: border-box;
+
+        display: flex;
+        justify-content: space-between;
+      }
+      #layout .nav-title a{
+        height: 40px;
+      }
+      #layout .nav-title a:hover {
+        cursor: pointer;
+        color: #0aa770;
+      }
+      #layout .nav-title a.active{
+        color: #0aa770;
+        border-top: 2px solid #0aa770;
+      }
+      #layout .con section{
+        display: none;
+      }
+      #layout .con section.show {
+        display: block;
+      }
+      #layout .con section a:first-child{
+        display: block;
+        padding-bottom: 11px;
+      }
+      #layout .con section a:first-child img {
+        width: 278px;
+        height: 110px;
+      }
+      #layout .con section a:not(:first-child) {
+        display: block;
+        margin-left: 14px;
+        margin-right: 14px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 14px;
+        color: #333;
+        text-decoration: none;
+      }
+      #layout .con section a:not(:first-child):hover {
+        color: #f50;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="layout">
+      <nav class="nav-title">
+        <a class="active">精选</a>
+        <a>社会</a>
+        <a>娱乐</a>
+        <a>生活</a>
+        <a>体育</a>
+      </nav>
+      <div class="con">
+        <section class="show">
+          <a href="#"><img src="./images/56af0da3ae601.jpg" alt="" /></a>
+          <a href="#">韩国总统文在寅：考虑加入CPTPP</a>
+          <a href="#">“冷链藏毒”真的防不胜防？</a>
+          <a href="#">关于疫情 张文宏凌晨发声！ </a>
+          <a href="#">宪法和你的一生有什么关系？</a>
+          <a href="#">“九章”多牛？花1分钟超算需亿年</a>
+          <a href="#">“姜你军”重现 生姜价格涨多少？</a>
+        </section>
+        <section>
+          <a href=""><img src="./images/5710984334b7e.jpg" alt="" /></a>
+          <a href="#">八旬大爷接诈骗电话 汇款前“刹车”</a>
+          <a href="#">男孩地铁上咆哮奶奶“你给我起来！”</a>
+          <a href="#">女子酒醒不知身在何处 报警后被救下</a>
+          <a href="#">男子高速公路睡大觉 被抓后竟大闹医院</a>
+          <a href="#">10月婴儿手抓电线 两个家庭都急疯了</a>
+          <a href="#">男子公然偷钱包 情急跳河逃跑......</a>
+        </section>
+        <section>
+          <a href=""><img src="./images/5cb450ae20929.jpg" alt="" /></a>
+          <a href="#">港媒曝郑秀文许志安超市购物无交流</a>
+          <a href="#">陈乔恩与男友穿情侣装庆生 搞怪可爱</a>
+          <a href="#">黄明昊妈妈事件进展：从名单中移出</a>
+          <a href="#">小S秀恩爱网友又提家暴 罕见严肃回应</a>
+          <a href="#">被爹妈拖下水的明星“富二代”们</a>
+          <a href="#">央视主持人李思思古装造型 美过嫦娥</a>
+        </section>
+        <section>
+          <a href=""><img src="./images/5ba44d4304441.jpg" alt="" /></a>
+          <a href="#">哈尔滨采冰节 冰水煮饺子吊足游人胃口</a>
+          <a href="#">“2020年度涉疫情防控辟谣榜”发布</a>
+          <a href="#">取厕纸都得刷！“刷脸”真的安全吗？</a>
+          <a href="#">延迟法定退休年龄会加剧就业难吗？ </a>
+          <a href="#">一碗牛肉汤 一夜之间把11人送进急诊室</a>
+          <a href="#">离婚冷静期 一方突击花钱怎么办？</a>
+        </section>
+        <section>
+          <a href=""><img src="./images/F8F2-fxipenp2527999.jpg" alt="" /></a>
+          <a href="#">无奈！联盟或查哈登？火箭主帅3次请归</a>
+          <a href="#">曝哈登又去夜店！缺席训练的真因？</a>
+          <a href="#">欧洲体育：博格巴梦想为皇马效力</a>
+          <a href="#">球星C罗的哥哥涉嫌售卖13000件假球衣</a>
+          <a href="#">世预赛欧洲区分组出炉：55支球队角逐</a>
+          <a href="#">这4个项目成巴黎奥运会正式比赛项目</a>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // 获取元素
+      var oMenu = document.querySelectorAll("#layout .nav-title a");
+      var oSections = document.querySelectorAll('#layout .con section');
+      // 给每个导航菜单绑定点击事件
+      for (var i = 0; i < oMenu.length; i++) {
+        oMenu[i].onclick = function () {
+          // 判断当前点击的元素
+          for (var i = 0; i < oMenu.length; i++) {
+            if (oMenu[i] === this) { // 给当前点击的元素和对应应该显示的内容添加类名以完成展示
+              this.classList.add('active');
+              oSections[i].classList.add('show');
+            } else { // 不是当前点击的元素则移除相关类名
+              oMenu[i].classList.remove('active');
+              oSections[i].classList.remove('show');
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

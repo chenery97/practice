@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>history01页面</h1>
+    <a href="./11.history02.html">去history02页面</a>
+    <a href="./12.history03.html">去history03页面</a>
+    <br>
+    <br>
+
+    <button id="prevs">&lt;&lt;上两页</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="prev">&lt;上一页</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="next">下一页&gt;</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="nexts">下两页&gt;&gt;</button>
+
+    <script>
+      /* 
+        history对象
+          - 历史记录
+            - forward()：前进一页
+            - back()：回退一页
+            - go()：整数前进，负数回退，数字代表前进/回退的步数
+       */
+      var oPrev = document.getElementById('prev');
+      var oNext = document.getElementById('next');
+      var oPrevs = document.getElementById('prevs');
+      var oNexts = document.getElementById('nexts');
+
+      oPrev.onclick = function() {
+        history.back();
+      }
+      oNext.onclick = function () {
+        history.forward();
+      }
+
+      oPrevs.onclick = function () {
+        history.go(-2);
+      }
+      oNexts.onclick = function () {
+        history.go(2);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer{
+        margin: 100px auto 0;
+        width: 300px;
+        height: 50px;
+        overflow: hidden;
+
+        text-align: center;
+      }
+      #outer .title{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        color: #fff;
+        background-color: skyblue;
+      }
+      #outer .con{
+        width: 100%;
+        height: 450px;
+        line-height: 450px;
+        text-align: center;
+        font-size: 100px;
+        color: #fff;
+        background-color: slateblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <h1 class="title">标题</h1>
+      <div class="con">内容</div>
+    </div>
+
+    <script>
+      var oOuter = document.getElementById('outer');
+      // var oTitle = document.getElementById('title');
+      var oCon = document.querySelector('#outer .con');
+      var timer = null;
+
+      oOuter.onmouseenter = function() {
+        // 每次鼠标移入的时候都要清除鼠标移出时生成的定时器，不然会出现鼠标移入的情况下没有显示内容
+        clearTimeout(timer);
+        oOuter.style.height = '500px';
+      }
+
+      oOuter.onmouseleave = function() {
+        timer = setTimeout(function() {
+          oOuter.style.height = '50px';
+        }, 2000)
+      }
+    </script>
+  </body>
+</html>

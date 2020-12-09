@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        已知一个查询字符串的对象{user:"laoli",pass:"123456}
+        已知一个地址http://www.baidu.com:80
+        得到一个url字符串"http://www.baidu.com:80?user=laoli&pass=123456"
+       */
+      // 已知一个对象
+      var obj = {
+        user: "laoli",
+        pass: "123456"
+      }
+      // 已知一个地址
+      var url = 'http://www.baidu.com:80';
+      
+      // 先把对象转成字符串
+      var jsonStr = JSON.stringify(obj);
+      // 去除{}
+      var str = jsonStr.slice(1, jsonStr.length - 1);
+      // 用遍历去除双引号(以后用正则)
+      for (var i = 0 ;i < str.length; i++) {
+        str = str.replace('"', '');
+      }
+      // 以,分割成多个键值对的数组
+      var arry = str.split(',');
+      var searchStr = '';
+      // 遍历数组，把冒号替换为等号并且用&符连接多个键值对
+      for (var i = 0; i < arry.length; i++) {
+        searchStr += arry[i].replace(':', '=');
+        // 最后一次不加&
+        if (i < arry.length - 1){
+          searchStr += '&';
+        }
+      }
+      // 用问号把 已知的地址 和 对象转换后的查询字符串连接起来
+      url += '?' + searchStr;
+      console.log(url); // http://www.baidu.com:80?user=laoli&pass=123456
+    </script>
+  </body>
+</html>

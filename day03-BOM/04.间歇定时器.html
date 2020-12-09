@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="time"></h1>
+
+    <script>
+      /* 
+        模拟时钟(不精准的)
+       */
+      // 获取元素
+      var oTime = document.getElementById('time');
+      // 获取当前时间
+      var nowTime = new Date();
+      // 设置元素的内容，展示当前时间
+      oTime.textContent = nowTime;
+      // 获取当前时间的秒数
+      var nowSeconds = nowTime.getSeconds();
+      // 设置定时器，模拟时钟
+      setInterval(function(){
+        // 判断当前秒数是否为60，为60重置为0
+        if (nowSeconds === 60) {
+          nowSeconds = 0;
+        }
+        // 每过一秒对当前秒数加1
+        nowSeconds++;
+        // 为当前时间设置新的秒数
+        nowTime.setSeconds(nowSeconds);
+        // 更新当前时间
+        oTime.textContent = nowTime;
+      }, 1000)
+    </script>
+  </body>
+</html>

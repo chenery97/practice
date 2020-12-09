@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">点击2s后弹出弹窗</button>
+    <button id="btn2">点击清除定时器</button>
+    <script>
+      /* 
+        setTimeout:异步代码，同步代码执行完并且延迟的时间到了才会执行
+          - 延迟一段时间后执行
+          - 参数
+            - 函数
+            - 延迟的时间(ms)
+            - 其他的参数都会作为函数的参数
+        clearTimeout:清除延迟定时器
+          - 参数：定时器的id
+       */
+      var oBtn1 = document.getElementById("btn1");
+      var oBtn2 = document.getElementById("btn2");
+      var timer = null;
+      oBtn1.onclick = function () {
+        timer = setTimeout(function () {
+          function fn() {
+            var username = prompt("你的名字？");
+            if (username) {
+              function foo() {
+                var like = prompt("你最喜欢的球队？");
+                if (like) {
+                  function func() {
+                    var dream = prompt("你的梦想是？");
+                    if (dream) {
+                      var re = confirm("are you sure?");
+                      if (re) {
+                        fn();
+                      } else {
+                        alert("good luck for you!");
+                      }
+                    } else {
+                      func();
+                    }
+                  }
+                  func();
+                } else {
+                  foo();
+                }
+              }
+              foo();
+            } else {
+              fn();
+            }
+          }
+          fn();
+        }, 2000);
+      };
+      oBtn2.onclick = function() {
+        clearTimeout(timer);
+      }
+    </script>
+  </body>
+</html>

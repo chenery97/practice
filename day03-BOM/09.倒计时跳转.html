@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="con">还有3秒进行跳转</h1>
+    <button id="btn">点击跳转到百度</button>
+    <script>
+      var oCon = document.getElementById("con");
+      var oBtn = document.getElementById("btn");
+
+      var time = 3;
+      var timer = null;
+      oBtn.onclick = function () {
+        clearInterval(timer);
+        timer = setInterval(function () {
+          time--;
+          oCon.textContent = "还有" + time + "秒进行跳转";
+          if (time === 0) {
+            clearInterval(timer);
+            location.assign('https://www.baidu.com');
+          }
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>

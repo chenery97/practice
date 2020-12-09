@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+          已知一个地址"http://www.baidu.com:80?user=laoli&pass=123456"
+          把查询字符串以对象的形式表现出来，得到一个对象{user:"laoli",pass:"123456}
+      */
+
+      // 已知url地址
+      var url = "http://www.baidu.com:80?user=laoli&pass=123456";
+      // 获取开始截取字符串的下标，获取到?号的下标，加1就是查询字符串的开始
+      var startIndex = url.indexOf("?") + 1;
+      // 获取结束截取字符串的下标，获取到#号的下标，如果为-1就说明没有锚部分
+      var endIndex = url.indexOf('#');
+      var searchStr = endIndex === -1 ? url.slice(startIndex) : url.slice(startIndex, endIndex);
+      // console.log(searchStr);
+
+      // 以&分割字符串
+      var searchArry = searchStr.split('&');
+      console.log(searchArry);
+      
+      var obj = {};
+      // 遍历查询字符串数组
+      for (var i = 0; i < searchArry.length; i++) {
+        // 以=号分割成key和value，存放在一个新数组中，下标0存放的是key，下标1存放的是value
+        var tmpArry = searchArry[i].split('=');
+        // 添加到对象中
+        obj[tmpArry[0]] = tmpArry[1];
+      }
+      console.log(obj); // {user: "laoli", pass: "123456"}
+
+    </script>
+  </body>
+</html>

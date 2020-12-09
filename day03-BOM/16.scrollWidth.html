@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        width: 300px;
+        height: 500px;
+        padding: 100px 10px;
+        border: 1px solid red;
+        overflow: hidden;
+      }
+      #con{
+        width: 1000px;
+        height: 200px;
+        background-color: skyblue;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="con"></div>
+    </div>
+
+    <script>
+      /* 
+        scrollWidth
+          - 获取元素包含的完整内容+自身的padding(无论被包含的元素是否超出，超出部分是否被隐藏)
+       */
+      var oBox = document.getElementById('box');
+      var oCon = document.getElementById('con');
+      var oSpan = document.getElementById('span');
+
+      console.log(oBox.scrollWidth);
+      console.log(oCon.scrollWidth);
+    </script>
+  </body>
+</html>
