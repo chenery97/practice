@@ -21,10 +21,13 @@
       var url = "http://www.baidu.com:80";
 
       var str = '';
+      // 遍历对象，获取key和value，并拼接
       for (var i in obj) {
         str += i +'='+ obj[i] + '&';
       }
+      // 去掉最后一个&符
       str = str.slice(0, str.length-1);
+      // 最后和url拼接
       url += '?' + str;
       console.log(url);
     </script>
