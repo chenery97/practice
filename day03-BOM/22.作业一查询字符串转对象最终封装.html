@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+          已知一个地址"http://www.baidu.com:80?user=laoli&pass=123456"
+          把查询字符串以对象的形式表现出来，得到一个对象{user:"laoli",pass:"123456}
+      */
+
+      // 已知url地址
+      var url = "http://www.baidu.com:80?user=laoli&pass=123456";
+
+      function strToObj(url) {
+        // 获取开始截取字符串的下标，获取到?号的下标，加1就是查询字符串的开始
+        var startIndex = url.indexOf("?") + 1;
+        // 获取结束截取字符串的下标，获取到#号的下标，如果为-1就说明没有锚部分
+        var endIndex = url.indexOf('#');
+        var searchStr = endIndex === -1 ? url.slice(startIndex) : url.slice(startIndex, endIndex);
+        // 分别以&和=分割成数组，再使用join拼接字符串
+        searchStr = searchStr.split('&').join('","');
+        searchStr = searchStr.split('=').join('":"');
+        // 首尾拼接上{"  "}
+        searchStr = '{"' + searchStr + '"}';
+        // 使用JSON转成对象
+        var obj = JSON.parse(searchStr);
+        return obj;
+      }
+      
+      var re = strToObj(url);
+      console.log(re);
+    </script>
+  </body>
+</html>

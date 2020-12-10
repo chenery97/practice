@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        已知一个查询字符串的对象{user:"laoli",pass:"123456}
+        已知一个地址http://www.baidu.com:80
+        得到一个url字符串"http://www.baidu.com:80?user=laoli&pass=123456"
+       */
+      // 已知一个对象
+      var obj = {
+        user: "laoli",
+        pass: "123456"
+      }
+      // 已知一个地址
+      var url = 'http://www.baidu.com:80';
+      
+      function objToStr(obj, url) {
+        // 先把对象转成字符串
+        var searchStr = JSON.stringify(obj);
+        // 去除首尾 {" "}
+        searchStr = searchStr.slice(2, searchStr.length - 2);
+        // 以","和":"分割，再使用join拼接
+        searchStr = searchStr.split('","').join('&');
+        searchStr = searchStr.split('":"').join('=');
+        // 和url进行拼接
+        url += '?' + searchStr;
+        return url;
+      }
+
+      var re = objToStr(obj, url);
+      console.log(re);
+
+
+    </script>
+  </body>
+</html>

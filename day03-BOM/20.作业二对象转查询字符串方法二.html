@@ -22,6 +22,7 @@
 
       // 先把对象转成字符串
       var jsonStr = JSON.stringify(obj);
+      console.log(jsonStr);
       // 去除{""}
       var str = jsonStr.slice(2, jsonStr.length - 2);
       // 定义一个计数器，用于遍历替换字符串时遍历的次数
