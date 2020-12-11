@@ -8,6 +8,9 @@
       table{
         text-align: center;
       }
+      table tr td{
+        width: 222px;
+      }
     </style>
   </head>
   <body>
@@ -44,6 +47,7 @@
     </table>
 
     <script>
+      // 获取元素
       var oTable = document.getElementById('table');
       var oBtn = document.getElementById('btn');
       var oUser = document.getElementById('username');
@@ -51,29 +55,48 @@
       var oAge = document.getElementById('age');
       var oTr = document.getElementsByTagName('tr')[0];
       var oDelA = document.getElementsByClassName('del');
+      // 绑定添加数据的事件
       oBtn.onclick = function() {
+        // 判断用户信息是否都有输入
         if(oUser.value && oGender.value && oAge.value) {
+          // 创建一个tr标签
           var newTr = document.createElement('tr');
+          // 创建四个td标签
           var newUserTd = document.createElement('td');
-          var newGenderTd = document.createElement('td');
-          var newAgeTd = document.createElement('td');
-          var newDelTd = document.createElement('td');
+          var newGenderTd = newUserTd.cloneNode();
+          var newAgeTd = newUserTd.cloneNode();
+          var newDelTd = newUserTd.cloneNode();
+          // 为各个td标签的内容进行设置
           newUserTd.textContent = oUser.value;
           newGenderTd.textContent = oGender.value;
           newAgeTd.textContent = oAge.value;
-          newDelTd.innerHTML = '<a herf="#" class="del">删除</a>';
+          newDelTd.innerHTML = '<a href="#" class="del">删除</a>';
+          // 把各个td标签添加到tr标签中
           newTr.appendChild(newUserTd);
           newTr.appendChild(newGenderTd);
           newTr.appendChild(newAgeTd);
           newTr.appendChild(newDelTd);
+          // 把tr标签添加给tbody
           oTr.parentNode.appendChild(newTr);
+          // 重置输入框内容
+          oUser.value = '';
+          oGender.value = '';
+          oAge.value = '';
+          // 添加完新元素后重新绑定点击删除按钮删除元素事件（后面使用动态绑定事件的方法解决）
+          bindDelOnClick();
+        } else {
+          alert("请将各个信息填写完整再提交！！！");
         }
       }
-      for (var i = 0 ; i< oDelA.length ; i++) {
-        oDelA[i].onclick = function() {
-          this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+      function bindDelOnClick(){
+        for (var i = 0 ; i< oDelA.length ; i++) {
+          oDelA[i].onclick = function() {
+            this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+          }
         }
       }
+      // 初始化绑定点击删除按钮删除元素事件
+      bindDelOnClick();
     </script>
   </body>
 </html>

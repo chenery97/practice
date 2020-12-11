@@ -9,7 +9,7 @@
         width: 600px;
         height: 500px;
         margin: 0 auto;
-        border: 1px solid #000;
+        border: 1px solid #eee;
       }
       #outer .title{
         display: flex;
@@ -43,7 +43,7 @@
         list-style-type: none;
 
         position: absolute;
-        border: 1px solid red;
+        /* border: 1px solid red; */
       }
       #outer .con ul li{
         height: 450px;
@@ -70,39 +70,51 @@
     </div>
 
     <script>
+      // 获取元素
       var oTitles = document.querySelectorAll('#outer .title h1');
       var oUl = document.querySelector('#outer .con ul');
       var oLis = document.querySelectorAll('#outer .con ul li');
-      var timer = null;
-      
+      // 设置初始定时器id
+      var ulTimer = null;
+      // 为各个h1元素绑定点击事件
       for (var i =0 ; i < oTitles.length; i++) {
+        // 给各个h1元素一个唯一标识
         oTitles[i].index = i;
         oTitles[i].onclick = function () {
-          clearInterval(timer);
-          var height = oLis[0].getBoundingClientRect().height;
-          var ulTop = parseInt(oUl.offsetTop);
+          // 每次点击先清除定时器
+          clearInterval(ulTimer);
+          // 清除所有h1元素的active类名
           for (var i = 0; i< oTitles.length; i++) {
             oTitles[i].classList.remove('active');
           }
+          // 给当前点击的h1元素添加active类名
           this.classList.add('active');
-          height = this.index * height;
-          timer = setInterval(function(){
-            if (ulTop > -height) {
+          // 获取li元素的高度
+          var height = oLis[0].getBoundingClientRect().height;
+          // 获取ul元素顶部距离包含块的距离
+          var ulTop = parseInt(oUl.offsetTop);
+          // 获取ul元素顶部最终应该距离包含块的距离
+          var moveHeight = -(this.index * height);
+          ulTimer = setInterval(function(){
+            // 如果初始距离大于最终应该到的距离，则每次-10，直到到达最终距离停止
+            if (ulTop > moveHeight) {
               ulTop -= 10;
-              if (ulTop <= -height) {
-                clearInterval(timer);
-                ulTop = -height;
+              if (ulTop <= moveHeight) {
+                ulTop = moveHeight;
+                clearInterval(ulTimer);
               }
-            } else if(ulTop < -height) {
+              // 如果初始距离小于最终应该到的距离，则每次+10，直到到达最近距离停止
+            } else if(ulTop < moveHeight) {
               ulTop += 10;
-              if (ulTop >= -height) {
-                clearInterval(timer);
-                ulTop = -height;
+              if (ulTop >= moveHeight) {
+                ulTop = moveHeight;
+                clearInterval(ulTimer);
               }
+              // 如果初始距离和最终距离一样，则不作任何动画操作
             }else{
-              clearInterval(timer);
+              clearInterval(ulTimer);
             }
-            console.log(ulTop)
+            // 最终设置每次应该到达的距离
             oUl.style.top = ulTop + 'px';
           },16)
         }
