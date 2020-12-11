@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,body{
+        margin: 0;
+        padding: 0;
+      }
+      #box{
+        width: 500px;
+        height: 500px;
+        margin: 80px;
+        padding: 50px;
+        border: 1px solid red;
+
+        position: relative;
+      }
+      #con{
+        width: 200px;
+        height: 200px;
+        margin: 150px;
+        padding: 30px;
+        border: 2px solid #000;
+
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="con">
+        <span id="span">hello</span>
+      </div>
+    </div>
+
+    <script>
+      /* 
+        offsetParent
+          - 获取其元素的最近的定位父元素
+       */
+
+      var oBox = document.getElementById('box');
+      var oCon = document.getElementById('con');
+      var oSpan = document.getElementById('span');
+
+      console.log(oBox.offsetParent);
+      console.log(oCon.offsetParent);
+      console.log(oSpan.offsetParent);
+      
+    </script>
+  </body>
+</html>

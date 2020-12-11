@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer{
+        width: 600px;
+        height: 500px;
+        margin: 0 auto;
+        border: 1px solid #000;
+      }
+      #outer .title{
+        display: flex;
+        
+      }
+      #outer .title h1{
+        flex: 1;
+        height: 50px;
+        line-height: 50px;
+        margin: 0;
+        text-align: center;
+        border: 1px solid skyblue;
+        box-sizing: border-box
+      }
+      #outer .title h1:hover{
+        cursor: pointer;
+      }
+      #outer .title .active{
+        background: skyblue;
+      }
+      #outer .con{
+        height: 450px;
+        overflow: hidden;
+        position: relative;
+      }
+      #outer .con ul{
+        height: 1350px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        position: absolute;
+        border: 1px solid red;
+      }
+      #outer .con ul li{
+        height: 450px;
+        line-height: 450px;
+        text-align: center;
+        font-size: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div class="title">
+        <h1 class="active">标题一</h1>
+        <h1>标题二</h1>
+        <h1>标题三</h1>
+      </div>
+      <div class="con">
+        <ul>
+          <li>内容一</li>
+          <li>内容二</li>
+          <li>内容三</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      var oTitles = document.querySelectorAll('#outer .title h1');
+      var oUl = document.querySelector('#outer .con ul');
+      var oLis = document.querySelectorAll('#outer .con ul li');
+      var timer = null;
+      
+      for (var i =0 ; i < oTitles.length; i++) {
+        oTitles[i].index = i;
+        oTitles[i].onclick = function () {
+          clearInterval(timer);
+          var height = oLis[0].getBoundingClientRect().height;
+          var ulTop = parseInt(oUl.offsetTop);
+          for (var i = 0; i< oTitles.length; i++) {
+            oTitles[i].classList.remove('active');
+          }
+          this.classList.add('active');
+          height = this.index * height;
+          timer = setInterval(function(){
+            if (ulTop > -height) {
+              ulTop -= 10;
+              if (ulTop <= -height) {
+                clearInterval(timer);
+                ulTop = -height;
+              }
+            } else if(ulTop < -height) {
+              ulTop += 10;
+              if (ulTop >= -height) {
+                clearInterval(timer);
+                ulTop = -height;
+              }
+            }else{
+              clearInterval(timer);
+            }
+            console.log(ulTop)
+            oUl.style.top = ulTop + 'px';
+          },16)
+        }
+      }
+    </script>
+  </body>
+</html>

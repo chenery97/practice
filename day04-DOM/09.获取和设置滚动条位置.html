@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body{
+        height: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn">滚滚滚滚</button>
+
+    <script>
+      /* 
+        window.scrollTo()
+          - 完美兼容
+          - 第一个参数为x轴的滚动条，第二个参数为y轴的滚动条
+          - 只能设置
+
+        window.pageYOffset
+          - IE9及以上浏览器支持
+          - 获取滚动条位置
+          - 只能获取
+
+        document.documentElement.scrollTop(不要求兼容IE6的情况够用了)
+          - IE7及以上浏览器支持
+          - 可以获取和设置
+
+       */
+      var oBtn = document.getElementById('btn');
+      oBtn.onclick = function () {
+        // window.scrollTo(0, 500);
+        document.documentElement.scrollTop = 600;
+        console.log(window.pageYOffset);
+        console.log(document.documentElement.scrollTop);
+        console.log(document.body.scrollTop);
+      }
+    </script>
+  </body>
+</html>

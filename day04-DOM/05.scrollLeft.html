@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,body{
+        margin: 0;
+        padding: 0;
+      }
+      #box{
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+
+        overflow: auto;
+      }
+      #con{
+        width: 2000px;
+        height: 2000px;
+        border: 2px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="con">
+      </div>
+    </div>
+    <br>
+    <button id="btn">button</button>
+
+    <script>
+      /* 
+        clientLeft
+          - 获取或设置元素的水平滚动条的位置
+
+        clientTop
+          - 获取或设置元素的垂直滚动条的位置
+       */
+
+      var oBox = document.getElementById('box');
+      var oBtn = document.getElementById('btn');
+      oBtn.onclick = function () {
+        oBox.scrollLeft = 500;
+        oBox.scrollTop = 500;
+
+        console.log(oBox.scrollLeft);
+        console.log(oBox.scrollTop);
+      }
+    </script>
+  </body>
+</html>

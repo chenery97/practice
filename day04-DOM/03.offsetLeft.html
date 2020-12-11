@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,body{
+        margin: 0;
+        padding: 0;
+      }
+      #box{
+        width: 500px;
+        height: 500px;
+        margin: 80px;
+        padding: 50px;
+        border: 1px solid red;
+
+        position: relative;
+      }
+      #con{
+        width: 200px;
+        height: 200px;
+        margin: 150px;
+        padding: 30px;
+        border: 2px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="con">
+        <span id="span">hello</span>
+      </div>
+    </div>
+
+    <script>
+      /* 
+
+        offsetLeft的包含块：
+          - 其祖辈元素有值不为static的定位属性时，则这个祖辈元素就是其包含块
+          
+        offsetLeft
+          - 获取元素左边框外侧到包含块左边框内侧的距离
+
+        offsetTop
+          - 获取元素上边框外侧到包含块上边框内侧的距离
+       */
+
+      var oBox = document.getElementById('box');
+      var oCon = document.getElementById('con');
+      var oSpan = document.getElementById('span');
+
+      console.log(oBox.offsetLeft);
+      console.log(oCon.offsetLeft);
+      console.log(oSpan.offsetLeft);
+
+      console.log(oBox.offsetTop);
+      console.log(oCon.offsetTop);
+      console.log(oSpan.offsetTop);
+    </script>
+  </body>
+</html>

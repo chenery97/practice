@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #con{
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="con" style="left: 100px; top:100px;"></div>
+    <button id="btn1">前进</button>
+    <button id="btn2">后退</button>
+    <br>
+    <br>
+    <button id="btn3">向下</button>
+    <button id="btn4">向上</button>
+    <script>
+      var oCon = document.getElementById('con');
+      var oBtn1 = document.getElementById('btn1');
+      var oBtn2 = document.getElementById('btn2');
+      var oBtn3 = document.getElementById('btn3');
+      var oBtn4 = document.getElementById('btn4');
+      var animationTimer = null;
+
+      oBtn1.onclick = function () {
+        clearInterval(animationTimer);
+        animation(oCon, 'left', 900, 100);
+      }
+      oBtn2.onclick = function () {
+        clearInterval(animationTimer);
+        animation(oCon, 'left', 100, 100)
+      }
+      oBtn3.onclick = function () {
+        clearInterval(animationTimer);
+        animation(oCon, 'top', 900, 100)
+      }
+      oBtn4.onclick = function () {
+        clearInterval(animationTimer);
+        animation(oCon, 'top', 100, 100)
+      }
+      function animation(Ele, direction, endLocation, endStep) {
+        // 动画元素起始位置，用parseInt取到数字部分
+        var startLocation = parseInt(Ele.style[direction]);
+        // 起始步数
+        var startStep = 0;
+        // 每一步所走的距离
+        var everyStep = (endLocation - startLocation) / (endStep - startStep);
+
+        // 开始动画
+        animationTimer = setInterval(function(){
+          // 动画元素起始位置每次加所走的距离
+          startLocation += everyStep;
+          // 每走一次起始步数加1
+          startStep++;
+          // 判断起始步数是否等于或超过结束步数
+          if (startStep >= endStep){
+            startStep = endStep;
+            clearInterval(animationTimer);
+          }
+          // 最后把动画元素的起始位置重新赋值
+          Ele.style[direction] = startLocation + 'px';
+        },16)
+      }
+    </script>
+  </body>
+</html>

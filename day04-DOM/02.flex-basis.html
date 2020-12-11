@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer{
+        width: 800px;
+        height: 500px;
+        margin: 100px auto;
+        border: 1px solid #000;
+
+        display: flex;
+      }
+      .outer div:nth-child(odd){
+        background: yellow;
+        flex-grow: 1;
+        /* 设置弹性元素等宽或等高 */
+        flex-basis: 0;
+      }
+      .outer div:nth-child(even){
+        background: skyblue;
+        flex-grow: 1;
+        flex-basis: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div>hello</div>
+      <div>my</div>
+      <div>name</div>
+      <div>is</div>
+      <div>xxx</div>
+    </div>
+  </body>
+</html>

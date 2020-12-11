@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body{
+        height: 3000px;
+      }
+      #btn{
+        width: 50px;
+        height: 50px;
+        background: url(./images/01.png) 0 0 no-repeat;
+        background-size: 50px;
+
+        position: fixed;
+        right: 100px;
+        bottom: 100px;
+
+        border: none;
+        outline: none;
+
+        display: none;
+      }
+      #btn:hover{
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <button id="btn"></button>
+
+    <script>
+      var oBtn = document.getElementById('btn');
+      var html = document.documentElement;
+      var scrollTimer = null;
+
+      window.onscroll = function () {
+        if (html.scrollTop >= 500) {
+          oBtn.style.display = 'block';
+        } else {
+          oBtn.style.display = 'none';
+        }
+      }
+      oBtn.onclick = function () {
+        clearInterval(scrollTimer);
+        var nowScroll = html.scrollTop;
+        scrollTimer = setInterval(function(){
+          nowScroll -= 100;
+          if (nowScroll <= 0) {
+            html.scrollTop = 0;
+            clearInterval(scrollTimer);
+          }
+          html.scrollTop = nowScroll;
+        })
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        width: 500px;
+        height: 500px;
+        margin: 100px;
+        padding: 50px;
+        border: 10px solid red;
+      }
+      #con{
+        width: 200px;
+        height: 200px;
+        margin: 50px;
+        padding: 20px;
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+      <div id="box">
+        <div id="con"></div>
+      </div>
+
+      <script>
+        /* 
+          getBoundingClientRect()
+            - 获取当前元素的一个DOMRect对象
+            对象包含
+              - width: 内容区+padding+border的宽度
+              - height: 内容区+padding+border的宽度
+              - left: 左侧到视窗左侧的距离
+              - top: 上侧到视窗上侧的距离
+              - right: 右侧到视窗左侧的距离
+              - bottom: 下侧到视窗上侧的距离
+              - x:
+              - y:
+        
+         */
+        var oBox = document.getElementById('box');
+
+        console.log(oBox.getBoundingClientRect());
+      </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box{
+        width: 1000px;
+        height: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      /* 
+        document.documentElement.offsetHeight
+          - 主流浏览器和IE11：获取的是真正文档的高度
+          - IE11以下：获取的是可视窗口的高度
+        document.documentElement.offsetWidth
+          - 获取的是可视窗口的宽度
+       */
+      console.log(document.documentElement.offsetHeight);
+      console.log(document.documentElement.offsetWidth);
+      console.log(document.body.offsetHeight);
+      // console.log(document.body.offsetWidth);
+    </script>
+  </body>
+</html>

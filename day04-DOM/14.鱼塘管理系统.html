@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#">
+      <label>
+        姓名：
+        <input type="text" id="username">
+      </label>
+      <label>
+        性别：
+        <input type="text" id="gender">
+      </label>
+      <label>
+        年龄：
+        <input type="text" id="age">
+      </label>
+      <button id="btn" type="button">添加小鱼儿</button>
+    </form>
+    <br>
+    <table id="table" border="1" width='888' style="border-collapse:collapse">
+      <caption>鱼塘</caption>
+      <tr>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>操作</th>
+      </tr>
+      <tr>
+        <td>默认</td>
+        <td>默认</td>
+        <td>默认</td>
+        <td><a href="#" class="del">删除</a></td>
+      </tr>
+    </table>
+
+    <script>
+      var oTable = document.getElementById('table');
+      var oBtn = document.getElementById('btn');
+      var oUser = document.getElementById('username');
+      var oGender = document.getElementById('gender');
+      var oAge = document.getElementById('age');
+      var oTr = document.getElementsByTagName('tr')[0];
+      var oDelA = document.getElementsByClassName('del');
+      oBtn.onclick = function() {
+        if(oUser.value && oGender.value && oAge.value) {
+          var newTr = document.createElement('tr');
+          var newUserTd = document.createElement('td');
+          var newGenderTd = document.createElement('td');
+          var newAgeTd = document.createElement('td');
+          var newDelTd = document.createElement('td');
+          newUserTd.textContent = oUser.value;
+          newGenderTd.textContent = oGender.value;
+          newAgeTd.textContent = oAge.value;
+          newDelTd.innerHTML = '<a herf="#" class="del">删除</a>';
+          newTr.appendChild(newUserTd);
+          newTr.appendChild(newGenderTd);
+          newTr.appendChild(newAgeTd);
+          newTr.appendChild(newDelTd);
+          oTr.parentNode.appendChild(newTr);
+        }
+      }
+      for (var i = 0 ; i< oDelA.length ; i++) {
+        oDelA[i].onclick = function() {
+          this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+        }
+      }
+    </script>
+  </body>
+</html>

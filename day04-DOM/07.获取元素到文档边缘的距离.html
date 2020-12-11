@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #box {
+        width: 500px;
+        height: 500px;
+        margin: 80px;
+        padding: 50px;
+        border: 1px solid red;
+
+        position: relative;
+      }
+      #con {
+        width: 200px;
+        height: 200px;
+        margin: 150px;
+        padding: 30px;
+        border: 2px solid #000;
+
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="con">
+        <span id="span">hello</span>
+      </div>
+    </div>
+
+    <script>
+      /* 
+        offsetParent
+          - 获取其元素的最近的定位父元素
+       */
+
+      // 获取元素
+      var oSpan = document.getElementById("span");
+
+      function getEleToDoc(Ele) {
+        var obj = Ele;
+        var l = 0;
+        var t = 0;
+        // 判断是否已经找到头了
+        while (obj) {
+          if (obj === Ele) {
+            l += obj.offsetLeft;
+            t += obj.offsetTop;
+          } else {
+            l += obj.offsetLeft + obj.clientLeft;
+            t += obj.offsetTop + obj.clientTop;
+          }
+          obj = obj.offsetParent;
+        }
+        return { left: l, top: t };
+      }
+      var re = getEleToDoc(oSpan);
+      console.log(re);
+    </script>
+  </body>
+</html>
