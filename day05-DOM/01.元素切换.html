@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+      #outer {
+        width: 500px;
+        height: 300px;
+        margin: 100px auto;
+        border: 1px solid #000;
+        text-align: center;
+        display: flex;
+      }
+      #outer .left {
+        width: 200px;
+        padding-top: 10px;
+        background: skyblue;
+      }
+      #outer .center {
+        width: 100px;
+        padding-top: 10px;
+        background: plum;
+      }
+      #outer .center button {
+        width: 80px;
+        height: 25px;
+        background: plum;
+        border: 1px solid #eee;
+        outline: none;
+      }
+      #outer .center button:hover {
+        cursor: pointer;
+      }
+      #outer .right {
+        width: 200px;
+        padding-top: 10px;
+        background: salmon;
+      }
+      #outer ul li {
+        padding: 5px 0;
+        margin: 1px 0;
+      }
+      #outer ul li:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <ul class="left">
+        <li>left01</li>
+        <li>left02</li>
+        <li>left03</li>
+        <li>left04</li>
+      </ul>
+      <div class="center">
+        <button class="rightBtn">&gt;&gt;&gt;&gt;&gt;</button>
+        <br /><br />
+        <button class="leftBtn">&lt;&lt;&lt;&lt;&lt;</button>
+      </div>
+      <ul class="right">
+        <li>right01</li>
+        <li>right02</li>
+        <li>right03</li>
+        <li>right04</li>
+      </ul>
+    </div>
+
+    <script>
+      // 获取元素
+      var oLeftUl = document.getElementsByClassName("left")[0];
+      var oRightUl = document.getElementsByClassName("right")[0];
+      var oLeftLis = oLeftUl.getElementsByTagName("li");
+      var oRightLis = oRightUl.getElementsByTagName("li");
+      var oLeftBtn = document.getElementsByClassName("leftBtn")[0];
+      var oRightBtn = document.getElementsByClassName("rightBtn")[0];
+      var fragEle = document.createDocumentFragment();
+
+      /* 
+        setEleStatus:设置元素未选中和被选中时的状态和样式
+        argument
+          - lisEle:要绑定事件的元素集合
+      */
+      function setEleStatus(lisEle) {
+        for (var i = 0; i < lisEle.length; i++) {
+          lisEle[i].onclick = function () {
+            // 如果该元素已经是被选中的状态，再次点击后应该还原状态
+            if (this.dataset.click === "true") {
+              this.dataset.click = "";
+              this.style.background = "";
+              return;
+            }
+            // 如果是未被选中的状态则设置状态和样式
+            this.dataset.click = "true";
+            this.style.background = "#f00";
+          };
+        }
+      }
+      setEleStatus(oLeftLis);
+      setEleStatus(oRightLis);
+
+      /* 
+        changeEles:改变元素所在的位置
+        arguments
+          - parentEle:要添加子元素的父元素
+          - btnELe:要绑定事件的按钮元素
+          - lisEle:需要改变位置的元素集合
+      */
+      function changeEles(parentEle, btnEle, lisEle) {
+        btnEle.onclick = function () {
+          // 遍历查看每个li元素当前的状态是否被选中
+          for (var i = 0; i < lisEle.length; i++) {
+            // 如果为被选中状态，则去除被选中状态后添加到文档碎片节点中
+            if (lisEle[i].dataset.click === 'true') {
+              lisEle[i].dataset.click = '';
+              lisEle[i].style.background = '';
+              fragEle.appendChild(lisEle[i]);
+              // console.log(fragEle);
+              // 因为把元素添加到文档碎片节点后，会直接将该元素在页面中删除，
+              // 下次再遍历时会跳过下一个元素，所以这里i要减1，重新把跳过的元素遍历一次
+              i--;
+            }
+          }
+          // 遍历结束后把文档碎片节点添加到另一边的ul元素中
+          parentEle.appendChild(fragEle);
+        }
+      }
+      changeEles(oRightUl, oRightBtn, oLeftLis);
+      changeEles(oLeftUl, oLeftBtn, oRightLis);
+    </script>
+  </body>
+</html>

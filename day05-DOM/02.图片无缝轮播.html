@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+      #outer {
+        width: 500px;
+        height: 300px;
+        margin: 100px auto;
+        border: 1px solid #eee;
+        position: relative;
+      }
+      #inner {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      #inner .con {
+        width: 3000px;
+        display: flex;
+      }
+      #inner .con img {
+        width: 500px;
+        height: 300px;
+      }
+      #inner .prevBtn,
+      #inner .nextBtn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        line-height: 50px;
+        text-align: center;
+        font-size: 40px;
+        color: rgba(220, 220, 220, 0.5);
+
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      #inner .prevBtn {
+        left: 0;
+      }
+      #inner .nextBtn {
+        right: 0;
+      }
+      #inner .prevBtn:hover,
+      #inner .nextBtn:hover {
+        cursor: pointer;
+        color: rgba(220, 220, 220, 1);
+      }
+      #inner .currentImg {
+        display: flex;
+
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      #inner .currentImg li {
+        width: 10px;
+        height: 10px;
+        margin: 5px;
+        border-radius: 50%;
+        background-color: rgba(220, 220, 220, 0.3);
+      }
+      #inner .currentImg li:hover {
+        cursor: pointer;
+      }
+      #inner .currentImg li.active {
+        background-color: rgba(220, 220, 220, 1);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div id="inner">
+        <div class="con">
+          <img src="./images/01.jpg" alt="" />
+          <img src="./images/02.jpg" alt="" />
+          <img src="./images/03.jpg" alt="" />
+          <img src="./images/04.jpg" alt="" />
+          <img src="./images/05.jpg" alt="" />
+          <img src="./images/01.jpg" alt="" />
+        </div>
+        <div class="prevBtn">&lt;</div>
+        <div class="nextBtn">&gt;</div>
+        <ul class="currentImg">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // 获取元素
+      var oInner = document.getElementById("inner");
+      var oCon = document.querySelector("#inner .con");
+      var oImages = document.querySelectorAll("#inner .con img");
+      var oPrevBtn = document.querySelector("#inner .prevBtn");
+      var oNextBtn = document.querySelector("#inner .nextBtn");
+      var oLis = document.querySelectorAll("#inner .currentImg li");
+      // 设置定时器容器
+      var autoTimer = null;
+      var moveTimer = null;
+      var timeoutTime = null;
+      // 设置当前图片动画的标识
+      var v = 0;
+      // 获取图片的宽度和数量
+      var imgWidth = oImages[0].offsetWidth;
+      var oImgLen = oImages.length;
+
+      // 自动动画的方法
+      function autoAnimation() {
+        autoTimer = setInterval(function () {
+          // 清除移动动画定时器
+          clearInterval(moveTimer);
+          // 改变当前应该显示的图片
+          v++;
+          // 判断是否已经显示了最后一张图片，超过从头开始
+          if (v > oImgLen - 1) {
+            // 因为最后一张和第一张图片是一样的，当显示最后一张后，把下标直接设置为1
+            // 下次直接动画显示第二张图片，并把滚动条滚到最左边的位置，实现无缝连接的关键
+            v = 1;
+            oInner.scrollLeft = 0;
+          }
+          // 执行移动动画
+          moveAnimation();
+          // 动画移动后切换显示当前图片的小点点
+          currentImg();
+        }, 2000);
+      }
+
+      // 移动动画方法
+      function moveAnimation() {
+        // 先清除之前的移动动画定时器
+        clearInterval(moveTimer);
+        // 获取滚动条起始位置
+        var startLocation = oInner.scrollLeft;
+        // 获取滚动条结束位置
+        var endLocation = imgWidth * v;
+        // 设置起始步数
+        var startStep = 0;
+        // 设置结束步数
+        var endStep = 80;
+        // 获取每次的步长
+        var everyStep = (endLocation - startLocation) / (endStep - startStep);
+        moveTimer = setInterval(function () {
+          // 每走一次步数加1
+          startStep++;
+          // 每走一次起始位置在原来的基础上加每次的步长
+          startLocation += everyStep;
+          // 判断步数是否已走完
+          if (startStep >= endStep) {
+            // 走完清除移动动画定时器
+            clearInterval(moveTimer);
+          }
+          // 最后设置滚动条的位置
+          oInner.scrollLeft = startLocation;
+        }, 16);
+      }
+
+      // 调用自动动画方法，默认进行自动轮播
+      autoAnimation();
+
+      // 点击上一张动画
+      oPrevBtn.onclick = function () {
+        // 先清除之前所有的动画定时器
+        clearInterval(autoTimer);
+        clearInterval(moveTimer);
+        // 改变当前应该显示的图片
+        v--;
+        // 判断是否已经显示了第一张图片，是则从最后一张开始
+        if (v < 0) {
+          // 重新设置下标从最后一张图片开始
+          v = oImgLen - 2;
+          // 重新设置滚动条到最右边
+          oInner.scrollLeft = oImgLen * imgWidth;
+        }
+        // 执行移动动画
+        moveAnimation();
+        // 动画移动后切换显示当前图片的小点点
+        currentImg();
+        // 点击动画操作后延迟继续执行自动动画
+        timeoutAnimation();
+      };
+
+      // 点击下一张动画
+      oNextBtn.onclick = function () {
+        clearInterval(autoTimer);
+        clearInterval(moveTimer);
+        v++;
+        if (v > oImgLen - 1) {
+          v = 1;
+          oInner.scrollLeft = 0;
+        }
+        moveAnimation();
+        currentImg();
+        timeoutAnimation();
+      };
+
+      // 点击导航按钮图片动画的方法
+      oLis.forEach(function(item, index){
+        item.onclick = function(){
+          // 先清除之前所有的动画定时器
+          clearInterval(autoTimer);
+          clearInterval(moveTimer);
+          // 设置下标为当前点击的导航点的下标
+          v = index;
+          // 执行移动动画
+          moveAnimation();
+          currentImg();
+          timeoutAnimation();
+        }
+      })
+      
+      // 一个点击动画执行后延迟执行自动动画的方法
+      function timeoutAnimation() {
+        timeoutTimer = setTimeout(function () {
+          // 先清除上一次的延迟动画定时器
+          clearInterval(timeoutTimer);
+          autoAnimation();
+        }, 2000);
+      }
+      
+      // 标识当前图片的方法
+      function currentImg() {
+        for (var i = 0; i < oLis.length; i++) {
+          // 先清除所有的标识
+          oLis[i].classList.remove("active");
+          // 给当前图片添加标识
+          if (v === i) {
+            oLis[i].classList.add("active");
+          }
+          // 判断是否为最后一张图片，是则给第一个导航点添加标识，因为最后一张和第一张是同一张
+          if (v === oImgLen - 1) {
+            oLis[0].classList.add('active');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
