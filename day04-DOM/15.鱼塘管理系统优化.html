@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        text-align: center;
+      }
+      table tr td {
+        width: 222px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#">
+      <label>
+        姓名：
+        <input type="text" id="username" />
+      </label>
+      <label>
+        性别：
+        <input type="text" id="gender" />
+      </label>
+      <label>
+        年龄：
+        <input type="text" id="age" />
+      </label>
+      <button id="btn" type="button">添加小鱼儿</button>
+    </form>
+    <br />
+    <table id="table" border="1" width="888" style="border-collapse: collapse">
+      <caption>
+        鱼塘
+      </caption>
+      <tr>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>操作</th>
+      </tr>
+      <tr>
+        <td>默认</td>
+        <td>默认</td>
+        <td>默认</td>
+        <td><a href="#" class="del">删除</a></td>
+      </tr>
+    </table>
+
+    <script>
+      // 获取元素
+      var oBtn = document.getElementById("btn");
+      var oUser = document.getElementById("username");
+      var oGender = document.getElementById("gender");
+      var oAge = document.getElementById("age");
+      var oTr = document.querySelector("table tr");
+      var oDelA = document.getElementsByClassName("del");
+      // 绑定添加数据的事件
+      oBtn.onclick = function () {
+        // 判断用户信息是否都有输入
+        if (!(oUser.value && oGender.value && oAge.value)) {
+          alert("请将各个信息填写完整再提交！！！");
+          return;
+        }
+        var usernameVal = oUser.value;
+        var genderVal = oGender.value;
+        var ageVal = oAge.value;
+        oTr.parentNode.innerHTML +=
+          "<tr><td>" +
+          usernameVal +
+          "</td><td>" +
+          genderVal +
+          "</td><td>" +
+          ageVal +
+          "</td><td><a href=\"#\" class=\"del\">删除</a></td></tr>";
+        // 重置输入框内容
+        oUser.value = "";
+        oGender.value = "";
+        oAge.value = "";
+        // 添加完新元素后重新绑定点击删除按钮删除元素事件（后面使用动态绑定事件的方法解决）
+        bindDelOnClick();
+      };
+      function bindDelOnClick() {
+        for (var i = 0; i < oDelA.length; i++) {
+          oDelA[i].onclick = function () {
+            this.parentNode.parentNode.parentNode.removeChild(
+              this.parentNode.parentNode
+            );
+          };
+        }
+      }
+      // 初始化绑定点击删除按钮删除元素事件
+      bindDelOnClick();
+    </script>
+  </body>
+</html>
