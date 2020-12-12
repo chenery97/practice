@@ -90,7 +90,8 @@
           // 给当前点击的h1元素添加active类名
           this.classList.add('active');
           // 获取li元素的高度
-          var height = oLis[0].getBoundingClientRect().height;
+          // var height = oLis[0].getBoundingClientRect().height;
+          var height = oLis[0].offsetHeight;
           // 获取ul元素顶部距离包含块的距离
           var ulTop = parseInt(oUl.offsetTop);
           // 获取ul元素顶部最终应该距离包含块的距离
