@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 200px;
+        height: 200px;
+      }
+      .con {
+        background: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">hello world</div>
+    checked:<input id="ipt" type="radio" /> <br /><br />
+    <button id="btn1">添加自有属性</button>
+    <button id="btn2">删除自有属性</button>
+    <button id="btn3">添加自定义属性</button>
+    <button id="btn4">删除自定义属性</button>
+
+    <script>
+      /* 
+        读取属性值
+          ele.getAttribute(属性名)
+            - 自有属性
+              - 直接通过 元素对象.属性名 获取
+              - 自有属性和js中的关键字冲突，使用其他属性名获取 比如获取 class ==> className
+            - 自定义属性
+              - 不能通过 元素对象.属性名 的方法获取，因为找属性是只找自有属性的，如果在自有属性找不到，就直接当做js对象中的属性去找了
+              - 自定义属性要通过 getAttribute(属性名)方法获取
+              
+        设置属性值
+          ele.setAttribute(属性名,属性值)
+            - 自有属性
+              - 直接通过 元素对象.属性名 = 属性值 的方式设置
+            - 自定义属性
+              - 通过 setAttribute(属性名, 属性值)方法设置
+
+        删除属性
+          ele.removeAttribute(属性名)
+            - 自有属性
+              - 直接将属性值设置为空字符串
+            自定义属性
+              - 通过 removeAttribute(属性名)方法删除
+      */
+
+      var oBox = document.getElementById("box");
+      var oBtn1 = document.getElementById("btn1");
+      var oBtn2 = document.getElementById("btn2");
+      var oBtn3 = document.getElementById("btn3");
+      var oBtn4 = document.getElementById("btn4");
+      var oIpt = document.getElementById("ipt");
+
+      oBtn1.onclick = function () {
+        oBox.classList.add("con");
+        oBox.id = "BOX";
+        oIpt.checked = 1; // 表单的checked属性设置的值转为Boolean的true空则为选中状态，为false则为未选中状态
+        console.log(oBox.className);
+      };
+      oBtn2.onclick = function () {
+        oBox.classList.remove("con");
+        oBox.id = "";
+        oIpt.checked = false;
+      };
+      oBtn3.onclick = function () {
+        oBox.setAttribute('test', 'woohoo');
+        oBox.setAttribute('class', 'aaa');
+        console.log(oBox.getAttribute('test'));
+      };
+      oBtn4.onclick = function () {
+        oBox.removeAttribute('test');
+      }
+    </script>
+  </body>
+</html>

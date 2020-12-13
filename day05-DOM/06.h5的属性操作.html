@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box"></div>
+    <button id="btn1">click me</button>
+    <button id="btn2">delete me</button>
+
+    <script>
+      /* 
+        h5规定：
+          如果是自定义属性 要添加 data- 前缀
+          h5给每一个元素提供了一个dataset对象，保存当前元素的所有自定义属性
+          
+        读取属性
+          ele.dataset.属性名
+        添加/设置属性
+          ele.dataset.属性名 = 属性值
+        删除属性
+          delete ele.dataset.属性名
+      */
+      var oBox = document.getElementById("box");
+      var oBtn1 = document.getElementById("btn1");
+      var oBtn2 = document.getElementById("btn2");
+
+      oBtn1.onclick = function () {
+        oBox.dataset.test = 'woohoo';
+        console.log(oBox.dataset.test);
+      };
+      oBtn2.onclick = function(){
+        delete oBox.dataset.test;
+        console.log(oBox.dataset.test);
+      }
+    </script>
+  </body>
+</html>

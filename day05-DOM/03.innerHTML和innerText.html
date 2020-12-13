@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn1">设置innerHTML</button>
+  <button id="btn2">设置innerText</button>
+  <div id="box">
+    hello
+    <!-- context -->
+    <h1>world</h1>
+  </div>
+  <script>
+    /* 
+      innerHTML
+        - 获取元素中的所有内容，包括换行的空白内容、标签、文本、注释
+        - 设置元素中的内容，如果字符串中包含html标签会被解析
+    
+      innerText
+        - 获取元素中的文本内容
+        - 设置元素中的文本内容，如果字符串中包含html标签不会被解析
+     */
+    var oBox = document.getElementById('box');
+    var oBtn1 = document.getElementById('btn1');
+    var oBtn2 = document.getElementById('btn2');
+    console.log(oBox.innerText);
+    console.log(oBox.innerHTML);
+    oBtn1.onclick = function(){
+      oBox.innerHTML = '<a href="#">click this</a>';
+    }
+    oBtn2.onclick = function(){
+      oBox.innerText = '<a href="#">哦吼</a>';
+    }
+  </script>
+</body>
+</html>

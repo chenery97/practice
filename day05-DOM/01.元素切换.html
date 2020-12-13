@@ -93,7 +93,7 @@
           lisEle[i].onclick = function () {
             // 如果该元素已经是被选中的状态，再次点击后应该还原状态
             if (this.dataset.click === "true") {
-              this.dataset.click = "";
+              delete this.dataset.click;
               this.style.background = "";
               return;
             }
@@ -119,7 +119,7 @@
           for (var i = 0; i < lisEle.length; i++) {
             // 如果为被选中状态，则去除被选中状态后添加到文档碎片节点中
             if (lisEle[i].dataset.click === 'true') {
-              lisEle[i].dataset.click = '';
+              delete lisEle[i].dataset.click;
               lisEle[i].style.background = '';
               fragEle.appendChild(lisEle[i]);
               // console.log(fragEle);
