@@ -112,7 +112,7 @@
       // 设置定时器容器
       var autoTimer = null;
       var moveTimer = null;
-      var timeoutTime = null;
+      var timeoutTimer = null;
       // 设置当前图片动画的标识
       var v = 0;
       // 获取图片的宽度和数量
@@ -144,6 +144,7 @@
       function moveAnimation() {
         // 先清除之前的移动动画定时器
         clearInterval(moveTimer);
+        clearTimeout(timeoutTimer);
         // 获取滚动条起始位置
         var startLocation = oInner.scrollLeft;
         // 获取滚动条结束位置
@@ -227,7 +228,7 @@
       function timeoutAnimation() {
         timeoutTimer = setTimeout(function () {
           // 先清除上一次的延迟动画定时器
-          clearInterval(timeoutTimer);
+          clearTimeout(timeoutTimer);
           autoAnimation();
         }, 2000);
       }
