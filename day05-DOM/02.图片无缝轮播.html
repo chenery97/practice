@@ -185,7 +185,7 @@
           // 重新设置下标从最后一张图片开始
           v = oImgLen - 2;
           // 重新设置滚动条到最右边
-          oInner.scrollLeft = oImgLen * imgWidth;
+          oInner.scrollLeft = (oImgLen - 1) * imgWidth;
         }
         // 执行移动动画
         moveAnimation();
