@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box">click me</div>
+    <button id="btn">remove event</button>
+
+    <script>
+      /* 
+        事件函数绑定
+          绑定：
+            - 元素对象.addEventListener(事件名, 事件函数, boolean)
+              - boolean：true为捕获阶段，false为冒泡阶段，不传默认为false
+            - 可以对同一个元素对象绑定同一个事件多次
+            - 可以控制冒泡或捕获
+          删除绑定：
+            - 元素对象.removeEventListener(要删除绑定的事件名, 要删除绑定的事件函数, boolean)
+              - boolean：该事件绑定时的事件触发阶段
+
+        使用场景
+          - 对同一个元素对象绑定同一个事件多次，不希望被覆盖
+          - 可以控制冒泡或捕获
+          - DOM2L事件，只能使用事件函数绑定(DOMContenLoaded)
+      */
+      var oBox = document.getElementById('box');
+      var oBtn = document.getElementById('btn');
+
+      function click() {
+        alert('box');
+      }
+      document.addEventListener('click', function(){
+        alert('document');
+      })
+      oBox.addEventListener('click', click)
+      oBtn.onclick = function () {
+        oBox.removeEventListener('click', click)
+      }
+    </script>
+  </body>
+</html>

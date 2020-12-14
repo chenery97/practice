@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body{
+        height: 2000px;
+      }
+      #box{
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script>
+      /* 
+        event的鼠标定位
+          - clientX/Y:事件发生位置到 浏览器窗口边缘的距离
+          - offsetX/Y:事件发生位置到 目标元素边缘的距离
+          - pageX/Y:事件发生位置到 文档边缘的距离(IE8不兼容)
+          - screenX/Y:事件发生位置到 屏幕边缘的距离
+      */
+      var oBox = document.getElementById('box');
+
+      oBox.onclick = function(event) {
+        console.log('clientX:', event.clientX);
+        console.log('offsetX:', event.offsetX);
+        console.log('pageX:', event.pageX);
+        console.log('screenX:', event.screenX);
+
+        console.log('clientY:', event.clientY);
+        console.log('offsetY:', event.offsetY);
+        console.log('pageY:', event.pageY);
+        console.log('screenY:', event.screenY);
+      }
+    </script>
+  </body>
+</html>

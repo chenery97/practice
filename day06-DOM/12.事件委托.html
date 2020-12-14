@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #choose{
+        width: 200px;
+        height: 50px;
+        background-color: skyblue;
+      }
+      #list{
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        list-style-type: none;
+        background-color: lightyellow;
+        display: none;
+        flex-wrap: wrap;
+      }
+      #list li{
+        margin: 5px;
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">北京</h1>
+    <div id="choose">请选择城市</div>
+    <ul id="list">
+      <li>北京</li>
+      <li>上海</li>
+      <li>广州</li>
+      <li>深圳</li>
+      <li>成都</li>
+      <li>重庆</li>
+      <li>杭州</li>
+      <li>湖南</li>
+      <li>湖北</li>
+      <li>西藏</li>
+      <li>新疆</li>
+    </ul>
+
+    <script>
+      var oTitle = document.getElementById('title');
+      var oList = document.getElementById('list');
+
+      document.onclick = function (event) {
+
+        if (event.target.id === 'choose') {
+          oList.style.display = 'flex';
+        }
+        if (event.target.nodeName === 'LI' && event.target.parentNode.id === 'list') {
+          oTitle.textContent = event.target.textContent;
+        }
+        
+        if (event.target.id !== 'choose') {
+          oList.style.display = 'none';
+        }
+      }
+    </script>
+  </body>
+</html>

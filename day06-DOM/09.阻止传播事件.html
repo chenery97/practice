@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer {
+        width: 500px;
+        height: 500px;
+        background-color: skyblue;
+      }
+      #inner {
+        width: 200px;
+        height: 200px;
+        background-color: lightyellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div id="inner"></div>
+    </div>
+
+    <script>
+      /* 
+        阻止传播事件
+          主流浏览器
+            - event.stopPropagation();
+          低版本
+            - event.cancelBubble = true;
+
+        能够阻止冒泡和捕获的传递
+      
+      */
+      var oOuter = document.getElementById("outer");
+      var oInner = document.getElementById("inner");
+
+      oInner.addEventListener('click', function (event) {
+        alert("inner");
+        // event.stopPropagation();
+        // event.cancelBubble = true;
+      }, true);
+      oOuter.addEventListener('click', function (event) {
+        alert("outer");
+        // event.stopPropagation();
+        // event.cancelBubble = true;
+      }, true);
+      document.addEventListener('click', function (event) {
+        alert("document");
+        event.stopPropagation();
+      }, true);
+    </script>
+  </body>
+</html>

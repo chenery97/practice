@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 200px;
+      height: 200px;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+
+  <script>
+    /* 
+      主流浏览器：
+        - event.preventDefault();
+      IE低版本：
+        - event.returnValue = false;
+      return false
+        阻止浏览器默认行为
+    */
+    var oBox = document.getElementById('box');
+    oBox.oncontextmenu = function(event){
+      var event = event || window.event;
+      event.preventDefault ? event.preventDefault() : event.returnValue = false;
+      return false;
+    }
+  </script>
+</body>
+</html>

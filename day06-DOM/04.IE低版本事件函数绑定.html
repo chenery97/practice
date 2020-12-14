@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box">click me</div>
+    <button id="btn">remove event</button>
+
+    <script>
+      /* 
+        IE低版本事件函数绑定(IE8-)
+          绑定：
+            - 元素对象.attachEvent(事件名,事件函数)
+            - 只支持冒泡
+          删除绑定：
+            - 元素对象.detachEvent(事件名,事件函数)
+
+      */
+      var oBox = document.getElementById('box');
+      var oBtn = document.getElementById('btn');
+
+      function fn(){
+        alert('IE低版本事件函数');
+      }
+      oBox.attachEvent("onclick", fn)
+      oBtn.onclick = function () {
+        oBox.detachEvent('onclick', fn)
+      }
+    </script>
+  </body>
+</html>

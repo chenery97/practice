@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        给可输入的表单元素绑定或document
+          onkeydown
+          onkeyup
+        event事件对象中有一个keyCode属性，按键的键码
+      */
+      document.onkeydown = function(event) {
+        console.log(event.keyCode);
+      }
+    </script>
+  </body>
+</html>

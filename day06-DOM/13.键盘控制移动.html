@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+
+  <script>
+    var oBox = document.getElementById('box');
+    var html = document.documentElement;
+    var x = 0;
+    var y = 0;
+    // 定义上下左右四个开关，按下为true，抬起为false
+    var up = false;
+    var down = false;
+    var left = false;
+    var right = false;
+
+    document.onkeydown = function (event) {
+      switch (event.keyCode) {
+        case 37:
+          left = true;
+          break;
+        case 38:
+          up = true;
+          break;
+        case 39:
+          right = true;
+          break;
+        case 40:
+          down = true;
+          break;
+      }
+      document.onkeyup = function (event) {
+        switch (event.keyCode) {
+          case 37:
+            left = false;
+            break;
+          case 38:
+            up = false;
+            break;
+          case 39:
+            right = false;
+            break;
+          case 40:
+            down = false;
+            break;
+        }
+      }
+      setInterval(function(){
+        if (left) {
+          x--;
+          if (x <= 0) {
+            x = 0
+          }
+        }
+        if (up) {
+          y--;
+          if (y <= 0) {
+            y = 0
+          }
+        }
+        if (right) {
+          x++;
+          if (x >= html.clientWidth - oBox.offsetWidth) {
+            x = html.clientWidth - oBox.offsetWidth;
+          }
+        }
+        if (down) {
+          y++;
+          if (y >= html.clientHeight - oBox.offsetWidth) {
+            y = html.clientHeight - oBox.offsetWidth;
+          }
+        }
+        oBox.style.left = x + 'px';
+        oBox.style.top = y + 'px';
+      }, 100)
+    }
+  </script>
+</body>
+</html>

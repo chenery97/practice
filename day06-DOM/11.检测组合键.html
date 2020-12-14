@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text">
+    <div>hello world</div>
+    <script>
+      document.onkeydown = function(event) {
+        console.log(event.keyCode);
+        // 检测是否按下复制快捷键
+        if (event.ctrlKey && event.keyCode === 67){
+          return false;
+          // 检测是否按下粘贴快捷键
+        } else if(event.ctrlKey && event.keyCode === 86){
+          return false;
+          // 检测是否按下打开开发者工具快捷键
+        } else if(event.ctrlKey && event.shiftKey && event.keyCode === 73){
+          return false;
+        }
+        // 检测是否按下F12
+        if (event.keyCode === 123){
+          return false;
+        }
+      }
+      document.oncontextmenu = function(){
+        return false;
+      }
+    </script>
+  </body>
+</html>

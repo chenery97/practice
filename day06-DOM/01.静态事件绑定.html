@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box" onclick="fn()"></div>
+
+    <script>
+      /* 
+        直接在元素标签上设置一个事件属性，属性值为js的脚本
+      */
+      function fn() {
+        alert('静态事件绑定');
+      }
+    </script>
+  </body>
+</html>

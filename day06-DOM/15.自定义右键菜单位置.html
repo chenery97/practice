@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #list{
+        width: 200px;
+        height: 300px;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: skyblue;
+
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="list">
+      <li>11111</li>
+      <li>22222</li>
+      <li>33333</li>
+      <li>44444</li>
+      <li>55555</li>
+    </ul>
+
+    <script>
+      var oList = document.getElementById('list');
+      var html = document.documentElement;
+
+      document.oncontextmenu = function(event){
+        // 取消浏览器默认行为
+        var event = event || window.event;
+        event.preventDefault();
+        oList.style.display = 'block';
+        // 在靠右下的位置点击时，鼠标指针在右下角
+        if(html.clientHeight - event.clientY < oList.offsetHeight && html.clientWidth - event.clientX < oList.offsetWidth) {
+          oList.style.top = event.clientY - oList.offsetHeight + 'px';
+          oList.style.left = event.clientX - oList.offsetWidth + 'px';
+          return
+        }
+        // 在靠下的位置点击时，鼠标指针在左下角
+        if (html.clientHeight - event.clientY < oList.offsetHeight) {
+          oList.style.top = event.clientY - oList.offsetHeight + 'px';
+          oList.style.left = event.clientX + 'px';
+          return
+        }
+        // 在靠右的位置点击时，鼠标指针在右上角
+        if (html.clientWidth - event.clientX < oList.offsetWidth) {
+          oList.style.left = event.clientX - oList.offsetWidth + 'px';
+          oList.style.top = event.clientY + 'px';
+          return
+        }
+        // 在其他位置点击鼠标指针默认在元素的左上角
+        oList.style.top = event.clientY + 'px';
+        oList.style.left = event.clientX + 'px';
+      }
+      // 左单击关闭菜单
+      document.onclick = function () {
+        oList.style.display = 'none';
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+
+      position: absolute;
+      left: 0;
+      top:0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+
+  <script>
+    // 获取元素
+    var oBox = document.getElementById('box');
+    var html = document.documentElement;
+    // 设置定时器
+    var rightDownTimer = null;
+    var rightUpTimer = null;
+    var leftUpTimer = null;
+    var leftDownTimer = null;
+    // 设置水平垂直移动的距离
+    var x = 0;
+    var y = 0;
+
+    // 默认从右下开始移动
+    rightDown();
+    // 右下移动
+    function rightDown() {
+      rightDownTimer = setInterval(function(){
+        x++;
+        y += 2;
+        // 判断是否碰到了正右下角，是则往左上移动
+        if (x >= html.clientWidth - oBox.offsetWidth && y >= html.clientHeight - oBox.offsetHeight) {
+          y = html.clientHeight - oBox.offsetHeight;
+          clearInterval(rightDownTimer);
+          leftUp();
+        }
+        // 判断是否碰到了最右边，是则往左下移动
+        if (x >= html.clientWidth - oBox.offsetWidth){
+          clearInterval(rightDownTimer);
+          leftDown();
+        }
+        // 判断是否碰到了最下边，是则往右上移动
+        if (y >= html.clientHeight - oBox.offsetHeight) {
+          y = html.clientHeight - oBox.offsetHeight;
+          clearInterval(rightDownTimer);
+          rightUp();
+        }
+        oBox.style.left = x + 'px';
+        oBox.style.top = y + 'px';
+      })
+    }
+    // 右上移动
+    function rightUp() {
+      rightUpTimer = setInterval(function(){
+        x += 2;
+        y--;
+        // 判断是否碰到了正右上角，是则往左下移动
+        if (y <=0 && x >= html.clientWidth - oBox.offsetWidth) {
+          x = html.clientWidth - oBox.offsetWidth;
+          clearInterval(rightUpTimer);
+          leftDown();
+        }
+        // 判断是否碰到了最上边，是则往右下移动
+        if (y <= 0) {
+          clearInterval(rightUpTimer);
+          rightDown();
+        }
+        // 判断是否碰到了最右边，是则往左上移动
+        if (x >= html.clientWidth - oBox.offsetWidth) {
+          x = html.clientWidth - oBox.offsetWidth;
+          clearInterval(rightUpTimer);
+          leftUp();
+        }
+        oBox.style.left = x + 'px';
+        oBox.style.top = y + 'px';
+      })
+    }
+    // 左上移动
+    function leftUp(){
+      leftUpTimer = setInterval(function(){
+        x--;
+        y -= 2;
+        // 判断是否碰到了正左上角，是则往右下移动
+        if (y <= 0 && x <= 0) {
+          y = 0;
+          clearInterval(leftUpTimer);
+          rightDown();
+        }
+        // 判断是否碰到了最左边，是则往右上移动
+        if (x <= 0) {
+          clearInterval(leftUpTimer);
+          rightUp();
+        }
+        // 判断是否碰到了最上边，是则往左下移动
+        if (y <= 0) {
+          y = 0;
+          clearInterval(leftUpTimer);
+          leftDown();
+        }
+        oBox.style.left = x + 'px';
+        oBox.style.top = y + 'px';
+      })
+    }
+    // 左下移动
+    function leftDown(){
+      leftDownTimer = setInterval(function(){
+        x -= 2;
+        y++;
+        // 判断是否碰到了正左下角，是则往右上移动
+        if (x <= 0 && y >= html.clientHeight - oBox.offsetHeight){
+          x = 0;
+          clearInterval(leftDownTimer);
+          rightUp();
+        }
+        // 判断是否碰到了最左边，是则往右下移动
+        if (x <= 0) {
+          x = 0;
+          clearInterval(leftDownTimer);
+          rightDown();
+        }
+        // 判断是否碰到了最下边，是则往左上移动
+        if (y >= html.clientHeight - oBox.offsetHeight) {
+          clearInterval(leftDownTimer);
+          leftUp();
+        }
+        oBox.style.left = x + 'px';
+        oBox.style.top = y + 'px';
+      })
+    }
+  </script>
+</body>
+</html>

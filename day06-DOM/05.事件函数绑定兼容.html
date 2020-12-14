@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box">click me</div>
+    <button id="btn">remove event</button>
+
+    <script>
+      var oBox = document.getElementById('box');
+      var oBtn = document.getElementById('btn');
+
+      function addEvent(Ele, type, fn, bool){
+        if(Ele.addEventListener){
+          fn = function () {
+            alert('addEventListener');
+          }
+          Ele.addEventListener(type, fn, bool || false);
+        }else if(Ele.attachEvent){
+          fn = function () {
+            alert('attachEvent');
+          }
+          Ele.attachEvent('on'+type, fn);
+        }else{
+          fn = function () {
+            alert('元素对象.事件名 = fn')
+          }
+          Ele['on'+type] = fn;
+        }
+      }
+      addEvent(oBox, 'click', function(){
+        alert('')
+      })
+    </script>
+  </body>
+</html>

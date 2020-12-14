@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box">
+      <img id="img" src="./images/35a86f09e3fae5bad07dcd18a6e66f13.jpeg" alt="">
+    </div>
+
+    <script>
+      /* 
+        DOMContentLoaded
+          - 等待DOM节点加载完立即执行
+        onload
+          - 等待DOM节点和所有资源加载完才执行
+      
+      */
+      var oImg = document.getElementById('img');
+
+      window.onload = function(){
+        console.log('-----onload', oImg.offsetWidth);
+      }
+      window.addEventListener('DOMContentLoaded', function(){
+        console.log('-----DOMContentLoaded', oImg.offsetWidth);
+      })
+    </script>
+  </body>
+</html>
