@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer{
+        width: 50px;
+        height: 100%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      #outer .box{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        margin: 50px 0;
+        color: white;
+        font-size: 20px;
+        background: #aaa;
+        position: relative;
+      }
+      #outer .box:hover{
+        cursor: pointer;
+      }
+      #outer .box .title{
+        position: relative;
+      }
+      #outer .box .con{
+        width: 100px;
+        height: 100%;
+        background: red;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div class="box">
+        <div class="title">one</div>
+        <div class="con">one con</div>
+      </div>
+      <div class="box">
+        <div class="title">two</div>
+        <div class="con">two con</div>
+      </div>
+      <div class="box">
+        <div class="title">three</div>
+        <div class="con">three con</div>
+      </div>
+    </div>
+
+    <script>
+      /* 
+        未完成
+      */
+      var oOuter = document.querySelector('#outer');
+      var x = 0;
+      var moveTimer = null;
+      oOuter.onmouseover = function(e){
+        if (e.target.className === 'title') {
+          moveTimer = setInterval(function(){
+            x--;
+            var oConWidth = e.target.parentNode.lastElementChild.offsetWidth;
+            if (Math.abs(x) >= oConWidth) {
+              console.log(x, oConWidth)
+              x = -oConWidth;
+              // clearInterval(moveTimer)
+            }
+            e.target.parentNode.lastElementChild.style.transform = 'translateX('+ x +'px)';
+          })
+        }
+      }
+    </script>
+  </body>
+</html>

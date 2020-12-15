@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 100px;
+      height: 100px;
+      background-color:skyblue;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+
+  <script>
+    var oBox = document.getElementById('box');
+    var html = document.documentElement;
+    var i = 1;
+    var j = 1;
+    var x = 0, y = 0;
+
+    setInterval(function(){
+      x += i;
+      y += j;
+      // 判断是否在水平方向碰壁了，是则开始往回走
+      if (x >= html.clientWidth - oBox.offsetWidth || x <= 0) {
+        i *= -1;
+      }
+      // 判断是否在垂直方向碰壁了，是则开始往回走
+      if (y >= html.clientHeight - oBox.offsetHeight || y <= 0) {
+        j *= -1;
+      }
+      oBox.style.left = x + 'px';
+      oBox.style.top = y + 'px';
+    })
+  </script>
+</body>
+</html>

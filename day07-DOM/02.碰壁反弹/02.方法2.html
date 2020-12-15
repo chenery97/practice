@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 100px;
+      height: 100px;
+      background-color:skyblue;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+
+  <script>
+    var oBox = document.getElementById('box');
+    var html = document.documentElement;
+    var x = 0, y = 0;
+    var row = true, col = true;
+
+    setInterval(function(){
+      // 判断元素是否在水平方向的两端，最左端时x++，最右端时x--
+      if (x <= 0) {
+        row = true;
+      }
+      if (x >= html.clientWidth - oBox.offsetWidth) {
+        row = false;
+      }
+      if (row) {
+        x++;
+      } else {
+        x--;
+      }
+      // 判断元素是否在垂直方向的两端，最顶端时y++，最低端时y--
+      if (y <= 0) {
+        col = true;
+      }
+      if (y >= html.clientHeight - oBox.offsetHeight) {
+        col = false;
+      }
+      if (col) {
+        y++;
+      } else {
+        y--;
+      }
+
+      oBox.style.left = x + 'px';
+      oBox.style.top = y + 'px';
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,body{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+      #con{
+        width: 300px;
+      }
+      #scrollBar{
+        width: 30px;
+        height: 100%;
+        background-color: #eee;
+        position: fixed;
+        right: 0;
+        top: 0;
+      }
+      #box {
+        width: 100%;
+        height: 60px;
+        background-color: #aaa;
+        position: absolute;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="con"></div>
+    <div id="scrollBar">
+      <div id="box"></div>
+    </div>
+
+    <script>
+      var oCon = document.getElementById('con');
+      var oScollBar = document.getElementById('scrollBar');
+      var oBox = document.getElementById('box');
+
+      for (var i = 0; i < 500; i++){
+        oCon.innerHTML += i + '<br>';
+      }
+
+      // 文档剩余高度 和 滚动条剩余高度 的比例
+      var scale = (oCon.offsetHeight - document.documentElement.clientHeight) / (oScollBar.offsetHeight - oBox.offsetHeight);
+
+      oBox.onmousedown = function (e) {
+        e.preventDefault();
+        // 获取鼠标点击的位置距离目标元素的距离
+        var mouseStartLocation = e.offsetY;
+        document.onmousemove = function (e) {
+          // 获取鼠标移动的距离，鼠标的位置距离浏览器窗口的距离 - 鼠标点击的位置距离目标元素顶部的距离
+          var mouseEndLocation = e.clientY - mouseStartLocation;
+          // 判断临界值
+          if (mouseEndLocation <= 0) {
+            mouseEndLocation = 0;
+          }
+          if (mouseEndLocation >= oScollBar.offsetHeight - oBox.offsetHeight){
+            mouseEndLocation = oScollBar.offsetHeight - oBox.offsetHeight;
+          }
+          // 给滑块位置赋值
+          oBox.style.top = mouseEndLocation + 'px';
+
+          // 计算滑块滑过的距离 文档应该移动的距离
+          var docEndLocation = -mouseEndLocation * scale
+          oCon.style.transform = 'translateY('+ docEndLocation +'px)';
+        }
+        // 鼠标松开取消滑动事件
+        document.onmouseup = function () {
+          document.onmousemove = null;
+          document.onmouseup = null;
+        }
+      }
+
+    </script>
+  </body>
+</html>
