@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1, 2, 3];
+    console.log(arr.map(parseInt)); // 1 NaN NaN
+    /* 
+      parseInt(1, 0) // 数组元素1, 数组元素下标0
+      parseInt(2, 1) // 数组元素2, 数组元素下标1
+      parseInt(3, 2) // 数组元素3, 数组元素下标2
+    */
+    /* 
+      parseInt()
+        - 参数1：
+          - 如果不是字符串会先将其转换为字符串
+          - 字符串：会从第一个字符开始找，遇到第一个不能通过进制转换的就停止寻找，如果第一个字符不能转换为数字，则结果为NaN
+        - 参数2[可选]：进制基数
+          - 可以是[2,36]之间的整数，表示2到36的进制数
+    */
+
+    console.log(parseInt('0xF', 16));
+    console.log(parseInt('F', 16));
+    console.log(parseInt('17', 8));
+    console.log(parseInt(021, 8));
+    console.log(parseInt('015', 10)); // parseInt('015', 8) 13
+    console.log(parseInt(15.99, 10));
+    console.log(parseInt('15,111', 10));
+    console.log(parseInt('FXX123', 16));
+    console.log(parseInt('1111', 2));
+    console.log(parseInt('15 *　3', 10));
+    console.log(parseInt('15e2', 10));
+    console.log(parseInt('15px', 10));
+    console.log(parseInt('12', 13));
+    console.log(parseInt('F', 36));
+
+    console.log(parseInt('Hello', 8)); // NaN
+    console.log(parseInt('546', 2)); // NaN
+
+    // 使用parseInt处理高精度数值时会出现与预期结果不一致的问题
+    console.log(parseInt(4.7, 10)); // 4
+    console.log(parseInt(4.7 * 1e22, 10)); // 4
+    console.log(parseInt(0.000000000434, 10)); // 4
+
+  </script>
+</body>
+</html>

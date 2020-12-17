@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer{
+        width: 50px;
+        height: 100%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      #outer .box{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        margin: 50px 0;
+        color: white;
+        font-size: 20px;
+        background: #aaa;
+        position: relative;
+      }
+      #outer .box:hover{
+        cursor: pointer;
+      }
+      #outer .box .title{
+        position: relative;
+      }
+      #outer .box .con{
+        width: 100px;
+        height: 100%;
+        background: red;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div class="box">
+        <div class="title">one</div>
+        <div class="con">one con</div>
+      </div>
+      <div class="box">
+        <div class="title">two</div>
+        <div class="con">two con</div>
+      </div>
+      <div class="box">
+        <div class="title">three</div>
+        <div class="con">three con</div>
+      </div>
+    </div>
+
+    <script>
+      // 获取元素
+      var oOuter = document.querySelector('#outer');
+      var oTitles = document.querySelectorAll('#outer .box .title');
+      var oCons = document.querySelectorAll('#outer .box .con');
+      var oConWidth = oCons[0].offsetWidth;
+
+      oTitles.forEach(function (item) {
+        // 在遍历数组的回调函数中声明两个定时器，数组中每个元素的两个定时器互不干扰
+        var leftMoveTimer = null;
+        var rightMoveTimer = null;
+        // 给每个元素绑定鼠标移入事件
+        item.onmouseenter = function () {
+          // 每次移入时先清除上一次移入和移出事件的事件
+          clearInterval(leftMoveTimer);
+          clearInterval(rightMoveTimer);
+          // 获取元素的兄弟元素定位属性的left值
+          var x = Number.isNaN(parseInt(item.parentNode.lastElementChild.style.left)) ? item.parentNode.lastElementChild.style.left : parseInt(item.parentNode.lastElementChild.style.left);
+          // 设置元素往左移的定时器
+          leftMoveTimer = setInterval(function () {
+            // 每次往左移，x--
+            x--;
+            // 判断临界值
+            if (x <= -oConWidth) {
+              x = -oConWidth;
+              clearInterval(leftMoveTimer);
+            }
+            // 最后给元素的兄弟元素定位属性的left值赋值，改变元素的位置
+            item.parentNode.lastElementChild.style.left = x + 'px';
+          })
+          // 如果鼠标移动到con元素上，则con元素不往回缩
+          this.parentNode.lastElementChild.onmouseenter = function () {
+            // 清除鼠标移出title元素时，触发的rightMoveTimer定时器
+            clearInterval(rightMoveTimer);
+            // 给con元素定位属性的left值赋值为负的元素宽度
+            this.style.left = -oConWidth + 'px';
+          }
+          // 如果鼠标从con元素上移走，则con元素往回缩
+          this.parentNode.lastElementChild.onmouseleave = function () {
+            item.onmouseleave();
+          }
+        }
+        // 给每个元素绑定鼠标移出事件
+        item.onmouseleave = function () {
+          // 每次移出时先清除上一次的移入和移出事件的定时间
+          clearInterval(leftMoveTimer);
+          clearInterval(rightMoveTimer);
+          // 获取元素的兄弟元素定位属性的left值
+          var x = parseInt(item.parentNode.lastElementChild.style.left);
+          // 设置元素往右移的定时器
+          rightMoveTimer = setInterval(function () {
+            // 每次往右移动，x++
+            x++;
+            // 判断临界值
+            if (x >= 0) {
+              x = 0;
+              clearInterval(rightMoveTimer);
+            }
+            // 最后给元素的兄弟元素定位属性的left值赋值，改变元素的位置
+            item.parentNode.lastElementChild.style.left = x + 'px';
+          })
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fn () {
+      console.log(1);
+    }
+    // 获取变量类型
+    function getType(value) {
+      // 把传入的数据通过Object原型对象中的toString方法转成字符串，截取8位后面的字符，并把字符转成小写字母返回
+      return Object.prototype.toString.call(value).slice(8, -1).toLowerCase()
+    }
+
+    console.log(getType({}));
+    console.log(getType([]));
+    console.log(getType('1234'));
+    console.log(getType(1234));
+    console.log(getType(true));
+    console.log(getType(undefined));
+    console.log(getType(null));
+    console.log(getType(fn));
+    console.log(getType(/.+/));
+    console.log(getType(new Date()));
+
+    // 判断是否为数组
+    console.log(Array.isArray([]));
+    // 检查基本数据类型
+    console.log(typeof '');
+    console.log(typeof 1);
+    console.log(typeof true);
+    console.log(typeof undefined);
+  </script>
+</body>
+</html>

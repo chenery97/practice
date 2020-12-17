@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var str = '';
+      for (var i = 0; i < 6; i++) {
+        var randomNum = Math.floor(Math.random() * 36);
+        console.log(randomNum);
+        str += randomNum.toString(36);
+      }
+      console.log(str);
+
+      // 用当前的时间戳生成随机数
+      console.log(Date.now());
+      console.log(Date.now().toString(36));
+
+
+      Function.prototype.call  = function (val) {
+        this = fn2;
+
+        this();
+      }
+      function fn1(){
+        this = fn2
+        console.log(1);
+      }
+      
+      function fn2(){
+        console.log(2);
+      }
+
+      fn1.call(fn2); // 1
+      fn1.call.call(fn2);
+    </script>
+  </body>
+</html>

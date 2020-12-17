@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 获取一个0-z的数组
+      function getNums36() {
+        var nums36 = [];
+        for (var i = 0; i < 36; i++) {
+          if (i >= 0 && i <= 9) {
+            nums36.push(i);
+          } else {
+            nums36.push(String.fromCharCode(i + 87));
+          }
+        }
+        return nums36;
+      }
+
+      //十进制数转成36进制
+      function scale36(n) {
+        var arr = [];
+        var nums36 = getNums36();
+        while (n) {
+          //除n取余
+          var res = n % 36;
+          //然后作为下标得到对应的36进制数
+          arr.unshift(nums36[res]);
+          //去掉个位
+          n = parseInt(n / 36);
+        }
+        return arr.join("");
+      }
+
+      var x = Date.now();
+      var a = scale36(x);
+      var b = x.toString(36); //源生自带的函数
+
+      console.log(a);
+      console.log(b);
+    </script>
+  </body>
+</html>
