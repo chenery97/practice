@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body{
+        background: #eee;
+      }
+      #outer{
+        width: 200px;
+        height: 200px;
+        margin: 200px auto;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: rotate 2s linear infinite;
+      }
+      #outer div{
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        font-size: 40px;
+        color: rgba(0, 0, 0, .5);
+
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      @keyframes rotate{
+        from{
+          transform: rotateZ(45deg) rotate3d(1, 1, 1, 0deg);
+        }
+        to{
+          transform: rotateZ(45deg) rotate3d(1, 1, 1, 360deg);
+        }
+      }
+      #outer div:nth-child(1) {
+        background: red;
+        transform: rotateY(180deg) translateZ(200px);
+      }
+      #outer div:nth-child(2) {
+        background: orange;
+        transform: rotateY(90deg) translateZ(200px);
+      }
+      #outer div:nth-child(3) {
+        background: yellow;
+        transform: rotateX(90deg) translateZ(200px);
+      }
+      #outer div:nth-child(4) {
+        background: green;
+        transform: rotateY(-90deg) translateZ(200px);
+      }
+      #outer div:nth-child(5) {
+        background: blue;
+        transform: rotateX(-90deg) translateZ(200px);
+      }
+      #outer div:nth-child(6) {
+        background: white;
+        transform: rotateY(360deg) translateZ(200px);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+  </body>
+</html>
