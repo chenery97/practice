@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1 span{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>2021 元旦倒计时：<span></span></h1>
+  
+  <script>
+    // 获取元素
+    var oSpan = document.querySelector('h1 span');
+    // 获取2021 元旦的时间
+    var newYearDate = new Date(2021,0,1,0,0,0);
+    // 获取2021 元旦的时间戳
+    var newYearTime = newYearDate.getTime();
+
+    setInterval(function () {
+      var nowTime = Date.now();
+      var remainTime = newYearTime - nowTime;
+      // 获取剩下的天数
+      var day = Math.floor(remainTime / (1000 * 60 * 60 * 24));
+      day < 10 ?　day = '0' + day : day;
+      // 获取剩下的时数
+      var hour = Math.floor((remainTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      hour < 10 ? hour = '0' + hour : hour;
+      // 获取剩下的分数
+      var minute = Math.floor(((remainTime % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) / (1000 * 60));
+      minute < 10 ? minute = '0' + minute : minute;
+      // 获取剩下的秒数
+      var second = Math.floor((((remainTime % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) % (1000 * 60)) / 1000);
+      second < 10 ? second = '0' + second : second;
+
+      oSpan.textContent = day + '天' + hour + '时' + minute + '分' + second + '秒';
+    }, 1000)
+  </script>
+</body>
+</html>

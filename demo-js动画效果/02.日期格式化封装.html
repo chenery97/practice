@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getFormattingDate(date) {
+        var fullYear = date.getFullYear();
+
+        var month = date.getMonth() + 1;
+        month < 10 ? month = '0' + month : month;
+
+        var day = date.getDate();
+        day < 10 ? day = '0' + day : day;
+
+        var hours = date.getHours();
+        hours < 10 ? hours = '0' + hours : hours;
+
+        var minutes = date.getMinutes();
+        minutes < 10 ? minutes = '0' + minutes : mintues;
+
+        var seconds = date.getSeconds();
+        seconds < 10 ? seconds = '0' + seconds : seconds;
+
+        return fullYear + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+      }
+
+      console.log(getFormattingDate(new Date()));
+    </script>
+  </body>
+</html>
