@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Function.prototype.myCall = function (context) {
+        context = context ? Object(context) : window;
+        context.fn = this;
+        var arg = Array.from(arguments).slice(1);
+        arguments.length > 1 ? context.fn(...arg) : context.fn()
+        delete context.fn;
+      }
+
+      var name = 'dawang';
+      var obj1 = {
+        name: 'xiaowang',
+        doThing: function (a, b) {
+          console.log('name:', this.name, 'a:', a, 'b:', b);
+        }
+      }
+      var obj2 = {
+        name: 'laowang'
+      }
+
+      obj1.doThing(1, 2); // xiaowang 1 2
+      obj1.doThing.myCall(obj2, 2); // laowang 2 undefined
+      obj1.doThing.myCall(null, 3, 4); // dawang 3 4
+      obj1.doThing.myCall(1, 5, 6, 7); // undeifned 5 6
+      obj1.doThing.myCall(undefined, '5', '6', '7'); // dawang '5' '6'
+    </script>
+  </body>
+</html>

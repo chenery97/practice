@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Fn () {
+
+      }
+      var fn = new Fn();
+
+      function myInstanceof (A, B) {
+        var _A = A;
+        var BPrototype = B.prototype;
+        while (_A) {
+          if (_A.__proto__ === BPrototype) {
+            return true;
+          }
+          _A = _A.__proto__;
+        }
+        return false;
+      }
+
+      console.log(myInstanceof(fn, Fn)); // true
+      console.log(myInstanceof(fn, Function)); // false
+      console.log(myInstanceof(fn, Object)); // true
+      console.log(myInstanceof(Fn, Function)); // true
+      console.log(myInstanceof(Fn, Object)); // true
+      console.log(myInstanceof(Function, Function)); // true
+      console.log(myInstanceof(Function, Object)); // true
+      console.log(myInstanceof(Object, Function)); // true
+      console.log(myInstanceof(Object, Object)); // true
+    </script>
+  </body>
+</html>
