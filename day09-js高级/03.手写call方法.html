@@ -11,8 +11,9 @@
         context = context ? Object(context) : window;
         context.fn = this;
         var arg = Array.from(arguments).slice(1);
-        arguments.length > 1 ? context.fn(...arg) : context.fn()
+        var re = arguments.length > 1 ? context.fn(...arg) : context.fn();
         delete context.fn;
+        return re;
       }
 
       var name = 'dawang';
@@ -23,14 +24,19 @@
         }
       }
       var obj2 = {
-        name: 'laowang'
+        name: 'laowang',
+        doThing: function () {
+          console.log(111);
+        }
       }
 
-      obj1.doThing(1, 2); // xiaowang 1 2
+      /* obj1.doThing(1, 2); // xiaowang 1 2
       obj1.doThing.myCall(obj2, 2); // laowang 2 undefined
       obj1.doThing.myCall(null, 3, 4); // dawang 3 4
       obj1.doThing.myCall(1, 5, 6, 7); // undeifned 5 6
-      obj1.doThing.myCall(undefined, '5', '6', '7'); // dawang '5' '6'
+      obj1.doThing.myCall(undefined, '5', '6', '7'); // dawang '5' '6' */
+
+      obj1.doThing.myCall.myCall(obj2);
     </script>
   </body>
 </html>
