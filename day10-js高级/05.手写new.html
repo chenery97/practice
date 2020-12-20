@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        1.创建一个空对象
+        2.对象的__proto__指向其构造函数的prototype
+        3.this指向实例化对象
+        4.返回实例化对象
+      */
+      function Person (name) {
+        this.name = name;
+        // return new Date();
+      }
+
+      function myNew(constr) {
+        var obj = {};
+        obj.__proto__ = constr.prototype;
+        var re = constr.apply(obj, Array.from(arguments).slice(1));
+        if ((typeof re === 'object' && re !== null) || typeof re === 'function') {
+          return re;
+        }
+        return obj;
+      }
+      var obj = myNew(Person, 'chenery');
+      console.log(obj);
+    </script>
+  </body>
+</html>

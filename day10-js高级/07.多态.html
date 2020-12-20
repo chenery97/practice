@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        多态：一个接口多种实现
+      */
+
+      function speak(obj) {
+        obj.speak();
+      }
+      function Dog(name) {
+        this.name = name
+      }
+      Dog.prototype.speak = function () {
+        console.log(this.name, 'speaking wangwang~~');
+      }
+      function Cat(name) {
+        this.name = name;
+      }
+      Cat.prototype.speak = function () {
+        console.log(this.name, 'speaking miaomiao~~');
+      }
+      var dog = new Dog('大黄');
+      var cat = new Cat('小黑');
+      speak(dog);
+      speak(cat);
+    </script>
+  </body>
+</html>

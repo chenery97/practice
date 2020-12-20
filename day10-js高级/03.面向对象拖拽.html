@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      #box1{
+        background: red;
+      }
+      #box2{
+        background: blue;
+      }
+      #box3{
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1" class="box"></div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+
+    <script>
+
+      function Drag (id) {
+        this.oBox = document.getElementById(id);
+        var _this = this;
+        this.oBox.onmousedown = function (e) {
+          _this.down(e);
+        }
+      }
+      Drag.prototype.down = function (e) {
+        this.eStartLocation = {
+          x: e.offsetX,
+          y: e.offsetY
+        }
+        var _this = this;
+        document.onmousemove = function (e) {
+          _this.move(e);
+        }
+      }
+      Drag.prototype.move = function (e) {
+        this.eEndLocation = {
+          x: e.clientX - this.eStartLocation.x,
+          y: e.clientY - this.eStartLocation.y
+        }
+        this.oBox.style.left = this.eEndLocation.x + 'px';
+        this.oBox.style.top = this.eEndLocation.y + 'px';
+        var _this = this;
+        document.onmouseup = function () {
+          _this.up();
+        }
+      }
+      Drag.prototype.up = function () {
+        document.onmousemove = null;
+        document.onmouseup = null;
+      }
+      new Drag('box1');
+      new Drag('box2');
+      new Drag('box3');
+    </script>
+  </body>
+</html>

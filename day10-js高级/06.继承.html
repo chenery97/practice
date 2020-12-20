@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Animal(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      Animal.prototype.cry = function () {
+        console.log('cry');
+      }
+
+      function Cat(type, name, age) {
+        Animal.call(this, name, age);
+        this.type = type;
+      }
+      Cat.prototype = new Animal();
+      Cat.prototype.constructor = Cat;
+      // console.log(Cat.prototype.constructor);
+      var cat = new Cat('短尾猫', 'Tom', 1);
+      console.log(cat);
+      console.log(cat.type);
+      console.log(cat.name);
+      console.log(cat.age);
+    </script>
+  </body>
+</html>

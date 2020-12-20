@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        直接创建一个对象，给对象扩展属性和方法
+        缺点：代码冗余
+      */
+      var obj = {};
+      obj.name = 'Tom';
+      obj.doThing = function () {
+        console.log('catch the mouse');
+      }
+
+      /* 
+        使用工厂模式创建
+        缺点：无法确定的对象，是谁构建的
+      */
+      function foo (name) {
+        var obj = {};
+        obj.name = name;
+        obj.doThing = function () {
+          console.log('catch the mouse');
+        }
+        return obj;
+      }
+      var cat1 = foo('Tom');
+
+      /* 
+        构造函数的方法创建
+        缺点：相同方法无法共享
+      */
+      function Foo (name) {
+        this.name = name;
+        this.doThing = function () {
+          console.log('catch the mouse');
+        }
+      }
+      var cat2 = new Foo('Tom');
+
+      /* 
+        构造函数+原型创建
+      */
+      function Cat (name) {
+        this.name = name;
+      }
+      Cat.prototype.doThing = function () {
+        console.log('catch the mouse');
+      }
+      var cat3 = new Cat('Tom');
+      console.log(cat3);
+    </script>
+  </body>
+</html>
