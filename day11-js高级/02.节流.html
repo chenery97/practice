@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        width: 400px;
+        height: 400px;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+
+    <script>
+      var oBox = document.getElementById('box');
+
+      function move (e) {
+        console.log(this);
+        console.log(e);
+      }
+      // 绑定移动事件
+      oBox.onmousemove = throttle(move, 200);
+
+      function throttle (fn, time) {
+        // 设置初始时间
+        var lastTime = 0;
+        return function () {
+          // 获取当前时间
+          var nowTime = Date.now();
+          // 比较实际的时间差与期望的时间差
+          if (nowTime - lastTime < time) {
+            return
+          }
+          lastTime = nowTime;
+          fn.call(this, arguments[0]);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [5, 3, 5, 6, 7, 8, 8, 3, 2, 3, 34, 0, 32];
+
+      function quickSort (arr) {
+        // 判断是否为数组，不是直接return
+        if (checkType(arr) !== 'array') {
+          return;
+        }
+        // 判断数组的长度是否满足排序，小于2就不需要再继续排序了
+        if (arr.length < 2) {
+          return arr;
+        }
+        // 获取基准值
+        var center = arr.splice(Math.floor(arr.length / 2), 1);
+        // 定义两个数组，分别存放小于基准值和大于基准值的数据
+        var left = [];
+        var right = [];
+        // 遍历抽取了基准值的数组
+        arr.forEach(function (item, index) {
+          // 判断与基准值的大小
+          if (item <= center) {
+            // 小于等于则放到左边的数组
+            left.push(item);
+          } else {
+            // 大于则放到右边的数组
+            right.push(item);
+          }
+        })
+
+        // 定义一个新数组，把左边数组、基准值、右边数组合并到新数组中，左边数据和右边数据需要递归再次进行排序，直到不满足排序的条件
+        var newArr = [].concat(quickSort(left), center, quickSort(right));
+        // 排序完成返回新数组
+        return newArr;
+      }
+
+      // 检测对象类型
+      function checkType (obj) {
+        return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+      }
+
+      var re = quickSort(arr);
+      console.log(re);
+    </script>
+  </body>
+</html>

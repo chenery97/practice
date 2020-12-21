@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: 'chenery',
+        gender: 'man',
+        doThing: function () {
+          console.log(this.name);
+        },
+        other: {
+          hobby: ['watching the NBA', 'reading books']
+        }
+      }
+
+      // JSON不能clone function
+      var newObj = JSON.parse(JSON.stringify(obj));
+      console.log(newObj);
+      console.log(newObj === obj); // false
+      console.log(newObj.other === obj.other); // false
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>我可以点击</button>
+    <button id="btn1">点击开启多线程计算</button>
+    <script>
+      var oBtn = document.getElementById('btn1');
+      console.time('spend time');
+      oBtn.onclick = function () {
+        var wk = new Worker('./01.js');
+
+        wk.postMessage(100000000);
+
+        wk.onmessage = function (msg) {
+          console.log(msg.data);
+          console.timeEnd('spend time');
+          wk.terminate();
+        }
+      }
+    </script>
+  </body>
+</html>

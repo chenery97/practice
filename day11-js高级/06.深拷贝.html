@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: 'chenery',
+        gender: 'man',
+        doThing: function () {
+          console.log(this.name);
+        },
+        other: {
+          hobby: ['watching the NBA', 'reading books', {favorite: 'writing code'}, function test() {console.log('111')}, [1, 2, 3]]
+        }
+      }
+
+      function deepClone (obj) {
+        // 如果为对象，则用for in 遍历
+        if (checkType(obj) === 'object') {
+          var newObj = {};
+          for (var key in obj) {
+            // 把对象的每一个属性进行递归判断
+            newObj[key] = deepClone(obj[key]);
+          }
+          // 如果为数组，则用forEach遍历
+        } else if (checkType(obj) === 'array') {
+          var newObj = [];
+          obj.forEach(function (item){
+            // 判断数组的每一个元素是否为object类型并且不是null
+            if (typeof item === 'object' && item !== 'null') {
+              // 是对象类型则再次进行递归然后添加到新数组中
+              newObj.push(deepClone(item));
+            } else {
+              // 不是则直接添加到新数组中
+              newObj.push(item);
+            }
+          })
+          // 为基本类型值或函数直接返回
+        } else {
+          return obj;
+        }
+        return newObj;
+      }
+
+      // 检测对象类型
+      function checkType (obj) {
+        return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+      }
+      var newObj = deepClone(obj);
+      console.log(newObj);
+      console.log(newObj === obj); // false
+      console.log(newObj.other === obj.other); // false
+      console.log(newObj.other.hobby[2]);
+      console.log(newObj.other.hobby[2] === obj.other.hobby[2]); // false
+    </script>
+  </body>
+</html>

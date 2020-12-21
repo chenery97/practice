@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {
+        name: 'chenery',
+        gender: 'man',
+        doThing: function () {
+          console.log(this.name);
+        }
+      }
+
+      var newObj = {};
+      // 浅拷贝，只拷贝最外层
+      for (var key in obj) {
+        newObj[key] = obj[key];
+      }
+      console.log(newObj);
+      console.log(newObj === obj);
+    </script>
+  </body>
+</html>
