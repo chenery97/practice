@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer{
+        margin: 200px auto;
+        width: 180px;
+        height: 100px;
+        /* border: 1px solid red; */
+        perspective: 800px;
+      }
+      #inner{
+        width: 180px;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+      }
+      #inner img{
+        width: 180px;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      #inner img:nth-child(1) {
+        transform: rotateY(0deg) translateZ(300px);
+      }
+      #inner img:nth-child(2) {
+        transform: rotateY(72deg) translateZ(300px);
+      }
+      #inner img:nth-child(3) {
+        transform: rotateY(144deg) translateZ(300px);
+      }
+      #inner img:nth-child(4) {
+        transform: rotateY(216deg) translateZ(300px);
+      }
+      #inner img:nth-child(5) {
+        transform: rotateY(288deg) translateZ(300px);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div id="inner">
+        <img src="./images/01.jpg" alt="">
+        <img src="./images/02.jpg" alt="">
+        <img src="./images/03.jpg" alt="">
+        <img src="./images/04.jpg" alt="">
+        <img src="./images/05.jpg" alt="">
+      </div>
+    </div>
+
+    <script>
+      // 获取元素
+      var oInner = document.getElementById('inner');
+      var oImages = document.querySelectorAll('#inner img');
+      // 获取平均度数
+      var avgDeg = 360 / oImages.length;
+      // 定义初始度数
+      var deg = 0;
+      // 定义定时器
+      var moveTimer = null;
+      var autoTimer = null;
+
+      // 每2秒自动切换
+      autoTimer = setInterval(function () {
+        // 每次自动定时器开启时清除移动定时器
+        clearInterval(moveTimer);
+        // 移动定时器开启
+        moveTimer = setInterval(function () {
+          // 每次度数减1
+          deg -= 1;
+          // 判断度数是否能够与平均度数整除，可以的话清除定时器，停止移动
+          if (deg % avgDeg === 0) {
+            clearInterval(moveTimer);
+          }
+          // 判断度数是否为360度了，是则从0重新开始
+          if (Math.abs(deg) === 360) {
+            deg = 0;
+          }
+          // 最后给目标元素赋值
+          oInner.style.transform = 'rotateY(' + deg + 'deg)';
+        })
+      }, 2000)
+    </script>
+  </body>
+</html>
