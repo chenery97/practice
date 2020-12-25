@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {name: 'chenery'};
+
+      function say (a, b) {
+        console.log(this);
+        console.log(this.name);
+        console.log(a + b);
+      }
+
+      Function.prototype.myApply = function (context) {
+        // 判断上下文对象的类型
+        var context = context ? Object(context) : window;
+        // 改变this指向
+        context.fn = this;
+        // 调用函数
+        var re = eval('context.fn(' + arguments[1].toString() + ')');
+        // 执行完之后删除多余的属性
+        delete context.fn;
+        // 返回执行函数的返回值
+        return re;
+      }
+
+      say.apply(obj, [1, 2]);
+      say.myApply(obj, [1, 2]);
+      say.myApply(null, [1, 2]);
+      say.myApply(undefined, [1, 2]);
+      say.myApply(['obj'], [1, 2]);
+      say.myApply(1, [1, 2]);
+      say.myApply('1', [1, 2]);
+      say.myApply(true, [1, 2]);
+    </script>
+  </body>
+</html>

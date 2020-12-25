@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var name = 'tom';
+      var obj = {name: 'chenery'};
+      Function.prototype.myCall = function (context) {
+        // 判断obj是否为null或undefined
+        context = context !== null && context !== undefined ? Object(context) : window;
+        // 改变this指向
+        context.fn = this;
+        // 执行函数、传参
+        var re = eval('context.fn(' + Array.from(arguments).slice(1).toString() + ')');
+        // 删除对象多余的属性
+        delete context.fn;
+        // 返回执行函数的返回值
+        return re;
+      }
+
+      function say (a, b) {
+        console.log(this);
+        console.log(this.name);
+        console.log(a + b);
+      }
+      say.call(obj, 1, 2);
+      say.myCall(obj, 1, 2);
+      say.myCall(0, 1, 2);
+      say.myCall(false, 1, 2);
+      say.myCall('', 1, 2);
+      say.myCall(null, 1, 2);
+      say.myCall([], 1, 2);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var obj = {name: 'chenery'};
+      function say(a, b) {
+        console.log(this);
+        console.log(this.name);
+        console.log(a + b);
+      }
+
+      Function.prototype.myBind = function (context) {
+        var _this = this;
+        var arg = Array.from(arguments).slice(1);
+        return function () {
+          // 改变this指向，并执行函数
+          // return _this.call(context, ...arg);
+          return eval('_this.call(context,' + arg.toString() + ')');
+        }
+      }
+
+      var re = say.bind(obj, 1, 2);
+      re();
+      var result = say.myBind(obj, 1, 2);
+      result();
+    </script>
+  </body>
+</html>
