@@ -623,18 +623,22 @@ window.addEventListener("DOMContentLoaded", function () {
     var timer = null;
     // 绑定点击事件
     oBackTop.onclick = function (e) {
-      console.log(e)
-      var nowScroll = oHtml.scrollTop;
+      // 获取当前系统滚动条的位置
+      var nowScroll = oHtml.scrollTop || window.pageYOffset || document.body.scrollTop;
+      // 每次点击清除定时器
       clearInterval(timer);
       timer = setInterval(function () {
-        nowScroll -= 10;
+        // 逐步回到顶部
+        nowScroll -= 50;
+        // 判断临界值
         if (nowScroll <= 0) {
           nowScroll = 0;
           clearInterval(timer);
         }
-        oHtml.scrollTop = nowScroll;
-        console.log(nowScroll, oHtml.scrollTop);
+        // 给系统滚动条重新赋值(火狐的系统滚动条有点问题)
+        oHtml.scrollTop = document.body.scrollTop = nowScroll;
       })
     }
   }
+
 });
