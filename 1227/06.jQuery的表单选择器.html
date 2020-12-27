@@ -25,19 +25,19 @@
 
     <script src="./jquery.js"></script>
     <script>
-      // 获取表单中所有可用表单元素
+      // :enabled 获取表单中所有可用表单元素
       console.log($('form :enabled'));
 
-      // 获取表单中所有不可用的表单元素
+      // :disabled 获取表单中所有不可用的表单元素
       console.log($('form :disabled'));
 
-      // 获取表单中所有被选中的表单元素(包含单选框、复选框、下拉列表)
+      // :checked 获取表单中所有被选中的表单元素(包含单选框、复选框、下拉列表)
       console.log($('form :checked'));
 
-      // 获取表单中所有被选中的选项元素(只包含下拉列表)
+      // :selected 获取表单中所有被选中的选项元素(只包含下拉列表)
       console.log($('form :selected'));
 
-      // 获取表单中所有的表单元素(不包含下拉选项元素)
+      // :input 获取表单中所有的表单元素(不包含下拉选项元素)
       console.log($('form :input'));
     </script>
   </body>
