@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <ul class="box1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <ul class="box2">
+        <li>4</li>
+        <li class="li2">5</li>
+        <li>6</li>
+      </ul>
+      <h1>h1</h1>
+      <h2>h2</h2>
+      <h3>h3</h3>
+      <h4>
+        <p></p>
+      </h4>
+    </div>
+
+    <script src="./jquery.js"></script>
+    <script>
+      // :first 获取元素集中第一个元素
+      console.log($('li').first());
+      console.log($('li:first'));
+
+      // :last 获取元素集中最后一个元素
+      console.log($('li').last());
+      console.log($('li:last'));
+
+      // :not(selector) 获取与给定选择器不匹配的所有元素
+      console.log($('ul').not('.box1'));
+      console.log($('ul:not(.box1)'));
+
+      // :even 获取元素集中索引为偶数的所有元素(包含索引0)
+      console.log($('li:even'));
+
+      // :odd 获取元素集中索引为奇数的所有元素
+      console.log($('li:odd'));
+
+      // :eq(index) 获取元素集中指定索引的元素
+      console.log($('li').eq(3));
+      console.log($('li:eq(3)'));
+
+      // :gt(index) 获取元素集中大于指定索引的所有元素
+      console.log($('li:gt(3)'));
+      
+      // :lt(index) 获取元素集中小于指定索引的所有元素
+      console.log($('li:lt(3)'));
+
+      // :header 获取元素集中所有的hn元素
+      console.log($('div').children(':header'));
+
+      // :contains(text) 获取元素集中含有指定文本的元素
+      console.log($('li:contains(3)'));
+
+      // :empty 获取元素集中不包含子元素或文本的空元素
+      console.log($('div').children(':empty'));
+      
+      // :has(selector) 获取子元素含有指定选择器的父元素
+      console.log($('ul').has('.li2'));
+      console.log($('ul:has(.li2)'));
+
+      // :parent 获取含有子元素或文本的元素
+      console.log($('h4:parent'));
+
+      // :first-child 获取元素集中元素在该父元素中的第一个子元素
+      console.log($('li:first-child'));
+
+      // :last-child 获取元素集中元素在该父元素中的最后一个子元素
+      console.log($('li:last-child'));
+
+      // :only-child 获取元素集中元素在该父元素中是唯一的子元素
+      console.log($('p:only-child'));
+
+      // :nth-child(index/even/odd/equation) 获取每个父元素下的第index(索引值为奇数/ 索引值为偶数/索引值等于某个表达式)个子元素，index 从1开始
+      console.log($('li:nth-child(2)'));
+    </script>
+  </body>
+</html>

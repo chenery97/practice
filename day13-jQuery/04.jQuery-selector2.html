@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li></li>
+      <li class="text">3
+        <h1>hello</h1>
+      </li>
+    </ul>
+    <ul>
+      <li>888</li>
+    </ul>
+    <ul>
+      <li>111</li>
+      <li>222</li>
+      <li>333</li>
+    </ul>
+
+    <script src="./jquery.js"></script>
+    <script>
+      console.log($('ul :empty').css('background', 'red'));
+      console.log($('ul:has(.text)').css('background', 'yellow'));
+      console.log($('ul :parent').css('background', 'yellow'));
+
+      console.log($('ul :only-child').css('background', 'purple'));
+
+      console.log($('ul :first-child').css('background', 'blue'));
+      console.log($('ul :last-child').css('background', 'hotpink'));
+      console.log($('ul :nth-child(2)').css('background', 'yellowgreen'));
+    </script>
+  </body>
+</html>

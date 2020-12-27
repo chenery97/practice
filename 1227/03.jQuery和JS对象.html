@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">
+      <div class="con"></div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+      // jQ对象 转 JS对象
+      // 通过 [index] 或 get(index)
+      $('body')[0].style.backgroundColor = 'red';
+      $('.box').get(0).style.width = '500px';
+      $('.box').get(0).style.height = '500px';
+      $('.box').get(0).style.backgroundColor = 'yellow';
+
+      // JS对象 转 jQ对象
+      // 通过 $()
+      var oCon = document.querySelector('.con');
+      $(oCon).css('width', '200px').css('height', '200px').css('background-color', 'skyblue');
+    </script>
+  </body>
+</html>

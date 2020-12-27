@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 9, 4, 2, 3, 4, 4, 6, 6, 7, 8, 5, 5];
+      
+      // 修改原数组
+      Array.prototype.arrToHeavy = function () {
+        
+        // 遍历数组
+        for (var i = 0; i < this.length - 1; i++) {
+          // 从上一次遍历的位置后面开始遍历
+          for (var j = i + 1; j < this.length; j++) {
+            // 判断两个元素是否完全相同，相同则删除相同元素中的第二个元素
+            if (this[i] === this[j]) {
+              this.splice(j, 1);
+              // 删除后需要在删除的位置再次进行判断，不然出现连续相同的元素会被漏掉
+              j--;
+            }
+          }
+        }
+        return this
+      }
+
+      var re = arr.arrToHeavy();
+      console.log(re);
+    </script>
+  </body>
+</html>

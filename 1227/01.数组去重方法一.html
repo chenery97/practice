@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var arr = [1, 2, 3, 9, 4, 2, 3, 4, 4, 6, 6, 7, 8, 5];
+
+      // 不修改原数组
+      Array.prototype.arrToHeavy = function () {
+        // 定义一个新数组
+        var newArr = [];
+        // 遍历需要去重的数组
+        this.forEach(function (item) {
+          // 在新数组中判断是否存在需要去重的数组中的元素
+          // 如果为-1证明在新数组中没有找到该元素，添加到新数组中
+          /* if (newArr.indexOf(item) !== -1) {
+            return
+          }
+          newArr.push(item); */
+          // 与上面的效果一样
+          return newArr.indexOf(item) === -1 && newArr.push(item);
+        })
+        // 返回新数组
+        return newArr
+      }
+
+      var re = arr.arrToHeavy();
+      console.log(re);
+    </script>
+  </body>
+</html>

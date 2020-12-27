@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <ul class="ul2">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <h2 class="first">h2</h2>
+    <h3>h3</h3>
+    <p>p1</p>
+    <p>p2</p>
+  </div>
+  <div>
+    <section>1</section>
+    <section>2</section>
+    <section>3</section>
+    <ul class="ul2">
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+    <h2 class="second">h2</h2>
+    <h3>h3</h3>
+  </div>
+  <script src="./jquery.js"></script>
+  <script>
+    // css() 设置css样式
+    $('div').css('background-color', 'red')
+
+    // eq(index) 获取jQ对象的元素集中某个元素
+    console.log($('li').eq(1));
+
+    // children([可选]) 获取jQ对象的元素集中所有元素的所有子元素
+    console.log($('div').children());
+    console.log($('div').children('ul')); // 只获取子元素为ul的
+
+    // parent([可选]) 获取jQ对象的元素集中所有元素的唯一直接父元素
+    console.log($('li').parent());
+    console.log($('li').parent('.ul2')); // 只获取父元素类名为ul2的
+
+    // siblings([可选]) 获取jQ对象的元素集中所有元素的其他兄弟元素
+    console.log($('.ul2').siblings());
+    console.log($('.ul2').siblings('p')); // 只获取其他兄弟为p的元素
+
+    // find(String) 获取jQ对象的元素集中所有元素的后代元素为h2的
+    console.log($('div').find('h2'));
+
+    // prev([可选]) 获取jQ对象的元素集中所有元素的上一个兄弟元素
+    console.log($('h3').prev());
+    console.log($('h3').prev('.first')); // 只获取上一个兄弟类名为first的元素
+
+    // next([可选]) 获取jQ对象的元素集中所有元素的下一个兄弟元素
+    console.log($('ul').next());
+    console.log($('ul').next('.second')); // 只获取下一个兄弟类名为second的元素
+
+    // end() 获取到改变元素集的上一个元素集
+    console.log($('div').children().end());
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="box">
+        <h1>h1</h1>
+        <h2 class="second">h2</h2>
+        <h3>h3</h3>
+      </div>
+    </div>
+    <div class="box span">
+      <span class="second">span1</span>
+      <span class="second">span2</span>
+      <span>span3</span>
+    </div>
+
+    <script src="./jquery.js"></script>
+    <script>
+      console.log($('body'));
+      // jQ对象[index] / jQ对象.get(index)  jQ对象 转 js对象
+      // $(js对象)  js对象 转 jq对象
+      console.log($($('.box')[0]).css('width', '500px').css('background-color', 'red'));
+      console.log($($('.box').get(1)).css('width', '200px').css('background-color', 'skybule'));
+
+      // jQ.children([])获取集合中所有元素的子元素
+      console.log($('.box').children());
+      console.log($('.box').children('h1'));
+      console.log($('.box').children('span'));
+      console.log($('.box').children('.second'));
+
+      // jQ.parent([])获取集合中所有元素的直接父元素，若集合中的元素有相同的父元素，只获取一次
+      console.log($('h1').parent());
+      console.log($('.second').parent());
+      console.log($('.second').parent('.span')); // 只获取集合中所有元素 含有span类名的直接父元素
+
+      console.log($(''))
+    </script>
+  </body>
+</html>

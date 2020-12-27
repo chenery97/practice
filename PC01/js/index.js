@@ -105,8 +105,10 @@ window.addEventListener("DOMContentLoaded", function () {
         // 创建新dd
         var newDd = document.createElement("dd");
         // 默认为第一个dd元素的label标签添加checked类名
+        var classStr = '';
         if (index === 0) {
-          newDd.innerHTML =
+          var classStr = ' class="checked"';
+          /* newDd.innerHTML =
             '<label class="checked"><input type="radio" name="' +
             crumbDataName +
             '" value="' +
@@ -115,10 +117,10 @@ window.addEventListener("DOMContentLoaded", function () {
             item.type +
             "</label>";
           newDl.appendChild(newDd);
-          return;
+          return; */
         }
         newDd.innerHTML =
-          '<label><input type="radio" name="' +
+          '<label ' + classStr + '><input type="radio" name="' +
           crumbDataName +
           '" value="' +
           item.value +
@@ -166,6 +168,7 @@ window.addEventListener("DOMContentLoaded", function () {
         x: mouseLocation.x - smallViewLocation.x - maskWH.width / 2,
         y: mouseLocation.y - smallViewLocation.y - maskWH.height / 2,
       };
+      // 判断临界值
       if (maskLocation.x <= 0) {
         maskLocation.x = 0;
       } else if (maskLocation.x >= oProSmallView.clientWidth - maskWH.width) {
@@ -192,6 +195,7 @@ window.addEventListener("DOMContentLoaded", function () {
       oBigImg.style.left = -bigImgLocation.x + "px";
       oBigImg.style.top = -bigImgLocation.y + "px";
     };
+    // 鼠标离开小图区域，隐藏元素
     oProSmallView.onmouseleave = function () {
       oMask.style.display = "none";
       oProBigView.style.display = "none";
@@ -579,17 +583,16 @@ window.addEventListener("DOMContentLoaded", function () {
     })
   }
   // 给实例化对象扩展一个点击方法
-  Tab.prototype.click = function (obj, index) {
+  Tab.prototype.click = function (target, index) {
     // 遍历去除所有title元素的active类名
-    this.oTitles.forEach(function (item) {
+    var _this = this;
+    this.oTitles.forEach(function (item, index) {
       item.classList.remove('active');
+      _this.oCons[index].classList.remove("show");
     })
-    // 遍历去除所有con元素的show类名
-    this.oCons.forEach(function (item) {
-      item.classList.remove('show');
-    })
+    
     // 给当前点击的title元素添加active类名，并且给对应的con元素添加show类名
-    obj.classList.add('active');
+    target.classList.add('active');
     this.oCons[index].classList.add('show');
   }
 
@@ -622,19 +625,20 @@ window.addEventListener("DOMContentLoaded", function () {
     // 设置定时器
     var timer = null;
     // 绑定点击事件
-    oBackTop.onclick = function (e) {
+    oBackTop.onclick = function () {
+      // 每次点击清除之前的定时器
+      clearInterval(timer);
       // 获取当前系统滚动条的位置
       var nowScroll = oHtml.scrollTop || window.pageYOffset || document.body.scrollTop;
-      // 每次点击清除定时器
-      clearInterval(timer);
       timer = setInterval(function () {
         // 逐步回到顶部
-        nowScroll -= 50;
+        nowScroll -= 20;
         // 判断临界值
         if (nowScroll <= 0) {
           nowScroll = 0;
           clearInterval(timer);
         }
+        console.log(nowScroll)
         // 给系统滚动条重新赋值(火狐的系统滚动条有点问题)
         oHtml.scrollTop = document.body.scrollTop = nowScroll;
       })

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" >
+      <input type="text" readonly>
+      <input type="text" disabled>
+      <input type="radio" checked>male
+      <input type="radio">female
+      <input type="checkbox" checked>basketball
+      <input type="checkbox">football
+      <select name="" id="">
+        <option value="" selected>1</option>
+        <option value="" disabled>2</option>
+        <option value="">3</option>
+      </select>
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <input type="submit" value="submit">
+    </form>
+
+    <script src="./jquery.js"></script>
+    <script>
+      // 获取表单中所有可用表单元素
+      console.log($('form :enabled'));
+
+      // 获取表单中所有不可用的表单元素
+      console.log($('form :disabled'));
+
+      // 获取表单中所有被选中的表单元素(包含单选框、复选框、下拉列表)
+      console.log($('form :checked'));
+
+      // 获取表单中所有被选中的选项元素(只包含下拉列表)
+      console.log($('form :selected'));
+
+      // 获取表单中所有的表单元素(不包含下拉选项元素)
+      console.log($('form :input'));
+    </script>
+  </body>
+</html>

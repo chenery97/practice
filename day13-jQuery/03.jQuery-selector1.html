@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li class="middle">5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+    </ul>
+    <ol class=".box">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li class="middle">5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+    </ol>
+
+    <script src="./jquery.js"></script>
+
+    <script>
+      $('ul li:first').css('background', 'red');
+      $('ul li:last').css('background', 'orange');
+      $('ul li:odd:not(:last)').css('background', 'skyblue');
+      $('ul li:even:not(:first)').css('background', 'pink');
+      $('ul li:eq(4)').css('background', 'yellow');
+
+      $('ol li:gt(4)').css('background', 'green');
+      $('ol li:lt(5)').css('background', 'blue');
+
+      </script>
+  </body>
+</html>
