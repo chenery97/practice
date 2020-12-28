@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div{
+        width: 300px;
+      }
+      ul{
+        width: 300px;
+        margin: 0;
+        box-sizing: border-box;
+        /* border: 1px solid red; */
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn1">显示按钮</button>
+    <button id="btn2">隐藏按钮</button>
+    <button id="btn3">切换显示/隐藏</button>
+    <div id="box">
+      <ul>
+        <li>公司的烦恼功夫到家工抵房偶个人及饿哦关键人高度高度个的</li>
+        <li>公司的烦恼功夫到家工抵房偶个人及饿哦关键人高度高度个的</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+      </ul>
+    </div>
+
+    <script src="./jquery.js"></script>
+    <script>
+      $(function(){
+        $('#btn1').click(function () {
+          $('#box').slideDown(200, 'linear');
+        })
+        $('#btn2').click(function(){
+          $('#box').slideUp(200, 'linear');
+        })
+        var startTime = 0;
+        $('#btn3').click(function(){
+          var endTime = Date.now();
+          if ((endTime - startTime < 200)) {
+            return
+          }
+          $('#box').slideToggle(200, 'linear');
+          startTime = endTime;
+        })
+      })
+    </script>
+  </body>
+</html>

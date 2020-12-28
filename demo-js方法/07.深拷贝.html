@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      name: 'chenery',
+      age: 100,
+      doThing: function () {
+        alert('hello world');
+      },
+      hobby: ['basketball', 'football']
+    }
+    var arr = [1, 2, [3, 4, [5, 6]]];
+
+    // 获取对象类型
+    function getType (obj) {
+      return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+    }
+
+    // 深拷贝 递归copy到最内层，任意修改copy对象都不会影响原对象
+    function deepCopy (obj) {
+      // 判断对象是否为object类型，并且不是null
+      if (getType(obj) === 'object' && obj !== null) {
+        var newObj = {};
+        // 遍历拷贝
+        for (var key in obj) {
+          // 递归拷贝
+          newObj[key] = deepCopy(obj[key]);
+        }
+        // 判断对象是否为array类型
+      } else if (getType(obj) === 'array') {
+        var newObj = [];
+        // 遍历拷贝
+        obj.forEach(function (item) {
+          // 递归拷贝
+          newObj.push(deepCopy(item));
+        })
+        // 其他类型时直接把原对象返回
+      } else {
+        return obj;
+      }
+      // 返回拷贝对象
+      return newObj;
+    }
+
+    var newObj = deepCopy(obj);
+    console.log(newObj);
+    newObj.hobby[0] = [999];
+    console.log(obj);
+    console.log(newObj);
+
+    var newArr = deepCopy(arr);
+    console.log(newArr);
+    newArr[2][0] = [999];
+    console.log(arr);
+    console.log(newArr);
+  </script>
+</body>
+
+</html>

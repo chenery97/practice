@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var arr = [];
+    // 随机生成长度为9的数组
+    function randomArr(arr) {
+      for (var i = 0; i < 9; i++) {
+        arr.push(Math.floor(Math.random() * 10 + 1));
+      }
+    }
+    randomArr(arr);
+
+    // 数组去重(会修改原数组)
+    Array.prototype.toHeavy = function () {
+      // 遍历数组
+      for (var i = 0; i < this.length; i++) {
+        // 从外层遍历开始的后一位开始
+        for (var j = i + 1; j < this.length; j++) {
+          // 如果前面和后面的元素有相同的
+          if (this[i] === this[j]) {
+            // 删除后面一个相同的元素
+            this.splice(j, 1);
+            // 删除后要从删除的位置重新遍历，避免出现连续相同的元素，漏了
+            j--;
+          }
+        }
+      }
+      // 返回去重后的数组
+      return this
+    }
+    console.log(arr);
+    console.log(arr.toHeavy());
+    console.log(arr);
+  </script>
+</body>
+
+</html>

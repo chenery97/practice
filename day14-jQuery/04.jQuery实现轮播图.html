@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer{
+        width: 500px;
+        height: 300px;
+        margin: 200px auto;
+        /* border: 1px solid red; */
+        position: relative;
+      }
+      .prev,.next{
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        vertical-align: middle;
+        background-color: transparent;
+        border: 1px solid skyblue;
+        border-radius: 50%;
+        color: #fff;
+        position: absolute;
+        z-index: 10;
+        outline: none;
+      }
+      .prev{
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .next{
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .box{
+        width: 100%;
+        position: relative;
+      }
+      .box img{
+        width: 500px;
+        height: 300px;
+        position: absolute;
+      }
+      .box img:nth-child(1) {
+        z-index: 5;
+      }
+      .box img:nth-child(2) {
+        z-index: 4;
+      }
+      .box img:nth-child(3) {
+        z-index: 3;
+      }
+      .box img:nth-child(4) {
+        z-index: 2;
+      }
+      .box img:nth-child(5) {
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <button class="prev">&lt;</button>
+      <div class="box">
+        <img src="./images/56af0da3ae601.jpg" alt="">
+        <img src="./images/5710984334b7e.jpg" alt="">
+        <img src="./images/5ba44d4304441.jpg" alt="">
+        <img src="./images/5cb450ae20929.jpg" alt="">
+        <img src="./images/F8F2-fxipenp2527999.jpg" alt="">
+      </div>
+      <button class="next">&gt;</button>
+      <ul class="img-list"></ul>
+    </div>
+
+    <script src="./jquery.js"></script>
+
+    <script>
+      $(function () {
+        var index = 0;
+        var oImgs = document.querySelectorAll('.box img');
+        var autoTimer = null;
+        var timeOutTimer = null;
+
+        // 自动动画功能
+        auto();
+        function auto(){
+          // 设置定时器
+          autoTimer = setInterval(function(){
+            // 每个2秒执行一次
+            index++;
+            // 判断临界值
+            if (index >= oImgs.length) {
+              index = 0;
+            }
+            // 切换显示图片
+            // $('.box img').eq(index).fadeIn(500).siblings().fadeOut(500);
+            changeImg();
+          }, 2000)
+        }
+        // 切换图片
+        function changeImg(){
+          $('.box img').eq(index).fadeIn(500).siblings().fadeOut(500);
+        }
+
+        // 延迟执行自动动画功能
+        function timeOut() {
+          timeOutTimer = setTimeout(function () {
+            auto();
+          }, 1000)
+        }
+
+        // 点击上一张按钮 图片切换显示上一张的图片
+        $('.prev').click(function () {
+          clearInterval(autoTimer);
+          clearTimeout(timeOutTimer);
+          // 每次点击更改index
+          index--;
+          // 判断index 是否为第一张
+          if (index < 0) {
+            index = oImgs.length - 1;
+          }
+          // $('.box img').eq(index).fadeIn(500).siblings().fadeOut(500);
+          changeImg();
+          // 点击动画执行后1s后执行自动动画
+          timeOut();
+        })
+        // 点击下一张按钮 图片切换显示下一张的图片
+        $('.next').click(function () {
+          clearInterval(autoTimer);
+          clearTimeout(timeOutTimer);
+          // 每次点击更改index
+          index++;
+          // 判断index 是否为最后一张
+          if (index > oImgs.length - 1) {
+            index = 0;
+          }
+          // $('.box img').eq(index).fadeIn(500).siblings().fadeOut(500);
+          changeImg();
+          // 点击动画执行后1s后执行自动动画
+          timeOut();
+        })
+
+      })
+    </script>
+  </body>
+</html>

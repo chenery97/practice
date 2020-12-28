@@ -8,23 +8,30 @@
   <body>
     <script>
       function getFormattingDate(date) {
+        // 获取完整的年份
         var fullYear = date.getFullYear();
 
+        // 获取月份
         var month = date.getMonth() + 1;
         month < 10 ? month = '0' + month : month;
 
+        // 获取日
         var day = date.getDate();
         day < 10 ? day = '0' + day : day;
 
+        // 获取时
         var hours = date.getHours();
         hours < 10 ? hours = '0' + hours : hours;
 
+        // 获取分
         var minutes = date.getMinutes();
         minutes < 10 ? minutes = '0' + minutes : mintues;
 
+        // 获取秒
         var seconds = date.getSeconds();
         seconds < 10 ? seconds = '0' + seconds : seconds;
 
+        // 用时间格式把时间拼接后返回
         return fullYear + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
       }
 

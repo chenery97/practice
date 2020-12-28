@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+    #outer{
+      width: 800px;
+      height: 600px;
+      border: 1px solid red;
+      position: relative;
+    }
+    #box{
+      width: 100px;
+      height: 100px;
+      background: yellow;
+      position: absolute;
+    }
+    </style>
+  </head>
+  <body>
+    <button id="btn">走你</button>
+    <div id="outer">
+      <div id="box"></div>
+    </div>
+
+    <script src="./jquery.js"></script>
+    <script>
+      $(function () {
+        // 获取元素
+        var oOuter = document.querySelector('#outer');
+        var oBox = document.querySelector('#box');
+
+        // 给按钮绑定点击事件
+        $('#btn').click(function () {
+          // 给box元素添加动画
+          $('#box').animate({
+            // 从左边0走到右边的临界值
+            left: oOuter.clientWidth - oBox.offsetWidth + 'px',
+            // transform不起作用
+            // transform: 'translateX(' + oOuter.clientWidth - oBox.offsetWidth + 'px)',
+          },1000).animate({
+            // 右边走完开始从上边0走到下边的临界值
+            top: oOuter.clientHeight - oBox.offsetHeight + 'px',
+            // transform: 'translateY(' + oOuter.clientHeight - oBox.offsetHeight + 'px)',
+          },1000).animate({
+            // 下边走完开始从右边的临界值走到左边的0
+            left: '0px',
+            // transform:'translateX(0)',
+          },1000).animate({
+            // 左边走完开始从下边的临界值走到上边的0
+            top: '0px',
+            // transform:'translateY(0)',
+          },1000)
+        })
+      })
+    </script>
+  </body>
+</html>

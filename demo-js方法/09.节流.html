@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="btn">click me</button>
+  <script>
+    var oBtn = document.querySelector('.btn');
+
+    // 绑定点击事件，调用节流函数，返回事件函数
+    oBtn.onclick = throttle(click, 2000);
+    
+    // 定义事件逻辑处理函数
+    function click (e) {
+      console.log(this, e.target, 'click~~~');
+    }
+    
+    // 节流函数
+    function throttle (fn, time) {
+      // 定义一个开始时间
+      var startTime = 0;
+      // 返回一个事件函数
+      return function () {
+        // 这里的this指向绑定事件的对象
+        // 获取点击时的时间
+        var endTime = Date.now();
+        // 判断 点击时的时间 距离 上一次的时间 的时间差是否符合 传入的时间
+        if (endTime - startTime < time) {
+          // 小于则直接退出
+          return
+        }
+        // 大于等于则把当前点击的时间赋值给开始时间
+        startTime = endTime;
+        // 执行事件逻辑处理函数，改变事件逻辑处理函数中的this指向，并把事件对象传递过去
+        fn.call(this, arguments[0]);
+      }
+    }
+  </script>
+</body>
+
+</html>

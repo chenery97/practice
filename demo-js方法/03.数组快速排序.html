@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var arr = [];
+    // 随机生成长度为9的数组
+    function randomArr (arr) {
+      for (var i = 0; i < 9; i++) {
+        arr.push(Math.floor(Math.random() * 100 + 1));
+      }
+    }
+    randomArr(arr);
+
+    // 快速排序(不会修改原数组)
+    /* 
+      quickSort:数组快速排序
+        pattern:排序方式
+        - true:升序
+        - false:降序
+    */
+    Array.prototype.quickSort = function (pattern) {
+      // 判断数组的长度是否不需要继续排序
+      if (this.length < 2) {
+        return this
+      }
+      // 获取基准值 用splice会修改原数组
+      // var center = this.splice(Math.floor(this.length / 2), 1);
+      var center = this[Math.floor(this.length / 2)];
+      // 定义两个空数组，用于存放跟基准值比较后的元素
+      var left = [];
+      var right = [];
+      // 保存当前this
+      var _this = this;
+      // 遍历数组
+      this.forEach(function (item, index) {
+        // 判断当前元素的index是否等于基准值的index，是则直接退出，可解决上面用splice会修改原数组的问题
+        // _this.indexOf(center) 不太严谨，可使用 _this.indexOf(_this[Math.floor(_this.length / 2)])
+        if (index === _this.indexOf(center)) {
+          return
+        }
+        /* // 与基准值的判断
+        if (item <= center) {
+          // 小于等于基准值放到左边的数组中
+          left.push(item);
+        } else {
+          // 大于基准值放到右边的数组中
+          right.push(item);
+        } */
+        if (pattern && item <= center || !pattern && item >= center) {
+          left.push(item);
+        } else {
+          right.push(item);
+        }
+      })
+      // 定义一个新数组，用concat把左边数组、基准值、右边数组连接成一个新数组，左边和右边的数组需要再次递归排序，直到不满足排序的条件
+      var newArr = [].concat(left.quickSort(pattern), center, right.quickSort(pattern));
+      // 返回新数组
+      return newArr
+    }
+    console.log(arr);
+    console.log('升序===>', arr.quickSort(true));
+    console.log('降序===>', arr.quickSort(false));
+    console.log(arr);
+  </script>
+</body>
+
+</html>

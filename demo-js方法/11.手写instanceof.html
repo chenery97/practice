@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var arr = [1, 2, 3];
+
+    function myInstanceof(A, B) {
+      var _A = A;
+      var BPro = B.prototype;
+      while (_A) {
+        // 判断A的原型链上是否有B的显式原型对象，是则返回true
+        if (_A.__proto__ === BPro) {
+          return true
+        }
+        _A = _A.__proto__;
+      }
+      // 不是则返回false
+      return false
+    }
+    function Fn () {}
+    var fn = new Fn();
+    console.log(arr instanceof Object);
+    console.log(myInstanceof(arr, Object));
+    console.log(fn instanceof Function);
+    console.log(myInstanceof(fn, Function));
+    console.log(fn instanceof Fn);
+    console.log(myInstanceof(fn, Fn));
+  </script>
+</body>
+
+</html>

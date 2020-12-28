@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var arr = [];
+    function randomArr (arr) {
+      for (var i = 0; i < 9; i++) {
+        arr.push(Math.floor(Math.random() * 100));
+      }
+    }
+    randomArr(arr);
+
+    // 冒泡排序(会修改原数组)
+    /* 
+      bubbleSort:数组冒泡排序
+        pattern:排序方式
+          - true:升序
+          - false:降序
+    */
+    Array.prototype.bubbleSort = function (pattern) {
+      // 获取数组的长度
+      var arrLength = this.length;
+      // 外层遍历数组，控制整体的排序次数
+      for (var i = 0; i < arrLength; i++) {
+        // 内层遍历数组，控制交换位置的次数
+        for (var j = 0; j < arrLength - i - 1; j++) {
+          // 数组前一个元素和后一个元素的比较，升序就前面大的就交互位置，降序与之相反
+          if (pattern && this[j] > this[j + 1] || !pattern && this[j] < this[j + 1]) {
+            var tmp = this[j];
+            this[j] = this[j + 1];
+            this[j + 1] = tmp;
+          }
+        }
+      }
+      return this
+    }
+    console.log(arr);
+    console.log('升序===>', arr.bubbleSort(true));
+    console.log('降序===>', arr.bubbleSort(false));
+    console.log(arr);
+    
+
+  </script>
+</body>
+
+</html>

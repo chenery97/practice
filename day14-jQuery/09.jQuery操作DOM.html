@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button class="btn">创建新的li</button>
+  <ul>
+    <li>1</li>
+    <li class="li2">2</li>
+  </ul>
+
+  <script src="./jquery.js"></script>
+  <script>
+    $(function () {
+      $('.btn').click(function () {
+        /* 
+          js中创建
+          var newLi = document.createElement('li');
+          newLi.innerHTML = 'new li';
+          newLi.setAttribute('test', 'test1');
+        */
+        // 在父元素的结束标签前插入 子元素代表要插入的元素
+        // 父元素.append(子元素) 
+        // 子元素.appendTo(父元素)
+        // $('ul').append('<li test="test1">new li</li>');
+        // $('<li test="test1">new li</li>').appendTo($('ul'));
+        
+        // 在指定元素的content内容的前面插入节点
+        // $('ul').prepend('<li test="test1">new li</li>');
+        // $('<li test="test1">new li</li>').prependTo('ul');
+
+        // 在指定元素后面插入 弟元素代表要插入的元素
+        // 兄元素.after(弟元素)
+        // 弟元素.insertAfter(兄元素)
+        // $('ul li:first-child').after('<li test="test1">new li</li>');
+        // $('<li test="test1">new li</li>').insertAfter($('ul li:first-child'));
+
+        // 在指定元素前面插入 兄元素代表要插入的元素
+        // 弟元素.before(兄元素)
+        // 兄元素.insertBefore(弟元素)
+        // $('ul li:first-child').before('<li test="test1">new li</li>');
+        // $('<li test="test1">new li</li>').insertBefore('ul li:last-child');
+        
+
+        /* 
+          js中删除
+          var oLi2 = document.querySelector('.li2');
+          oLi2.remove();
+        */
+        // $('ul li:last-child').remove();
+
+        
+        /*
+          js中替换
+          var newLi = document.createElement('li');
+          newLi.innerHTML = 'new li';
+          var oUl = document.querySelector('ul');
+          var oLi2 = document.querySelector('.li2');
+          oUl.replaceChild(newLi, oLi2);
+        */
+        // $('<li>new li</li>').replaceAll($('ul li:last-child'));
+
+        /* 
+          js中克隆节点
+          var oLastLi = document.querySelector('ul li:last-child');
+          var cN = oLastLi.cloneNode(true);
+          console.log(cN);
+        */
+        // console.log($('ul li:last-child').clone(true));
+      })
+    })
+  </script>
+</body>
+
+</html>

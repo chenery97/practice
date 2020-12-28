@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .outer {
+      margin: 20px;
+      width: 500px;
+      height: 500px;
+      border: 1px solid red;
+      position: relative;
+    }
+
+    .box {
+      margin: 20px;
+      padding: 50px;
+      width: 200px;
+      height: 200px;
+      border: 10px solid yellow;
+      background: skyblue;
+      position: absolute;
+      left: 100px;
+      top: 50px;
+    }
+
+    .box-shadow {
+      box-shadow: 2px 2px 10px skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer">
+    <div class="box">box</div>
+  </div>
+  <br />
+  <img src="./images/F8F2-fxipenp2527999.jpg" alt="" />
+
+  <script src="./jquery.js"></script>
+
+  <script>
+    $(function () {
+      // css(name) 获取元素指定属性名的属性值(带单位)
+      console.log($(".box").css("width"));
+      console.log($("img").css("width"));
+
+      // css(name, value) 设置指定属性名的属性值(带单位)
+      $(".box").css("fontSize", "50px");
+
+      // css({name1: value1, name2: value2}) 同时设置多个属性
+      $(".box").css({
+        color: "red",
+        "text-shadow": "2px 2px 10px",
+      });
+
+      // addClass(className) 添加指定的类名
+      $(".box").addClass("box-shadow");
+
+      // removeClass(className) 删除指定的类名
+      $(".box").removeClass("box-shadow");
+
+      // toggleClass(className) 如果有指定的类名就删除 没有就添加
+      $(".box").toggleClass("box-shadow");
+
+      // width() 获取元素的宽度(不带单位)
+      console.log($(".box").width());
+
+      // width(value) 设置元素的宽度(不带单位)
+      $(".box").width(300);
+
+      // height() 获取元素的高度(不带单位)
+      console.log($(".box").height());
+
+      // height(value) 设置元素的高度(不带单位)
+      $(".box").height(300);
+
+      // innerWidth()/innerHeight() 获取元素带padding的宽高(不带单位)
+      // innerWidth(value)/innerHeight(value) 设置元素的宽高(实际上是从元素的宽高进行设置，不改变原来的padding属性的值)
+      console.log($(".box").innerWidth());
+      console.log($(".box").innerHeight());
+
+      $(".box").innerWidth(500);
+      $(".box").innerHeight(500);
+
+      // outerWidth()/outerHeight() 获取元素带border和padding的宽高(不带单位)
+      console.log($(".box").outerWidth());
+      console.log($(".box").outerHeight());
+
+      // outerWidth(true)/outerHeight(true) 获取元素带margin、border和padding的宽高(不带单位)
+      console.log($(".box").outerWidth(true));
+      console.log($(".box").outerHeight(true));
+
+      // offset() 获取元素的边框外层到文档的距离
+      console.log($(".box").offset());
+
+      // position() 获取元素的margin外层到定位父元素的距离
+      console.log($(".box").position());
+
+      // scrollTop() 获取元素垂直滚动条位置
+      console.log($(document).scrollTop());
+      // scrollTop(value) 设置元素垂直滚动条位置
+      $(document).click(function () {
+        $(document).scrollTop(200);
+      });
+    });
+  </script>
+</body>
+
+</html>

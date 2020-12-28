@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      name: 'chenery',
+      age: 100,
+      doThing: function () {
+        alert('hello world');
+      },
+      hobby: ['basketball', 'football']
+    }
+    var arr = [1, 2, [3, 4, [5, 6]]]
+
+    // 获取对象的类型
+    function getType (obj) {
+      return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+    }
+
+    // 浅拷贝 只拷贝最外层，如果修改内层的对象类型值，会影响原对象
+    function shallowCopy (obj) {
+      // 判断对象是否为object类型并且不是null
+      if (getType(obj) === 'object' && obj !== null) {
+        var newObj = {};
+        // 遍历拷贝
+        for (var key in obj) {
+          newObj[key] = obj[key];
+        }
+        // 判断对象是否为array类型
+      } else if (getType(obj) === 'array') {
+        var newObj = [];
+        // 遍历拷贝
+        obj.forEach(function (item) {
+          newObj.push(item);
+        })
+        // 其他类型直接返回原对象
+      } else {
+        return obj;
+      }
+      // 返回拷贝对象
+      return newObj;
+    }
+    var newObj = shallowCopy(obj)
+    console.log(newObj);
+    newObj.hobby[0] = [1, 2];
+    console.log(newObj);
+    console.log(obj);
+
+    var newArr = shallowCopy(arr)
+    console.log(newArr);
+    newArr[2][0] = [999];
+    console.log(arr);
+    console.log(newArr);
+  </script>
+</body>
+
+</html>

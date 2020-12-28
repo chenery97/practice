@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box{
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+
+    <script src="./jquery.js"></script>
+    <script>
+      $(function () {
+        $('#box').mouseenter(function () {
+          $('#box').stop(true, false).animate({
+            width: '500px',
+            height: '500px'
+          }, 1000)
+        })
+        $('#box').mouseleave(function () {
+          $('#box').stop(true, false).animate({
+            width: '200px',
+            height: '200px'
+          }, 1000)
+        })
+      })
+    </script>
+  </body>
+</html>

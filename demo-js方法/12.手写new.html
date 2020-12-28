@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+      return 111
+    }
+    Person.prototype.doThing = function () {
+      console.log('do some thing');
+    }
+
+    function myNew (constr, name) {
+      // 创建一个空对象
+      var obj = {};
+      // 该对象的隐式原型指向其构造函数的显式原型
+      obj.__proto__ = constr.prototype;
+      // 改变构造函数中的this指向并调用
+      var re = constr.apply(obj, Array.from(arguments).slice(1));
+      if (typeof re === 'object' && re !== null || typeof re === 'function') {
+        return re;
+      }
+      // 返回对象
+      return obj;
+    }
+
+    var obj = new Object();
+    var newObj = myNew(Person, 'chenery', 23);
+    console.log(newObj);
+    newObj.doThing();
+
+  </script>
+</body>
+
+</html>

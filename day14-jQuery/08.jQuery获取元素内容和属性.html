@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="outer">
+      ABC
+      <div>EFG</div>
+    </div>
+    <form action="">
+      <input type="text" value="hello world">
+    </form>
+
+    <script src="./jquery.js"></script>
+    <script>
+      $(function () {
+
+        // html() 获取元素的内容(包含html标签，等同于js中的innerHTML)
+        console.log($('#outer').html());
+
+        // html(value) 设置元素的内容
+        $('#outer').html('<a href="###">click me</a>');
+
+        // text() 获取元素的文本内容(等同于js中的innerText)
+        console.log($('#outer').text());
+
+        // text(value) 设置元素的文本内容
+        $('#outer a').text('click~~');
+
+        // val() 获取表单元素的value值
+        console.log($('input').val());
+
+        // val(value) 设置表单元素的value值
+        $('input').val('hehehehhehehehheh');
+
+        // prop/attr(key) 获取元素指定属性名的属性值
+        console.log($('input').prop('type'));
+        console.log($('input').attr('type'));
+
+        // prop/attr(key, value) 设置元素指定属性名的属性值
+        $('input').prop('type', 'checkbox');
+        $('input').attr('type', 'text');
+
+        // removeProp/removeAttr(key) 删除元素指定的属性
+        $('input').removeAttr('type');
+        $('input').removeProp('value');
+      })
+    </script>
+  </body>
+</html>
