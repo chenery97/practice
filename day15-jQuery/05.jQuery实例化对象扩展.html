@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <h1>hello</h1>
+    <h2>hello</h2>
+    <h3>hello</h3>
+    <h4>hello</h4>
+  </div>
+  <script src="./jquery.js"></script>
+  <script>
+    $.fn.extend({
+      textColor: function (color) {
+        $(this).css('color', color);
+      },
+      addTextShadow: function (str) {
+        $(this).css('text-shadow', str);
+      }
+    })
+
+    $('h1').textColor('red');
+    $('h2').textColor('orange');
+    $('h3').textColor('yellow');
+    $('h4').textColor('green');
+
+    $('h1').addTextShadow('-2px -2px 5px red');
+    $('h2').addTextShadow('1px 1px 3px orange');
+    $('h3').addTextShadow('1px 1px 2px yellow');
+    $('h4').addTextShadow('1px 1px 1px green');
+
+  </script>
+</body>
+
+</html>

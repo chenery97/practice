@@ -25,11 +25,13 @@
           - false:降序
     */
     Array.prototype.bubbleSort = function (pattern) {
+      // 不传参，默认为升序
+      var pattern = pattern === undefined ? true : pattern;
       // 获取数组的长度
       var arrLength = this.length;
       // 外层遍历数组，控制整体的排序次数
       for (var i = 0; i < arrLength; i++) {
-        // 内层遍历数组，控制交换位置的次数
+        // 内层遍历数组，控制需要比较的次数
         for (var j = 0; j < arrLength - i - 1; j++) {
           // 数组前一个元素和后一个元素的比较，升序就前面大的就交互位置，降序与之相反
           if (pattern && this[j] > this[j + 1] || !pattern && this[j] < this[j + 1]) {
@@ -42,6 +44,7 @@
       return this
     }
     console.log(arr);
+    console.log('升序===>', arr.bubbleSort());
     console.log('升序===>', arr.bubbleSort(true));
     console.log('降序===>', arr.bubbleSort(false));
     console.log(arr);

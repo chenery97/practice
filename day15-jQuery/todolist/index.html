@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoList</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="outer">
+        <div class="todo-container">
+            <!-- 头部 -->
+            <div class="todo-header">
+                <input type="text" id="newTodo" placeholder="请输入您的任务，回车确认">
+            </div>
+            <!-- 内容展示区域 -->
+            <ul class="todo-main">
+                <!-- <li class="todo-list">
+                    <label>
+                        <input type="checkbox">
+                        <span>抽烟</span>
+                    </label>
+                    <button class="btn btn-danger">删除</button>
+                </li>
+                <li class="todo-list">
+                    <label>
+                        <input type="checkbox">
+                        <span>喝酒</span>
+                    </label>
+                    <button class="btn btn-danger">删除</button>
+                </li>
+                <li class="todo-list">
+                    <label>
+                        <input type="checkbox">
+                        <span>烫头发</span>
+                    </label>
+                    <button class="btn btn-danger">删除</button>
+                </li> -->
+            </ul>
+            <!-- 底部区域 -->
+            <div class="todo-footer">
+                <label>
+                    <input type="checkbox" id="checkAll">
+                </label>
+                <span>
+                    已完成 <span id="allComplateTodos">0</span>
+                    /全部 <span id="allTodos">0</span>
+                </span>
+                <button id="removeAllComplate" class="btn btn-danger">清除已完成任务</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script>
+        var obj = {
+            doThing: [{
+                    content: '抽烟'
+                },
+                {
+                    content: '喝酒'
+                },
+                {
+                    content: '烫头'
+                }
+            ]
+        }
+
+        $(function () {
+            // 初始化数据
+            initData();
+
+            function initData() {
+                $.each(obj.doThing, function (index, item) {
+                    // 创建新的选项
+                    var str = $('<li class="todo-list">\
+                        <label>\
+                            <input type="checkbox">\
+                            <span>' + item.content + '</span>\
+                        </label>\
+                        <button class="btn btn-danger">删除</button>\
+                    </li>')
+                    $('.todo-main').append(str);
+                })
+            }
+
+            // 鼠标移入样式
+            hoverStyle();
+
+            function hoverStyle() {
+                $('.todo-main').on('mouseenter', 'li', function () {
+                    $(this).css('background', 'rgb(204,204,204)').children('.btn').show();
+                })
+                $('.todo-main').on('mouseleave', 'li', function () {
+                    $(this).css('background', '#FFF').children('.btn').hide();
+                })
+            }
+
+            // 列表全部计算
+            countAll()
+
+            function countAll() {
+                $('#allTodos').text($('.todo-main li').length);
+            }
+
+            // 已完成个数计算
+            singleClick()
+
+            function singleClick() {
+                // 给列表中每一个选项绑定单击事件
+                $('.todo-main').on('click', '.todo-list label', countCompleted)
+            }
+
+            // 全选
+            allClick()
+
+            function allClick() {
+                // 判断全选的状态，如果全选为选中状态，则把列表中所有的选项都选中，否则全部都不选中
+                $('#checkAll').click(function () {
+                    if ($(this).prop('checked')) {
+                        $('.todo-main li label input').prop('checked', true);
+                    } else {
+                        $('.todo-main li label input').prop('checked', false);
+                    }
+                    // 点击全选按钮后调用 计算已完成方法
+                    countCompleted();
+                })
+            }
+
+            // 计算已完成
+            function countCompleted() {
+                // 获取选中的表单元素的个数
+                var num = $('.todo-main li label input:checked').length;
+                // 给已完成的元素设置文本内容
+                $('#allComplateTodos').text(num);
+                // 判断是否列表中的元素是否已经全部被选中
+                if (num !== 0 && num === $('.todo-list').length) {
+                    $('#checkAll').prop('checked', true);
+                } else {
+                    $('#checkAll').prop('checked', false);
+                }
+            }
+
+            // 添加新选项
+            addTodo()
+            function addTodo () {
+                $('#newTodo').keydown(function (e) {
+                    // 判断是否键入回车键
+                    if (e.keyCode === 13) {
+                        // 获取表单输入内容，去除首尾空格
+                        var inputVal = $(this).val().trim();
+                        // 如果为空，提示输入内容
+                        if (!inputVal) {
+                            alert('请输入内容');
+                            return
+                        }
+                        // 创建新的选项
+                        var str = $('<li class="todo-list">\
+                            <label>\
+                                <input type="checkbox">\
+                                <span>' + inputVal + '</span>\
+                            </label>\
+                            <button class="btn btn-danger">删除</button>\
+                        </li>')
+                        // 添加到列表中
+                        $('.todo-main').append(str);
+                        // 添加后先隐藏，然后再下拉显示出来
+                        $('.todo-main li:last-child').hide().slideDown();
+                        // 重置输入框
+                        $(this).val('');
+                        // 调用计数器
+                        countAll();
+                        countCompleted();
+                    }
+                })
+            }
+
+            // 单个删除
+            singleRemove();
+            function singleRemove () {
+                // 给每个选项绑定单击事件
+                $('.todo-main').on('click', '.btn', function () {
+                    // 先卷起
+                    $(this).parent().slideUp(function () {
+                        // 后删除
+                        $(this).remove();
+                        // 调用计数器
+                        countAll();
+                        countCompleted();
+                    });
+                })
+            }
+
+            // 删除已完成
+            removeCompleted();
+            function removeCompleted () {
+                // 给删除已完成绑定单击事件
+                $('#removeAllComplate').click(function () {
+                    // 先卷起
+                    $('.todo-main li label input:checked').parent().parent().slideUp(function () {
+                        // 后删除
+                        $(this).remove();
+                        // 调用计数器
+                        countAll();
+                        countCompleted();
+                    })
+                })
+            }
+        })
+    </script>
+
+</body>
+
+</html>

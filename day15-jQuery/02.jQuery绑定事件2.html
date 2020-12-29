@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 200px;
+      height: 200px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <button id="btn">click me</button>
+    <button id="del">del me</button>
+    <button id="one">one</button>
+  </div>
+
+  <script src="./jquery.js"></script>
+  <script>
+    $(function () {
+      function fn (e) {
+        console.log(e.data);
+        alert('click button');
+      }
+      // 事件委托
+      $('#box').on('click','#btn', [{name: 'chenery'}],fn)
+      // 解绑事件
+      $('#del').click(function () {
+        $('#box').off('click', fn);
+      })
+      // 一次性事件
+      $('#one').one('click', fn)
+    })
+  </script>
+</body>
+
+</html>

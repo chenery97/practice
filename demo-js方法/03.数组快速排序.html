@@ -26,6 +26,8 @@
         - false:降序
     */
     Array.prototype.quickSort = function (pattern) {
+      // 不传参，默认为升序
+      var pattern = pattern === undefined ? true : pattern;
       // 判断数组的长度是否不需要继续排序
       if (this.length < 2) {
         return this
@@ -65,6 +67,7 @@
       return newArr
     }
     console.log(arr);
+    console.log('升序===>', arr.quickSort());
     console.log('升序===>', arr.quickSort(true));
     console.log('降序===>', arr.quickSort(false));
     console.log(arr);

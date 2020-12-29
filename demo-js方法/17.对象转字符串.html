@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+      已知一个查询字符串的对象{user:"laoli",pass:"123456}
+      已知一个地址http://www.baidu.com:80
+      得到一个url字符串"http://www.baidu.com:80?user=laoli&pass=123456"
+    */
+    function objToStr(obj, url) {
+      // 定义一个字符串，先在已有的url上拼接?符号
+      var urlStr = url + '?';
+      // 遍历对象
+      for (var key in obj) {
+        // 在?符号后依次拼接 key=value&
+        urlStr += key + '=' + obj[key] + '&';
+      }
+      // 遍历结束截取到最后一个&符号之前
+      urlStr = urlStr.slice(0, -1);
+      // 返回url字符串
+      return urlStr
+    }
+
+    var obj = {
+      user: "laoli",
+      pass: "123456"
+    };
+    var url = 'http://www.baidu.com:80';
+
+    var urlStr = objToStr(obj, url);
+    console.log(urlStr);
+  </script>
+</body>
+
+</html>

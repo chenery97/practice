@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+      已知一个地址"http://www.baidu.com:80?user=laoli&pass=123456"
+      把查询字符串以对象的形式表现出来，得到一个对象{user:"laoli",pass:"123456}
+    */
+    var url = 'http://www.baidu.com:80?user=laoli&pass=123456';
+    function strToObj (str) {
+      // 获取url地址?号后面的字符串
+      var searchStr = str.split('?')[1];
+      // 以&符分割成数组
+      var arr = searchStr.split('&');
+      // 定义一个空对象
+      var obj = {};
+      // 遍历数组
+      arr.forEach(function (item) {
+        // 以=符分割成数组
+        var newArr = item.split('=');
+        // 数组中的第一个元素为key，第二个元素为value
+        obj[newArr[0]] = newArr[1];
+      })
+      // 返回对象
+      return obj;
+    }
+
+    var obj = strToObj(url);
+    console.log(obj);
+  </script>
+</body>
+
+</html>

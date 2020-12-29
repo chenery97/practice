@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var num = 100;
+    var obj = {
+      num: 1
+    }
+
+    function fn(a, b) {
+      console.log(this.num);
+      console.log(a + b);
+      return this
+    }
+
+    Function.prototype.myBind = function (context) {
+      // 保存当前的this
+      var _this = this;
+      // 保存当前的arguments
+      var arg = arguments;
+      // 返回一个改变this指向的函数
+      return function () {
+        _this.call(context, ...Array.from(arg).slice(1));
+      }
+    }
+    var re = fn.myBind(obj, 1, 2);
+    re();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box">
+    <button id="btn">click me</button>
+  </div>
+
+  <script src="./jquery.js"></script>
+  <script>
+    $(function () {
+      $('#box').click(function (e) {
+        alert('box');
+      })
+      $('#btn').click(function (e) {
+        // 阻止冒泡
+        e.stopPropagation();
+        alert('hello');
+      })
+      $('#btn').click(function (e) {
+        alert('world');
+      })
+
+      $(document).contextmenu(function (e) {
+        // 取消浏览器默认行为
+        e.preventDefault();
+        alert('right click');
+      })
+    })
+  </script>
+
+</body>
+
+</html>

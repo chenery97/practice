@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var num = 100;
+    var obj = {
+      num: 1
+    }
+
+    function fn() {
+      console.log(this.num);
+      console.log(arguments[0][0] + arguments[0][1]);
+      return this
+    }
+
+    Function.prototype.myApply = function (context) {
+      // 判断上下文对象的类型
+      var context = context !== null && context !== undefined ? Object(context) : window;
+      // 给上下文对象扩展一个属性，保存当前的this
+      context.fn = this;
+      // 执行函数
+      var re = context.fn(arguments[1]);
+      // 删除扩展的属性
+      delete context.fn;
+      // 返回函数的返回值
+      return re
+    }
+
+    fn.myApply(obj, [1, 2]);
+  </script>
+</body>
+
+</html>

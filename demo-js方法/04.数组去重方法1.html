@@ -25,7 +25,7 @@
       // 遍历原数组
       this.forEach(function (item) {
         // 当原数组中的元素在新数组中找不到时，把该元素添加到新数组中
-        return newArr.indexOf(item) === -1 && newArr.push(item);
+        newArr.indexOf(item) === -1 && newArr.push(item);
       })
       // 返回新数组
       return newArr
