@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #outer {
+      width: 600px;
+      height: 500px;
+      margin: 0 auto;
+      border: 1px solid #eee;
+    }
+
+    #outer .title {
+      display: flex;
+
+    }
+
+    #outer .title h1 {
+      flex: 1;
+      height: 50px;
+      line-height: 50px;
+      margin: 0;
+      text-align: center;
+      border: 1px solid skyblue;
+      box-sizing: border-box
+    }
+
+    #outer .title h1:hover {
+      cursor: pointer;
+    }
+
+    #outer .title .active {
+      background: skyblue;
+    }
+
+    #outer .con {
+      height: 450px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #outer .con ul {
+      height: 1350px;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+      position: absolute;
+      /* border: 1px solid red; */
+    }
+
+    #outer .con ul li {
+      height: 450px;
+      line-height: 450px;
+      text-align: center;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="outer">
+    <div class="title">
+      <h1 class="active">标题一</h1>
+      <h1>标题二</h1>
+      <h1>标题三</h1>
+    </div>
+    <div class="con">
+      <ul>
+        <li>内容一</li>
+        <li>内容二</li>
+        <li>内容三</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    // 获取元素
+    var oTitles = document.querySelector('.title');
+    var oHs = document.querySelectorAll('.title h1');
+    var oCon = document.querySelector('.con');
+    var oUl = document.querySelector('.con ul');
+    var oLis = document.querySelectorAll('.con ul li');
+    // 获取li的高度
+    var liHeight = oLis[0].offsetHeight;
+    var timer = null;;
+
+    oHs.forEach(function (item, index) {
+      item.onclick = function () {
+        // 清除所有h1元素的active类名
+        oHs.forEach(function (item) {
+          item.classList.remove('active');
+        })
+        // 给当前点击的h1元素添加active类名
+        this.classList.add('active');
+        // 获取当前ul的top数据
+        var ulTop = parseInt(oUl.style.top) ? parseInt(oUl.style.top) : 0;
+        // 获取ul的top应该到达的位置
+        var ulToTop = -index * liHeight;
+        // 动画切换
+        timer = setInterval(function () {
+          // 比较 当前ul的top 和 最终ul的top应该到达的位置
+          if (ulTop < ulToTop) {
+            // 如果是小于 则ul每次向下移动
+            ulTop += 20;
+            // 判断临界值
+            if (ulTop >= ulToTop) {
+              ulTop = ulToTop;
+            }
+          } else if (ulTop > ulToTop) {
+            // 如果是大于 则ul每次向上移动
+            ulTop -= 20;
+            // 判断临界值
+            if (ulTop <= ulToTop) {
+              ulTop = ulToTop;
+            }
+          } else {
+            // 如果是相同的，则清除定时器
+            clearInterval(timer);
+          }
+          // 每次重新赋值
+          oUl.style.top = ulTop + 'px';
+        })
+      }
+    })
+  </script>
+</body>
+
+</html>

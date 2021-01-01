@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1></h1>
+
+  <script>
+    var oH = document.querySelector('h1');
+    // 每秒执行一次
+    setInterval(function () {
+      // 获取当前时间
+      var nowTime = new Date();
+      // 把当前时间转成常见的时间格式，设置给元素
+      oH.textContent = getFormattingDate(nowTime);
+      // 
+      nowTime = null;
+    }, 1000)
+    
+    // 获取时间格式 yyyy-MM-dd HH:mm:ss
+    function getFormattingDate (time) {
+      // 获取年
+      var fullyear = time.getFullYear();
+      // 获取月
+      var month = time.getMonth() + 1;
+      month = month < 10 ? '0' + month : month;
+      // 获取天
+      var day = time.getDate();
+      day = day < 10 ? '0' + day : day;
+      // 获取时
+      var hours = time.getHours();
+      hours = hours < 10 ? '0' + hours : hours;
+      // 获取分
+      var minutes = time.getMinutes();
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      // 获取秒
+      var seconds = time.getSeconds();
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      // 返回时间格式
+      return fullyear + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+    }
+  </script>
+</body>
+
+</html>

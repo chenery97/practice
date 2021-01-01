@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .outer {
+      width: 800px;
+      height: 30px;
+      border: 1px solid #000;
+    }
+
+    .per {
+      margin: 0;
+      width: 0;
+      height: 100%;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer">
+    <p class="per">0%</p>
+  </div>
+
+  <script>
+    var imgsrc = [
+      "https://s3.ax1x.com/2020/12/08/rSCogx.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCh59.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCI81.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCfUJ.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCWE4.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCHKK.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPCKf.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCqbD.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCbDO.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCTv6.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCOVe.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCXUH.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCj5d.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCxPA.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSCz8I.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPPr8.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPS2t.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPpxP.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPiqS.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPkVg.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPE5j.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPZPs.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPMrT.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPeGn.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPm2q.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPnx0.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPQqU.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSPKMV.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSP3a4.jpg",
+      "https://s3.ax1x.com/2020/12/08/rSP1ZF.jpg",
+    ];
+
+    // 获取元素
+    var oOuter = document.querySelector('.outer');
+    var oPer = document.querySelector('.per');
+    // 已加载的图片数量
+    var count = 0;
+    // 遍历图片列表
+    imgsrc.forEach(function (item) {
+      // 每次创建一个新的img标签
+      var newImg = new Image();
+      // 给img标签添加src属性
+      newImg.src = item;
+      // 图片加载事件
+      newImg.onload = function () {
+        // 每次加载count进行计数
+        count++;
+        // 获取当前数量和总数量的百分比
+        var per = parseInt((count / imgsrc.length) * 100);
+        // 给页面的元素改变样式
+        oPer.style.width = per + '%';
+        oPer.textContent = per + '%';
+      }
+    })
+  </script>
+</body>
+
+</html>

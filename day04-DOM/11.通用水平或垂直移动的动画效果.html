@@ -30,22 +30,23 @@
       var animationTimer = null;
 
       oBtn1.onclick = function () {
-        clearInterval(animationTimer);
+        // clearInterval(animationTimer);
         animation(oCon, 'left', 900, 100);
       }
       oBtn2.onclick = function () {
-        clearInterval(animationTimer);
+        // clearInterval(animationTimer);
         animation(oCon, 'left', 100, 100)
       }
       oBtn3.onclick = function () {
-        clearInterval(animationTimer);
+        // clearInterval(animationTimer);
         animation(oCon, 'top', 900, 100)
       }
       oBtn4.onclick = function () {
-        clearInterval(animationTimer);
+        // clearInterval(animationTimer);
         animation(oCon, 'top', 100, 100)
       }
       function animation(Ele, direction, endLocation, endStep) {
+        clearInterval(animationTimer);
         // 动画元素起始位置，用parseInt取到数字部分
         var startLocation = parseInt(Ele.style[direction]);
         // 起始步数
