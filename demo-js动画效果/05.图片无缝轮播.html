@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    #outer {
+      width: 500px;
+      height: 300px;
+      margin: 100px auto;
+      border: 1px solid #eee;
+      position: relative;
+    }
+
+    #inner {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #inner .con {
+      width: 3000px;
+      display: flex;
+    }
+
+    #inner .con img {
+      width: 500px;
+      height: 300px;
+      cursor: pointer;
+    }
+
+    #inner .prevBtn,
+    #inner .nextBtn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      line-height: 50px;
+      text-align: center;
+      font-size: 40px;
+      color: rgba(220, 220, 220, 0.5);
+
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #inner .prevBtn {
+      left: 0;
+    }
+
+    #inner .nextBtn {
+      right: 0;
+    }
+
+    #inner .prevBtn:hover,
+    #inner .nextBtn:hover {
+      cursor: pointer;
+      color: rgba(220, 220, 220, 1);
+    }
+
+    #inner .currentImg {
+      display: flex;
+
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #inner .currentImg li {
+      width: 10px;
+      height: 10px;
+      margin: 5px;
+      border-radius: 50%;
+      background-color: rgba(220, 220, 220, 0.3);
+      cursor: pointer;
+    }
+
+    #inner .currentImg li.active {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="outer">
+    <div id="inner">
+      <div class="con">
+        <img src="./images/01.jpg" alt="" />
+        <img src="./images/02.jpg" alt="" />
+        <img src="./images/03.jpg" alt="" />
+        <img src="./images/04.jpg" alt="" />
+        <img src="./images/05.jpg" alt="" />
+        <img src="./images/01.jpg" alt="" />
+      </div>
+      <div class="prevBtn">&lt;</div>
+      <div class="nextBtn">&gt;</div>
+      <ul class="currentImg">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // 获取元素
+    var oInner = document.querySelector('#inner');
+    var oCon = document.querySelector('.con');
+    var oImgs = document.querySelectorAll('.con img');
+    var oPrev = document.querySelector('.prevBtn');
+    var oNext = document.querySelector('.nextBtn');
+    var oLis = document.querySelectorAll('.currentImg li');
+    var index = 0;
+    var imgWidth = oImgs[0].offsetWidth;
+    var moveTimer = null;
+    var autoTimer = null;
+    var timeoutTimer = null;
+
+    // 点击动画执行完延迟1s继续执行自动播放动画
+    function timeout() {
+      timeoutTimer = setTimeout(function () {
+        auto();
+      }, 1000)
+    }
+    auto();
+    // 自动播放动画
+    function auto() {
+      autoTimer = setInterval(function () {
+        index++;
+        if (index >= oImgs.length) {
+          index = 1;
+          oInner.scrollLeft = 0;
+        }
+        move();
+      }, 1000)
+    }
+    // 切换图片动画
+    function move() {
+      clearInterval(moveTimer);
+      setNavActive();
+      var startLocation = oInner.scrollLeft;
+      var endLocation = index * imgWidth;
+      var startStep = 0;
+      var endStep = 40;
+      var every = (endLocation - startLocation) / (endStep - startStep);
+      moveTimer = setInterval(function () {
+        startStep++;
+        startLocation += every;
+        if (startStep >= endStep) {
+          clearInterval(moveTimer);
+        }
+        oInner.scrollLeft = startLocation;
+      })
+    }
+    // 点击动画
+    prevClick();
+    function prevClick() {
+      oPrev.onclick = function () {
+        index--;
+        if (index < 0) {
+          index = oImgs.length - 2;
+          oInner.scrollLeft = (index + 1) * imgWidth;
+        }
+        clearInterval(autoTimer);
+        clearTimeout(timeoutTimer);
+        move();
+        timeout();
+      }
+    }
+    nextClick();
+    function nextClick() {
+      oNext.onclick = function () {
+        index++;
+        if (index >= oImgs.length) {
+          index = 1;
+          oInner.scrollLeft = 0;
+        }
+        clearInterval(autoTimer);
+        clearTimeout(timeoutTimer);
+        move();
+        timeout();
+      }
+    }
+    navClick();
+    function navClick() {
+      oLis.forEach(function (item, i) {
+        item.onclick = function () {
+          index = i;
+          clearInterval(autoTimer);
+          clearTimeout(timeoutTimer);
+          move();
+          timeout();
+        }
+      })
+    }
+    // 导航点激活
+    function setNavActive() {
+      oLis.forEach(function (item, i) {
+        item.classList.remove('active');
+        if (index !== i) {
+          return
+        }
+        item.classList.add('active');
+      })
+      if (index !== oImgs.length - 1) {
+        return
+      }
+      oLis[0].classList.add('active');
+    }
+    // 鼠标悬浮停止动画
+    // 鼠标移开开始动画
+    hoverAndLeaveAnimation();
+    function hoverAndLeaveAnimation() {
+      oImgs.forEach(function (item) {
+        item.onmouseenter = function () {
+          clearInterval(autoTimer);
+          clearTimeout(timeoutTimer);
+        }
+        item.onmouseleave = function () {
+          timeout();
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>
