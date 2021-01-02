@@ -578,6 +578,7 @@
   background-color: bisque;
   position: absolute;
   left: 6px;
+  z-index: 5;
 }
 #aside .menu {
   width: 32px;
@@ -641,7 +642,7 @@
   line-height: 32px;
   position: absolute;
   top: 0;
-  left: 37px;
+  left: 32px;
   text-align: center;
   color: #fff;
   background-color: red;

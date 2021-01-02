@@ -105,14 +105,14 @@
           // 比较 当前ul的top 和 最终ul的top应该到达的位置
           if (ulTop < ulToTop) {
             // 如果是小于 则ul每次向下移动
-            ulTop += 20;
+            ulTop += 10;
             // 判断临界值
             if (ulTop >= ulToTop) {
               ulTop = ulToTop;
             }
           } else if (ulTop > ulToTop) {
             // 如果是大于 则ul每次向上移动
-            ulTop -= 20;
+            ulTop -= 10;
             // 判断临界值
             if (ulTop <= ulToTop) {
               ulTop = ulToTop;
