@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 父类
+    function Car (carNumber) {
+      this.carNumber = carNumber;
+    }
+    // 父类原型上的方法
+    Car.prototype.leave = function () {
+      console.log('leaving ...');
+    }
+    // 子类
+    function MonthCar (type, carNumber) {
+      this.type = type;
+      // 继承父类的属性
+      Car.call(this, carNumber);
+    }
+    // 子类的实例化对象要想使用父类原型上的方法
+    // 父类的实例化对象才能使用父类原型上的方法
+    // 所以把父类的实例化对象赋值给子类的原型对象
+    MonthCar.prototype = new Car();
+    // 修正原型链
+    MonthCar.prototype.constructor = MonthCar;
+
+    var car1 = new MonthCar('month', '粤B12345');
+    console.log(Car);
+    console.log(Car.prototype);
+    console.log(MonthCar);
+    console.log(MonthCar.prototype);
+    console.log(car1);
+    console.log(car1.carNumber);
+    car1.leave();
+  </script>
+</body>
+
+</html>
