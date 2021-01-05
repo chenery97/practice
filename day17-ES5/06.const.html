@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      const
+        - 声明变量时需要赋一个初始值
+        - 没有声明提升，无法在变量声明之前使用
+        - 在同一个作用域下不能重复声明同一个变量
+        - 不能修改基本数据类型的值，可以修改对象类型中属性的值
+        - 在全局作用域中声明的变量不再是window中的属性或方法
+    */
+
+  //  const a; //Missing initializer in const declaration
+
+  //  console.log(b); //Cannot access 'b' before initialization
+   const b = 100;
+
+   const c = 1;
+  //  const c = {}; //Identifier 'c' has already been declared
+
+   const PI = Math.PI;
+  //  PI = 3.14; //Assignment to constant variable.
+
+  const fn = function () {};
+  console.log(window.fn); // undefined
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Object.create()
+        - 参数1：对象的__proto__ 指向
+        - 参数2：对象属性和属性的描述
+          - {
+            属性名: {
+              value: 属性值,
+              writable: false, // 默认为false
+              enumerable: false, // 默认为false
+              configurable: false // 默认为false
+            }
+          }
+    */
+    var obj = Object.create(null); // 空对象，没有原型链
+    // console.log(obj);
+
+    var obj1 = Object.create(Object.prototype); // 空对象，__proto__ 指向 Object.prototype
+    // console.log(obj1);
+
+    var newObj = {
+      name: 'chenery'
+    }
+    var obj2 = Object.create(newObj); // 空对象，__proto__ 指向 newObj (继承)
+    // console.log(obj2);
+
+    var newObj = Object.create(Object.prototype, {
+      name: {
+        value: 'chenery',
+        writable: false, // 默认为false
+        enumerable: false, // 默认为false
+        configurable: false // 默认为false
+      },
+      age: {
+        value: 23
+      }
+    })
+    console.log(newObj);
+
+    /* 
+      设置已经存在的属性时，如果该属性之前的configurable为false，那么无法重新设置(报错：TypeError: Cannot redefine property: name
+      at Function.defineProperty (<anonymous>))
+    */
+    Object.defineProperty(newObj, 'name', {
+      value: 'chen',
+      writable: true,
+      enumerable: true,
+      configurable: true
+    })
+    console.log(newObj);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Math.pow(m, n)  m的n次方
+      与 ** 乘方运算符等同
+    */
+    console.log(Math.pow(2, 10));
+    console.log(2 ** 10);
+
+    // 开平方
+    console.log(Math.sqrt(100));
+
+    // 开立方
+    console.log(Math.cbrt(1000));
+
+    // 平方和的平方根
+    console.log(Math.hypot(3, 4));
+
+    // 去除小数
+    console.log(Math.trunc(2.2));
+    console.log(Math.trunc(-2.2));
+
+    // 正数返回1，负数返回-1，0返回0，正无穷返回1，负无穷返回-1，NaN返回NaN，其他非数字先转为数字在判断
+    console.log(Math.sign(10));
+    console.log(Math.sign(-10));
+    console.log(Math.sign(0));
+    console.log(Math.sign(NaN));
+    console.log(Math.sign('abc'));
+    console.log(Math.sign(''));
+    console.log(Math.sign(null));
+    console.log(Math.sign(undefined));
+    console.log(Math.sign(Infinity));
+    console.log(Math.sign(-Infinity));
+  </script>
+</body>
+
+</html>

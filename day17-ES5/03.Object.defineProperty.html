@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Object.defineProperty()
+        - 参数1：要设置属性的对象
+        - 参数2：属性名
+        - 参数3：描述对象
+          - value：属性值
+          - writable：是否可修改属性，默认为false，属性不能被修改
+          - enumerable：是否可枚举属性，默认为false，属性不能被枚举
+          - configurable：是否可删除属性和修改属性描述，默认为false，属性不能被删除
+    */
+
+    var obj = {
+      name: 'chenery'
+    }
+    Object.defineProperty(obj, 'age', {
+      value: 23,
+      writable: false,
+      enumerable: false,
+      configurable: true
+    })
+    console.log(obj);
+    obj.name = 'chen';
+    obj.age = 24;
+    console.log('修改属性后===>', obj); // 无法修改age属性
+    for (var key in obj) {
+      console.log('遍历===>', key); // 无法遍历age属性
+    }
+    delete obj.name;
+    delete obj.age;
+    console.log('删除属性后===>', obj); // 无法删除age属性
+
+
+    /* 
+      Object.defineProperties() 可以同时设置多个属性
+    */
+
+    Object.defineProperties(obj, {
+      name: {
+        value: 'Jerry',
+        wirtable: false,
+        enumerable: false,
+        configurable: false
+      },
+      age: {
+        value: 24
+      }
+    })
+    console.log(obj);
+  </script>
+</body>
+
+</html>

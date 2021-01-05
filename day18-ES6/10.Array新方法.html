@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      copyWithin()：改变原数组
+        - 开始覆盖的位置
+        - 开始选取的位置
+        - 结束选取的位置(不包含结束位置)
+    */
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+    console.log(arr.copyWithin(0, 4, 6));
+    console.log(arr);
+
+    /* 
+      fill()：改变原数组
+        - 填充的元素
+        - 开始填充的位置
+        - 结束填充的位置(不包含结束位置)
+    */
+    const arr1 = new Array(5);
+    console.log(arr1.fill(1, 0, 2));
+    console.log(arr1);
+
+    /* 
+      includes()：不改变原数组
+        - 要寻找的元素
+        - 返回true 或 false
+    */
+    const arr2 = [1, 2, [3], 4, 5];
+    console.log(arr2.includes(1)); // true
+    console.log(arr2.includes(3)); // false
+    console.log(arr2.includes([3])); // false
+    console.log(arr2);
+
+    /* 
+      flat()：不改变原数组
+        - 不传默认只扁平化一层
+        - 参数为扁平化的层数
+        - 当不确定数组的层数时，可以传Infinity
+    */
+    const arr3 = [1, 2, [3], [4, [5]]];
+    console.log(arr3.flat());
+    console.log(arr3);
+
+    /* 
+      find()：不改变原数组
+        - 回调函数第一个返回true时的元素
+    */
+    const arr4 = ['a', 2, 3, 1];
+    console.log(arr4.find(function(item) {
+      return typeof item === 'number';
+    }));
+    console.log(arr4);
+
+    /* 
+      findIndex()：不改变原数组
+        - 回调函数第一个返回true时的元素下标
+    */
+    const arr5 = ['a', 'b', 1, 2, 3];
+    console.log(arr5.findIndex(function (item) {
+      return typeof item === 'number';
+    }))
+    console.log(arr5);
+
+    /* 
+      reduce()：累加器
+
+    */
+    // 二进制数转十进制数
+    const str = '1010';
+    const arr6 = [...str].reverse();
+    const re1 = arr6.reduce(function(prev, item, index) {
+      prev += item * 2 ** index;
+      return prev
+    }, 0);
+    console.log(re1);
+
+    // 求数组中所有元素的平方和
+    const arr7 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const re2 = arr7.reduce(function (prev, item, index) {
+      prev += item ** 2;
+      return prev
+    }, 0)
+    console.log(re2); // 285
+    console.log(Math.pow(Math.hypot(...arr7), 2)); // 284.99999999999994 不精准
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 获取字符码
+    function getCharCode (str) {
+      // 获取传入的字符串从第三位开始所有的字符
+      let arr = [...str.slice(2)];
+      // 遍历数组中的字符
+      arr.some(function (item, index) {
+        // 判断字符是否小于10，是给它转成数字
+        if (item < 10) {
+          arr[index] = Number(item);
+          // 不是，则获取该字符在字符编码表中对应的数字-87，则得到字母对应表示的数字
+        } else {
+          arr[index] = item.charCodeAt() - 87;
+        }
+      })
+      // 把处理过的数组返回
+      return arr.reverse()
+    }
+    // 其他进制转十进制
+    function sysConvert (str) {
+      // 如果传入的字符串中开头不包含0b或0o或0x，则直接退出
+      if (!str.startsWith('0b') && !str.startsWith('0o') && !str.startsWith('0x')) {
+        return 'string must be startWith 0b or 0o or 0x'
+      }
+      // 获取处理字符串的数组
+      const arr = getCharCode(str);
+      // 转换十进制方法
+      function getTenRadix (radix) {
+        let flag = false;
+        flag = arr.some(function (item) {
+          if (item >= radix) {
+            return true
+          }
+        })
+        if (flag) {
+          return 'conversion failure'
+        }
+        // 遍历累加每位计算后的数值
+        const count = arr.reduce(function (prev, item, index) {
+          // 根据 数码 * 基数 ** 数位
+          prev += item * radix ** index;
+          return prev
+        }, 0)
+        return count
+      }
+      // 声明一个变量，用于存放转换后的十进制数
+      let decimalNumber;
+      if (str.startsWith('0b')) {
+        decimalNumber = getTenRadix(2);
+      } else if (str.startsWith('0o')) {
+        decimalNumber = getTenRadix(8);
+      } else if (str.startsWith('0x')) {
+        decimalNumber = getTenRadix(16);
+      }
+      return decimalNumber
+    }
+    console.log(sysConvert('0xf0')); // 自定义方法
+  </script>
+</body>
+
+</html>

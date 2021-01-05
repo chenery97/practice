@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./index.js"></script>
+  <script>
+    /* 
+      'use strict'
+        - 全局开启严格模式：作用于全局作用域
+        - 函数内部开启严格模式：作用于当前函数的作用域
+          - 严格模式中的部分特性：
+            - 未声明的变量无法使用，使用报错 xxx is not defined
+            - 使用eval会生成一个新的作用域
+            - 函数普通调用，函数中的this不再指向window，而是undefined
+    */
+
+    'use strict'; // 全局严格模式
+    a = 10;
+    console.log(a); // a is not defined
+
+    function fn (a) {
+      'use strict'; // 局部严格模式
+      console.log(a); // 100
+      b = 20;
+      console.log(b); // b is not defined
+    }
+    fn(100);
+
+    eval('a = 20');
+    console.log(a); // a is not defined // 没有开启严格模式的情况下输出 20
+
+    function foo () {
+      console.log(this); // 严格模式下输出undefined // 非严格模式下输出window
+    }
+    foo();
+  </script>
+</body>
+
+</html>

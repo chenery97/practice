@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* const obj = {
+      name: 'chenery',
+      age: 23
+    }
+    const {
+      name,
+      age
+    } = obj;
+    console.log(name, age); */
+
+    /* const obj = {
+      name: 'chenery',
+      hobby: [1, 2, 3]
+    }
+    const {
+      name,
+      hobby: [first, second, third]
+    } = obj;
+    console.log(name, first, second, third); */
+
+    const obj = {
+      name: 'chenery',
+      age: 23,
+      gender: 'male'
+    }
+    const {
+      name,
+      ...rest
+    } = obj;
+    console.log(name, rest)
+  </script>
+</body>
+
+</html>

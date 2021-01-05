@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      firstName: 'XuSheng',
+      familyName: 'Chen',
+      get fullName() {
+        return this.familyName + ' ' + this.firstName;
+      },
+      set fullName(data) {
+        [this.firstName, this.familyName] = data.split(' ');
+      }
+    }
+    console.log(obj.fullName);
+    obj.fullName = 'LeBorn James';
+    console.log(obj.fullName);
+    console.log(obj);
+
+    var newObj = Object.create(Object.prototype, {
+      firstName: {
+        value: 'Kobe',
+        writable: true
+      },
+      familyName: {
+        value: 'Bryant',
+        writable: true,
+      }
+    })
+    Object.defineProperty(newObj, 'fullName',{
+      get() {
+        return this.firstName + ' ' + this.familyName;
+      },
+      set(data) {
+        [this.firstName, this.familyName] = data.split(' ');
+      }
+    })
+    console.log(newObj.fullName);
+    newObj.fullName = 'Kevin Durant';
+    console.log(newObj.fullName);
+  </script>
+</body>
+
+</html>

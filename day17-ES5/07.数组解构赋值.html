@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    {
+      // 变量和数组中的元素个数一一对应
+      const arr = [1, 2, 3, 4, 5];
+      const [a, b, c, d, e] = arr;
+      console.log(a, b, c, d, e);
+    }
+    {
+      // 变量的个数小于数组元素的个数
+      const arr = [1, 2, 3, 4, 5];
+      const [a, b, c] = arr;
+      console.log(a, b, c);
+    }
+    {
+      // 变量的个数大于数组元素的个数，解构失败的变量为undefined
+      const arr = [1, 2, 3, 4, 5];
+      const [a, b, c, d, e, f] = arr;
+      console.log(a, b, c, d, e, f);
+    }
+    {
+      // 变量的个数小于数组元素的个数，多余的数组元素使用一个数组变量接收
+      const arr = [1, 2, 3, 4, 5];
+      const [a, b, c,...rest] = arr;
+      console.log(a, b, c, rest);
+    }
+    {
+      // 可以设置默认值，解构失败的使用默认值，解构成功的使用数组对应的元素
+      const arr = [1, 2, 3, 4, 5];
+      const [a, b, c, d, e, f = 6] = arr;
+      console.log(a, b, c, d, e, f);
+    }
+    {
+      // 多维数组一一对应也可以解构
+      const arr = [1, [2, [3, [4, [5]]]]];
+      const [a, [b, [c, [d, [e]]]]] = arr;
+      console.log(a, b, c, d, e);
+    }
+    {
+      // 可以用于多个变量的值交换
+      let a = 10, b = 100;
+      [b, a] = [a, b];
+      console.log('a=' + a, 'b=' + b);
+    }
+    
+  </script>
+</body>
+
+</html>

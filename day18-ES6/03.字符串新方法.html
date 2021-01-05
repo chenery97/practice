@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const str = 'hello world';
+    console.log(str.startsWith('h'));
+    console.log(str.startsWith('he'));
+    console.log(str.startsWith('ho'));
+    console.log(str.endsWith('d'));
+    console.log(str.endsWith('ld'));
+    console.log(str.endsWith('rd'));
+    console.log(str.includes(' '));
+    console.log(str.includes('o w'));
+    console.log(str.includes('llo'));
+
+    const phoneNum = '10086';
+    console.log(phoneNum.padStart(8, '0'));
+    console.log(phoneNum.padEnd(8, '0'));
+
+    const inputStr = '   hey man   ';
+    console.log(inputStr.trim());
+    console.log(inputStr.trimStart());
+    console.log(inputStr.trimEnd());
+
+    const sliceStr = '-';
+    console.log(sliceStr.repeat(20));
+  </script>
+</body>
+
+</html>

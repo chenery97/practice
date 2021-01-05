@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      let
+        - 没有声明提升，在变量声明前使用会报错
+        - 在同一个作用域下不能重复声明同一个变量
+        - 在全局作用域中声明的变量不再是window的属性或方法
+    */
+    // console.log(a); //Cannot access 'a' before initialization
+    // let a;
+    // let a = 10; //Identifier 'a' has already been declared
+
+    {
+      let a = '哈哈哈';
+      console.log(a);
+    }
+    // console.log(a); //a is not defined
+
+    let fn = function () {
+      console.log(111)
+    }
+    console.log(window.fn); //undefined
+  </script>
+</body>
+
+</html>

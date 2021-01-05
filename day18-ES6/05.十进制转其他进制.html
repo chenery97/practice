@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 根据进制生成对应包含进制数从0到最大数的数组
+    function getNums (scale) {
+      const arr = [];
+      for (let i = 0; i < scale; i++) {
+        if (i <= 9) {
+          // 小于10的数直接添加
+          arr.push(i);
+        } else {
+          // 大于9的数根据字符码获取到对应的字母进行添加
+          arr.push(String.fromCharCode(87 + i));
+        }
+      }
+      return arr
+    }
+    // 十进制转n进制的方法
+    function sysConvert (num, scale) {
+      // 声明一个变量，当进制数大于10的时候用来存放对应的进制数的数组
+      let scaleNum;
+      // 判断进制数是否合理
+      if (scale < 2 || scale > 36) {
+        return 'radix argument must be between 2 and 36'
+        // 判断进制数是否大于10，小于10直接用余数，大于10要使用字母表示，所以先根据进制获取到对应的进制数的数组
+      } else if (scale > 10) {
+        scaleNum = getNums(scale);
+      }
+      // 声明一个数组，用来存放得到的余数
+      const arr = [];
+      // 把当前的十进制数每次除以进制数，直到为0
+      while (num) {
+        // 获取余数，如果scaleNum为undefined则直接获取余数，如果不为undefined则在进制数的数组根据余数下标拿到对应的数字或字母
+        const remainder = scaleNum ? scaleNum[num % scale] : num % scale;
+        // 依次余数存放到数组的最前面
+        arr.unshift(remainder);
+        // 获取商
+        num = parseInt(num / scale);
+      }
+      // 把余数数组中的元素拼接成一个字符串返回
+      return arr.join('')
+    }
+    const date = Date.now(); // 获取当前的时间戳
+    console.log(sysConvert(date, 36)); // 自定义方法
+    console.log(date.toString(36)); // 原生方法
+  </script>
+</body>
+
+</html>

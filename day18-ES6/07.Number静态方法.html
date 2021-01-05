@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 检测数字是否有限大
+    console.log(Number.isFinite(9999)); // true
+    console.log(Number.isFinite(Infinity)); // false
+
+    // 检测当前的值是否为NaN
+    console.log(Number.isNaN('abc')); // false
+    console.log(Number.isNaN(NaN)); // true
+
+    // 检测是否为整数
+    console.log(Number.isInteger(100)); // true
+    console.log(Number.isInteger(100.1)); // false
+  </script>
+</body>
+
+</html>
