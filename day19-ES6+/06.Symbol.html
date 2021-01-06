@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const name = 'chenery';
+    const sb1 = Symbol('sb1');
+    const sb2 = Symbol('sb2');
+    const obj = {
+      name,
+      [sb1]: Date.now().toString(36),
+      [sb2]: 'woohoo'
+    }
+    console.log(obj);
+
+    // Object.getOwnPropertySymbols() 返回 对象中所有symbol类型的key组成的数组
+    const re = Object.getOwnPropertySymbols(obj);
+    console.log(re);
+    re.forEach((item) => console.log(obj[item]));
+
+    // for in 无法遍历出对象中symbol类型的属性
+    for (let key in obj) {
+      console.log(obj[key]);
+    }
+  </script>
+</body>
+
+</html>

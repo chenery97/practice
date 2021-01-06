@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'laowang',
+      /* do: () => {
+        console.log(this); // window
+        setTimeout(() => {
+          console.log(this); // window
+        })
+      } */
+      do: function () {
+      console.log(this); // 上下文对象
+      setTimeout(() => {
+      console.log(this); // 上下文对象
+      })
+      }
+    }
+    obj.do();
+
+
+    const obj1 = {
+      name: 'obj1',
+      /* do: () => {
+        console.log(this); // window
+      } */
+      do: function () {
+        console.log(this); // 上下文对象
+      }
+    }
+    const obj2 = {
+      name: 'obj2',
+      do: obj1.do
+    }
+    obj1.do();
+    obj2.do();
+
+    function Person (name) {
+      this.name = name;
+      this.do = () => {
+        console.log(this); // 实例化对象
+      };
+    }
+    Person.prototype.doThing = () => {
+      console.log(this); // window
+    }
+    Person.doThing = function () {
+      console.log(this); // Person 函数
+    }
+    Person.do = () => {
+      console.log(this); // window
+    }
+    const p1 = new Person('p1');
+    const p2 = new Person('p2');
+    p1.do();
+    p2.do();
+    p1.doThing();
+    p2.doThing();
+    Person.doThing();
+    Person.do();
+  </script>
+</body>
+
+</html>

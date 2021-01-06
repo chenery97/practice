@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    Function.prototype.myApply = function (context, rest) {
+      // 判断传入的上下文对象
+      context = !(context === undefined) && !(context === null) ? Object(context) : window;
+      // 给上下文对象扩展一个唯一的属性
+      const key = Symbol();
+      context[key] = this;
+      // 调用函数，以数组的方式传递参数
+      const re = context[key](rest);
+      // 执行完删除多余的属性
+      delete context[key];
+      // 返回函数返回值
+      return re
+    }
+    const obj = {
+      author: 'chenery'
+    }
+    function fn ([a, b]) {
+      console.log(this);
+      return a + b
+    }
+    const re = fn.myApply(obj, [1, 2]);
+    console.log(re);
+  </script>
+</body>
+
+</html>

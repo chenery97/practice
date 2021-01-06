@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 求数组最大值
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const max = arr.reduce((prev, item) => prev > item ? prev : item);
+    console.log(max);
+
+    // 求数组最小值
+    const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const min = arr1.reduce((prev, item) => prev < item ? prev : item);
+    console.log(min);
+
+    // 计算字符串中每个字符出现的次数
+    const str = 'hello, my name is chenery.';
+    const obj = [...str].reduce((prev, item) => {
+      prev[item] ? prev[item]++ : prev[item] = 1;
+      return prev
+    }, {});
+    console.log(obj);
+
+    // 数组去重
+    const arr2 = [1, 2, 3, 2, 1, 5, 8, 3, 5, 6, 9, 7, 6, 8];
+    const re = arr2.reduce((prev, item) => {
+      !prev.includes(item) && prev.push(item);
+      return prev
+    }, [])
+    console.log(re);
+
+    // 数组扁平化
+    const arr3 = [
+      1, 2,
+      [3, 4, [
+        5, 6
+      ]]
+    ]
+    function falt(arr) {
+      return !Array.isArray(arr) ? arr : arr.reduce((prev, item) => [].concat(...prev, falt(item)), [])
+    }
+    console.log(falt(arr3));
+
+    // 数组单向对比
+    const arr4 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const arr5 = [2, 4, 6, 8];
+    const result = arr4.reduce((prev, item) => {
+      !arr5.includes(item) && prev.push(item);
+      return prev
+    }, [])
+    console.log(result);
+  </script>
+</body>
+
+</html>

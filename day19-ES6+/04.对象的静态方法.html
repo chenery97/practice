@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Object.is() 与 === 功能相同，相对于=== 多了一个NaN和NaN的判断为true
+    */
+    console.log(Object.is(1, 1)); // true
+    console.log(Object.is('1', 1)); // false
+    console.log(Object.is(true, 1)); // false
+    console.log(Object.is(NaN, NaN)); // true
+
+    // 判断两个对象是否相等
+    const obj = {
+      name: 'chenery',
+      hobby: [1, 2, 3]
+    }
+    const p1 = obj;
+    const p2 = obj;
+    const p3 = {
+      name: 'chenery',
+      hobby: [1, 2, 3]
+    }
+    console.log('===', p1 === p2)
+    console.log('===', p1 === p3)
+
+  </script>
+</body>
+
+</html>

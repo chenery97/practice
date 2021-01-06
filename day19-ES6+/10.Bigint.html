@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const num = 1n;
+    console.log(typeof num); // bigint
+    console.log(num); // 1n
+    console.log(num + num); // 2n
+    console.log(2 ** 1024); // Infinity
+    console.log(2n ** 1024n); // 179......216n
+    console.log(1n == 1); // true
+    console.log(1n === 1); // false
+    console.log(1n === 1n); // true
+  </script>
+</body>
+
+</html>

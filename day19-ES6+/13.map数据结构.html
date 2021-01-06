@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const map1 = new Map([
+      ['name', 'chenery'],
+      ['age', 23],
+      ['gender', 'male'],
+      [true, false],
+      [null, undefined],
+      [function () {}, Symbol()],
+      [1n, {}],
+      [
+        [1, 2, 3], new Set([1, 2, 3])
+      ],
+      [new Map(), Date.now()]
+    ]);
+    console.log(typeof map1); // object
+    console.log(map1);
+
+    console.log(map1.size); // 获取map对象的长度
+    console.log(map1.get(1n)); // 获取map对象中key对应的值，如果找不到key返回undefined
+    console.log(map1.set(1n, {1: 2})); // 更新或添加键值对
+    console.log(map1.has(null)); // 检测map对象中是否包含某个键，包含返回true，不包含返回false
+    console.log(map1.delete(null)); // 删除map对象中某个键，删除了返回true，没有则返回false
+    map1.clear();
+    console.log(map1); // 清空map对象中的内容
+  </script>
+</body>
+
+</html>

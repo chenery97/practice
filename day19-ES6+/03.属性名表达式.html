@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const id = Date.now().toString(36);
+    // 属性名可以使用[]包裹变量名，最终该属性名会引用到该变量的值
+    const obj = {
+      [id]: 'chenery'
+    }
+    console.log(obj);
+    console.log(obj[id]);
+  </script>
+</body>
+
+</html>

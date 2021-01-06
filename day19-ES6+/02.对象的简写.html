@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const name = 'chenery';
+    const age = 23;
+    const hobby = [1, 2, 3]
+
+    function fn() {
+      console.log(this.age);
+    }
+    const obj = {
+      name: name,
+      age: age,
+      hobby: hobby,
+      fn: fn
+    }
+    // 当对象的属性名与属性值(属性值是一个变量)同名时，可以简写成一个
+    const obj2 = {
+      name,
+      age,
+      hobby,
+      fn
+    }
+    console.log(obj);
+    console.log(obj2);
+    console.log(obj === obj2);
+    console.log(obj.fn === obj2.fn);
+    obj.fn();
+    obj2.fn();
+    fn();
+
+    // 对象中的方法可以简写 冒号和function
+    const obj3 = {
+      getDate () {
+        return Date.now()
+      }
+    }
+    console.log(obj3.getDate());
+  </script>
+</body>
+
+</html>

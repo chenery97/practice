@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person (name, age, gender='male') {
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+    }
+    const p1 = new Person('chenery', 23);
+    console.log(p1);
+
+    function fn (...rest) {
+      console.log(rest);
+      console.log('max:', Math.max(...rest));
+      console.log('min:', Math.min(...rest));
+    }
+    fn(1, 2, 3, 4);
+  </script>
+</body>
+
+</html>
