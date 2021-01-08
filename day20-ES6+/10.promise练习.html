@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const p = new Promise((reslove, reject) => {
+      setTimeout(() => {
+        const str = '救救孩子';
+        console.log(str);
+        reslove(str);
+      }, 1000)
+    }).then((result) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const str = '， promise 太难了';
+          console.log(str);
+          resolve(result + str);
+        }, 1500)
+      })
+    }).then((result) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const str = '，我要回家...';
+          console.log(str);
+          resolve(result + str);
+        }, 2000)
+      })
+    }).then((result) => {
+      setTimeout(() => {
+        console.log(result);
+      }, 1000)
+    }).finally(() => {
+      console.log('fuck~~');
+    })
+  </script>
+</body>
+
+</html>

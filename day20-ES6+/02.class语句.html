@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 用function声明构造函数
+    function Person1 (name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    Person1.prototype.learn = function () {
+      console.log('learning...1');
+    }
+    Person1.doThing = function () {
+      console.log('做个人吧...1')
+    }
+
+    // 用class声明构造函数
+    class Person2 {
+      // 实例化属性在constructor函数中声明
+      constructor (name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 构造函数的原型对象上的方法直接在class内部声明或在原型对象上扩展也行
+      learn () {
+        console.log('learning...2');
+      }
+    }
+    Person2.prototype.sleep = function () {
+      console.log('洗洗睡吧...2');
+    }
+    Person2.doThing = function () {
+      console.log('做个人吧...2');
+    }
+
+    const p1 = new Person1('tom', 22);
+    const p2 = new Person2('jerry', 19);
+    console.log(p1);
+    p1.learn();
+    Person1.doThing();
+    console.log(p2);
+    p2.learn();
+    Person2.doThing();
+  </script>
+</body>
+
+</html>

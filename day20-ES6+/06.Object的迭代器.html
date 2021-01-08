@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'chenery',
+      age: 23
+    }
+    // 对象可以通过Object.entries(obj) Object.keys(obj) Object.values(obj)间接使用迭代器
+    // 获取键值对的数组
+    for (let e of Object.entries(obj)) {
+      console.log(e);
+    }
+    // 获取对象的键名(属性名)
+    for (let k of Object.keys(obj)) {
+      console.log(k);
+    }
+    // 获取对象的键值(属性值)
+    for (let v of Object.values(obj)) {
+      console.log(v);
+    }
+  </script>
+</body>
+
+</html>

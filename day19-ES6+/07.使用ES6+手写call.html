@@ -11,7 +11,7 @@
   <script>
     Function.prototype.myCall = function (context, ...rest) {
       // 判断传入的上下文对象是否为undefined或null，如果是则指定为window
-      context = !(context === undefined) && !(context === null) ? Object(context) : window;
+      context = context !== undefined && context !== null ? Object(context) : window;
       // 为上下文对象扩展一个唯一的属性，属性值指向当前this，也就是执行myCall的函数
       const key = Symbol();
       context[key] = this;

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      name: 'chenery',
+      age: 23,
+      gender: 'male'
+    }
+    const arr = [1, 2, 3, 4, 5];
+
+    /* 
+      for in 遍历出的是key 
+      for in 不推荐遍历有序的数据结构
+    */
+    for (let k in obj) {
+      console.log(k);
+    }
+    /* 
+      for in 遍历 Object.entries() Object.keys() Object.vlaues() 遍历的都是对象中属性的顺序标识 0 1 2 ...
+    */
+    for (let e in Object.entries(obj)) {
+      console.log(e);
+    }
+    for (let k in Object.keys(obj)) {
+      console.log(k);
+    }
+    for (let v in Object.values(obj)) {
+      console.log(v);
+    }
+    /* for (let k in arr) {
+      console.log(k);
+    } */
+    /* 
+      for of 遍历出的是value 
+      for of 不能直接遍历object
+    */
+    /* for (let v of obj) {
+      console.log(v);
+    } */
+    for (let v of arr) {
+      console.log(v);
+    }
+    for (let e of Object.entries(obj)) {
+      console.log(e);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 使用class实现继承
+    class Car {
+      // 父类实例化对象的属性、方法
+      constructor (carNumber) {
+        this.carNumber = carNumber;
+      }
+      // 父类实例化对象公用方法
+      leave () {
+        console.log('leaving...');
+      }
+    }
+    // 子类继承父类
+    class MonthCar extends Car {
+      // 子类实例化对象的属性、方法
+      constructor (type, carNumber) {
+        // 使用super()把子类的this对象去继承父类的属性、方法
+        super(carNumber);
+        // 子类实例化对象的属性、方法 
+        this.type = type;
+      }
+      monthPrice () {
+        console.log('月租车续费...');
+      }
+    }
+    const car1 = new MonthCar('month', '粤B11111');
+    console.log(car1);
+    car1.leave();
+    car1.monthPrice();
+  </script>
+</body>
+
+</html>

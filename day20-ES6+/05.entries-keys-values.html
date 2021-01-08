@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [1, 2, 3, 4, 5, 6];
+    const arrEntries = arr.entries();
+    const arrKeys = arr.keys();
+    const arrValues = arr.values();
+    // iterator对象可以通过next()按照顺序依次获取
+    console.log(arrEntries);
+    console.log(arrEntries.next());
+    console.log(arrKeys);
+    console.log(arrKeys.next());
+    console.log(arrValues);
+    console.log(arrValues.next());
+
+    // entries() 返回键值对的iterator，可以通过遍历获取到每一个键值对的数组
+    for (let e of arr.entries()) {
+      console.log('entry', e);
+    }
+    // keys() 返回键名的iterator，可以通过遍历获取到每一个键名
+    for (let k of arr.keys()) {
+      console.log('key', k);
+    }
+    // values() 返回键值的iterator，可以通过遍历获取到每一个键值
+    for (let v of arr.values()) {
+      console.log('value', v);
+    }
+
+    // set、map、array都可以使用entries() keys() values()
+  </script>
+</body>
+
+</html>

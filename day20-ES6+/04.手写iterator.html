@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 自己模拟的iterator
+    /* const arr1 = [1, 2, 3, 4, 5, 6];
+    function Iterator (arr) {
+      let count = 0;
+      return {
+        next () {
+          if (count < arr.length) {
+            return {
+              value: arr[count++],
+              done: false
+            }
+          }
+          return {
+            value: undefined,
+            done: true
+          }
+        }
+      }
+    }
+    const it = new Iterator(arr1);
+    console.log(it);
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next()); */
+
+    // 原生的iterator
+    const arr = [1, 2, 3, 4, 5, 6];
+    const it = arr[Symbol.iterator]();
+    console.log(it);
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+
+    const str = 'abcdefg';
+    const set1 = new Set(arr);
+    const map1 = new Map([
+      ['name', 'chenery'],
+      [true, false]
+    ]);
+    // StringIterator
+    console.log(str[Symbol.iterator]());
+    // SetIterator
+    console.log(set1[Symbol.iterator]());
+    // MapIterator
+    console.log(map1[Symbol.iterator]());
+  </script>
+</body>
+
+</html>

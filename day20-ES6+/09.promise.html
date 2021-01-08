@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Promise 构造函数
+        - 参数 回调函数
+            - 参数1：函数 成功 一般会写resolve
+            - 参数2：函数 失败 一般会写reject
+        - 返回promise实例化对象
+            - [[PromiseState]]：执行状态 pending(执行中)、fulfilled(成功)、rejected(失败)
+            - [[PromiseResult]]：返回值 resolve()或reject()传递的参数，没有传递时为undefined
+            - then()
+              - 参数：result 指向 实例化对象中的[[PromiseResult]]
+            - catch()
+              - 参数：error 指向 实例化对象中的[[PromiseResult]]
+    */
+    const p1 = new Promise((resolve, reject) => {
+      console.log('going...');
+      setTimeout(() => {
+        // throw new Error('error...');
+        resolve('success...');
+        // reject('error...');
+        throw new Error('error...');
+      }, 1000)
+    }).then((result) => {
+      console.log(result);
+      throw new Error('错了错了...');
+    }).catch((error) => {
+      console.log(error);
+      throw new Error('错了错了...');
+    }).finally(() => {
+      console.log('end...');
+    })
+    console.log(p1);
+  </script>
+</body>
+
+</html>

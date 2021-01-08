@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // generator 生成器 异步编程解决方案
+    // 写法
+    /* function* gen() {
+      console.log(0);
+      yield console.log(1);
+      console.log('再次调用了next');
+      yield console.log(2);
+      yield console.log(3);
+      yield console.log(4);
+    }
+    // 调用不会立即执行 需要调用next()才会执行，遇到yield会停止执行，继续调用next()会在上一次遇到的yield位置继续执行
+    const g = gen();
+    console.log(g);
+    g.next();
+    g.next(); */
+
+    // 异步回调 回调地狱
+    function fn () {
+      setTimeout(() => {
+        console.log('111');
+        setTimeout(() => {
+          console.log('222');
+          setTimeout(() => {
+            console.log('333');
+          }, 2000)
+        }, 1500)
+      }, 1000)
+    }
+    fn();
+
+    function* gen () {
+      yield setTimeout(() => {
+        console.log(111);
+        it.next();
+      }, 1000)
+      yield setTimeout(() => {
+        console.log(222);
+        it.next();
+      }, 1500)
+      yield setTimeout(() => {
+        console.log(333);
+      }, 2000)
+    }
+    const it = gen();
+    it.next()
+  </script>
+</body>
+
+</html>
