@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Promise.race([promise1, promise2, ...])
+        - 所有promise对象的状态都为pending时，则返回的promise对象的状态为pending，其PromiseResult为undefined
+        - 所有promise对象中的状态有不为pending时，则返回的promise对象的状态跟随第一个改变状态的promise对象的状态，
+          其PromiseResult为该第一个改变状态的promise对象的返回值
+    */
+    const p1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try{
+          console.log('p1...');
+          // throw new Error('p1 我错了...');
+          // resolve({name1: '我是p1'});
+        }
+        catch(err) {
+          reject(err);
+        }
+      }, 1500)
+    })
+    const p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try{
+          console.log('p2...');
+          // throw new Error('p2 我错了...');
+          // resolve({name2: '我是p2'});
+        }
+        catch(err) {
+          reject(err);
+        }
+      }, 1000)
+    })
+    const p3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try{
+          console.log('p3...');
+          throw new Error('p3 我错了...');
+          // resolve({name3: '我是p3'});
+        }
+        catch(err) {
+          reject(err);
+        }
+      }, 2000)
+    })
+    const re = Promise.race([p1, p2, p3]);
+    console.log(re);
+    re.then((data) => {
+      console.loog(data);
+    }).catch((err) => {
+      console.log(err.message);
+    })
+  </script>
+</body>
+
+</html>

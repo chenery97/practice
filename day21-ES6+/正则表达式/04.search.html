@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      str.search(str/reg)：返回匹配到的第一个字符的下标，没有匹配到是返回-1，当要匹配的字符固定时应该使用indexOf替代
+        - str只能固定匹配字符串
+        - reg可以动态匹配字符串
+    */
+    const reg = /\d/gi;
+    const str = 'sfw42egw3425';
+    console.log(str.indexOf('3')); //8
+    console.log(str.search('3')); //8
+    console.log(str.search(reg)); //3
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Promise.all([promise1,promise2,...])
+        - 所有的promise对象中有一个的状态为pending且其他promise对象的状态不为rejected，则返回的promise对象的状态就是为pending，PromiseResult为undefined
+        - 所有的promise对象中有一个的状态为rejected，则返回的promise对象的状态就是为rejected，PromiseResult为错误信息
+          - 通过catch()可以获取到PromiseResult中的错误信息
+        - 所有的promise对象中的状态都为fulfilled，则返回的promise对象的状态就是为fulfilled，PromiseResult为所有promise对象返回的数据组成的数组
+          - 通过then()可以获取到PromiseResult数组中的所有数据
+    */
+    const p1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          console.log('p1');
+          // throw new Error('p1我错了...');
+          // resolve(111);
+        }
+        catch(err){
+          reject(err);
+        }
+      }, 1500)
+    })
+    const p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          console.log('p2');
+          // throw new Error('p2我错了...');
+          // resolve({age: 23});
+        }
+        catch(err){
+          reject(err);
+        }
+      }, 1000)
+    })
+    const p3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        try {
+          console.log('p3');
+          throw new Error('p3我错了...');
+          // resolve({gender: 'male'});
+        }
+        catch(err){
+          reject(err);
+        }
+      }, 2000)
+    })
+    const re = Promise.all([p1, p2, p3]);
+    console.log(re);
+    re.then((data) => {
+      data.forEach((item) => {
+        console.log(item);
+        // item.then()
+      })
+    }).catch((err) => {
+      console.log(err.message);
+    })
+  </script>
+</body>
+
+</html>

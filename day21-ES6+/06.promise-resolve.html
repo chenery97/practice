@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Promise.resolve(data)
+        - 直接返回一个状态为fulfilled的promise对象，PromiseResult为resolve的参数
+    */
+    const p1 = Promise.resolve({name: 'p1'});
+    console.log(p1);
+    const re = p1.then((data) => {
+      // throw new Error('err...');
+      console.log(data);
+    })
+    console.log(re);
+  </script>
+</body>
+
+</html>

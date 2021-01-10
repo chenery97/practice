@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      Promise.reject(data)
+        - 直接返回一个状态为rejected的promise对象，PromiseResult为reject的参数
+    */
+    const p1 = Promise.reject('err...');
+    console.log(p1);
+    p1.then((data) => {
+      console.log(data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      async 函数
+        - 返回一个promise对象
+        - promise对象的状态取决于内部await等待的promise对象的状态
+          - 当遇到第一个promise对象的状态为pending或rejected时，则async函数返回的promise对象的状态就是pending或rejected，
+            PromiseResult为undefined或是错误信息
+          - 当所有的promise对象的状态都为fulfilled时，则async函数返回的promise对象的状态就是fulfilled，
+            PromiseResult为async函数return的值
+
+      await 必须在async函数中使用，后面等待的是异步代码执行，等待的必须是一个promise对象才有意义
+        - 等待的promise对象的状态为pending时，会永远等下去
+        - 等待的promise对象的状态变成fulfilled时，则继续向下执行
+        - 等待的promise对象的状态变成rejected时，则直接退出async函数
+
+        - 返回值：在promise对象的状态为fulfilled的时候，返回值才有意义，成功状态的返回值就是这个promise对象的PromiseResult的值
+    */
+    const fn = async function () {
+      await console.log('start...');
+      const p1 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          try{
+            console.log('p1...');
+            // throw new Error('p1 err...');
+            resolve({name: 'p1'});
+          }
+          catch(err) {
+            reject(err);
+          }
+        }, 1000)
+      }).then((data) => {
+        console.log(data);
+      }).catch((err) => {
+        console.log(err);
+      })
+      const p2 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          try{
+            console.log('p2...');
+            // throw new Error('p2 err...');
+            resolve({name: 'p2'});
+          }
+          catch(err) {
+            reject(err);
+          }
+        }, 1000)
+      })
+      const p3 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          try{
+            console.log('p3...');
+            // throw new Error('p3 err...');
+            resolve({name: 'p3'});
+          }
+          catch(err) {
+            reject(err);
+          }
+        }, 2000)
+      })
+      console.log(p1);
+      console.log(p2);
+      console.log(p3);
+      await console.log('end...');
+      return 111
+    }
+    const re = fn();
+    console.log(re);
+    re.then((data) => {
+      console.log(data);
+    })
+  </script>
+</body>
+
+</html>

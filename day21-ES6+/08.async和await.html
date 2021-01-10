@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    async function fn () {
+      /* 
+        同步代码
+      */
+      await setTimeout(() => {
+        console.log(111);
+      }, 1000)
+      const a1 = await console.log(222);
+      const a2 = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          try{
+            console.log('p1..');
+            // throw new Error('err...');
+            // resolve({name1: 'p1'});
+          }
+          catch(err) {
+            reject(err);
+          }
+        }, 2000)
+      })
+      await console.log(333);
+      console.log(a1)
+      console.log(a2)
+    }
+    const re = fn();
+    console.log(re);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      str.match(str/reg)
+        - str只能固定字符匹配一次
+        - reg可以动态字符匹配多次
+        - 按照正则表达式进行匹配，把匹配到的字符存放到一个数组中，并最终返回这个数组
+        - 没有匹配到时返回null
+    */
+    const reg = /\W/gi;
+    const str = '1.&234567890zxcv&bnmasdfghjkqwertyuiop[;,./;';
+    console.log(str.match(reg)); //[".", "&", "&", "[", ";", ",", ".", "/", ";"]
+    console.log(str.match('2345')); //["2345", index: 3, input: "1.&234567890zxcv&bnmasdfghjkqwertyuiop[;,./;", groups: undefined]
+  </script>
+</body>
+
+</html>

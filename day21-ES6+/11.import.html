@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      import(filePath)
+        - 返回一个promise对象
+          - 引入成功状态为fulfilled，返回值为Module
+          - 引入失败状态为rejected，返回值为错误信息
+    */
+    document.onclick = function () {
+      const re = import('./01.js');
+      // const re = import('./02.js');
+      console.log(re);
+      re.then((data) => {
+        console.log(data);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+  </script>
+</body>
+
+</html>

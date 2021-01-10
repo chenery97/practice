@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const fn = async function () {
+      const p1 = await new Promise((resolve, reject) => {
+        resolve({name1: 'p1'});
+      })
+      const p2 = await new Promise((resolve, reject) => {
+        resolve(Object.assign({}, p1, {name2: 'p2'}));
+      })
+      const p3 = await new Promise((resolve, reject) => {
+        resolve(Object.assign({}, p2, {name3: 'p3'}));
+      })
+      return p3
+    }
+    const re = fn();
+    re.then((data) => {
+      console.log(data); // Object {name1: 'p1', name2: 'p2', name3: 'p3'}
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      匹配手机号码
+        1开头的数字 + 第二位数字不能为0或1 + 9位数字
+        ^1[^01][0-9]{9}$
+    */
+    const reg = /^1[^01][0-9]{9}$/g;
+    const str1 = '13112345678';
+    const str2 = '20112345678';
+    const str3 = '11112345678';
+    const str4 = '10231456789';
+    const str5 = '1311234567';
+    const str6 = '131123456789';
+    const str7 = '13112345678-';
+
+    console.log(reg.test(str1)); //true
+    console.log(reg.test(str2)); //false
+    console.log(reg.test(str3)); //false
+    console.log(reg.test(str4)); //false
+    console.log(reg.test(str5)); //false
+    console.log(reg.test(str6)); //false
+    console.log(reg.test(str7)); //false
+
+    /* 
+      手机号码隐藏中间4位
+    */
+    /* if (reg.test(str1)) {
+      const newStr = str1.replace(str1.slice(3, 7), '****');
+      console.log(newStr);
+    } */
+    if (reg.test(str1)) {
+      const newStr = str1.replace(/(\d{3})\d{4}(\d{4})/g, '$1****$2');
+      console.log(newStr);
+    }
+
+  </script>
+</body>
+
+</html>

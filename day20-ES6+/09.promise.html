@@ -21,6 +21,8 @@
               - 参数：result 指向 实例化对象中的[[PromiseResult]]
             - catch()
               - 参数：error 指向 实例化对象中的[[PromiseResult]]
+            - finally()
+              - 没有参数、返回值，无论promise对象的状态是成功还是失败都会执行
     */
     const p1 = new Promise((resolve, reject) => {
       console.log('going...');

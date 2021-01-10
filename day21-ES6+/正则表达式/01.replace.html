@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      str.replace(str/reg, str)
+        - 将匹配到的字符 替换成 指定字符
+        - 匹配的字符为str时，只能匹配到一次
+        - 匹配的字符为reg时且规定reg为全局匹配，可以匹配到整个字符串中所有符合的字符
+    */
+    const reg = /\s/g;
+    const str = '1 1 2 3 4 4 5';
+    console.log(str.replace(reg, '+')); //1+1+2+3+4+4+5
+  </script>
+</body>
+
+</html>
